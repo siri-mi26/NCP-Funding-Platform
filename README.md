@@ -20,9 +20,13 @@ IP Exploitation Model
 ## Client 
 
 Contact: Daisy Aldam
+
 Phone: 6488 6680
+
 Email: daisy.aldam@uwa.edu.au
+
 Preferred contact: Email
+
 Location: Hackett Annex (Next to Hackett Cafe)
 
 
