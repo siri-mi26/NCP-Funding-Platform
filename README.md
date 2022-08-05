@@ -6,8 +6,12 @@ Background: Who are ACICIS Study Indonesia The Australian Consortium for In-Coun
 
 
 
+## Structure
+(creating mindmap later)
 
 
+## Enviornment
+1. Requires python 3.8+
 
 
 
