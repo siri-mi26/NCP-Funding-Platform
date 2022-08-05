@@ -13,6 +13,17 @@ Background: Who are ACICIS Study Indonesia The Australian Consortium for In-Coun
 ## Enviornment
 1. Requires python 3.8+
 
+## IP model
+
+IP Exploitation Model
+
+## Client 
+
+Contact: Daisy Aldam
+Phone: 6488 6680
+Email: daisy.aldam@uwa.edu.au
+Preferred contact: Email
+Location: Hackett Annex (Next to Hackett Cafe)
 
 
 ## Useful links:
