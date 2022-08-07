@@ -17,18 +17,6 @@ Background: Who are ACICIS Study Indonesia The Australian Consortium for In-Coun
 
 IP Exploitation Model
 
-## Client 
-
-Contact: Daisy Aldam
-
-Phone: 6488 6680
-
-Email: daisy.aldam@uwa.edu.au
-
-Preferred contact: Email
-
-Location: Hackett Annex (Next to Hackett Cafe)
-
 
 ## Useful links:
 https://teaching.csse.uwa.edu.au/units/CITS3200/project/offered/Projects_2022/Aldam_NCP_Funding_Management_Platform.html
