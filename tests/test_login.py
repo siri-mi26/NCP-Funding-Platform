@@ -14,7 +14,6 @@ class FlaskLogin(unittest.TestCase):
         app.config['TESTING'] = True
         app.config['LOGIN_DISABLED'] = False
         app.config['WTF_CSRF_ENABLED'] = False
-        #app.login_manager._login_disabled = False #doesn't help either
         self.app = app
         self.client = self.app.test_client()
         self._ctx = self.app.test_request_context()
@@ -39,9 +38,7 @@ class FlaskLogin(unittest.TestCase):
         """Test login with correct credentials"""
         with self.client:
             response = self.login('test', 'test')
-            #self.assertIn(b'Successfull Login', response.data)
             html = response.get_data(as_text=True)
-            #print(html)
             assert response.status_code == 200
             assert 'Hi, test' in html
             self.assertTrue(current_user.username=='test')
@@ -50,7 +47,6 @@ class FlaskLogin(unittest.TestCase):
         """Test login with correct credentials"""
         with self.client:
             response = self.login('', '')
-            #self.assertIn(b'Successfull Login', response.data)
             self.assertIn(b'Sign In', response.data)
 
     def test_incorrect_login(self):
@@ -58,7 +54,6 @@ class FlaskLogin(unittest.TestCase):
         with self.client:
             response = self.login('test', 'tset')
             response2 = self.login('tset', 'tset')
-            #self.assertIn(b'Successfull Login', response.data)
             self.assertIn(b'Sign In', response.data)
             self.assertIn(b'Sign In', response2.data)
 
