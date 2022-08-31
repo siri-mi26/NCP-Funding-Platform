@@ -1,3 +1,6 @@
 #gitignore: ignore following files
 *__pycache__
 *.venv
+*migrations
+app.db
+*notes.txt
