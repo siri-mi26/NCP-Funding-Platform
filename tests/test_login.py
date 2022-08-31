@@ -16,9 +16,6 @@ class FlaskLogin(unittest.TestCase):
         app.config['WTF_CSRF_ENABLED'] = False
         self.app = app
         self.client = self.app.test_client()
-        self._ctx = self.app.test_request_context()
-        self._ctx.push()
-
         db.create_all()
 
     def test_login_loads (self):
@@ -63,6 +60,21 @@ class FlaskLogin(unittest.TestCase):
             self.login('test', 'test')
             response = self.client.get('/logout', follow_redirects=True)
             assert response.status_code == 200
+    
+    def test_queries(self):
+        """Test after successful login we can get to queries"""
+        with self.client:
+            self.login('test', 'test')
+            response = self.client.get('/queries', follow_redirects=True)
+            assert response.status_code == 200
+            self.assertIn(b"What would you like to query?", response.data)
 
+    def test_downloads(self):
+        """Test after successful login we can access downloads"""
+        with self.client:
+            self.login('test', 'test')
+            response = self.client.get('/downloads', follow_redirects=True)
+            assert response.status_code == 200
+            self.assertIn(b"Let's hope we can get here!", response.data)
 if __name__ == '__main__':
     unittest.main()
