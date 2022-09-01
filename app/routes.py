@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, searchFormExampleUsers
 from flask_login import current_user, login_user, login_required, logout_user
 from app.models import User
 from werkzeug.urls import url_parse
@@ -12,7 +12,7 @@ def index():
     """Routes for index page"""
     return render_template('index.html', title="Home")
 
-@app.route('/queries')
+@app.route('/queries', methods=["GET", "POST"])
 @login_required
 def queries():
     """Routes for queries"""
