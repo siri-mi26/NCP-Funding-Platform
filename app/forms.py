@@ -14,8 +14,6 @@ class searchFormExampleUsers(FlaskForm):
       Right now searches/queries users table. Later will be chnaged to search 
       our actual db tables when they are finalised. 
       Searches by Username or id"""
-      search_choices = [('id', 'id')]
-      select = SelectField('Search for user:', search_choices=search_choices)
       search = StringField('')
       submit = SubmitField('Search')
 

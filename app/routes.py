@@ -1,5 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
-from app import app
+from app import app, models
+from app.models import User
 from app.forms import LoginForm, searchFormExampleUsers
 from flask_login import current_user, login_user, login_required, logout_user
 from app.models import User
@@ -16,7 +17,12 @@ def index():
 @login_required
 def queries():
     """Routes for queries"""
-    return render_template('queries.html', title="Queries")
+    if request.method == "POST":
+        data = dict(request.form)
+        users = User.load_user(data.get('search'))
+    else:
+        users = {}
+    return render_template('queries.html', title="Queries", usr=users)
 
 @app.route('/downloads')
 @login_required

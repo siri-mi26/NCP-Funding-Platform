@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    def load_user(id):
+        return User.query.get(int(id))
     
 @login.user_loader
 def load_user(id):
