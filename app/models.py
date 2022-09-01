@@ -20,8 +20,17 @@ class User(UserMixin, db.Model):
     
     def __repr__(self):
         return '<User {}>'.format(self.username)
-    def load_user(id):
-        return User.query.get(int(id))
+
+class Student(db.Model):  
+    __tablename__ = 'Student' 
+    id = db.Column(db.Integer, primary_key = True) 
+    studentnumber = db.Column(db.Integer)
+    firstname = db.Column(db.String(50))
+    lastname = db.Column(db.String(50))
+    university = db.Column(db.String(50)) #could be foreign key to diff table
+    
+    def __repr__(self):
+        return '<Student {}>'.format(self.studentnumber)
     
 @login.user_loader
 def load_user(id):

@@ -9,11 +9,7 @@ class LoginForm(FlaskForm):
     #remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class searchFormExampleUsers(FlaskForm):
-      """Example Search form, will be removed/edited later.
-      Right now searches/queries users table. Later will be chnaged to search 
-      our actual db tables when they are finalised. 
-      Searches by Username or id"""
-      search = StringField('')
-      submit = SubmitField('Search')
+class BasicForm(FlaskForm):
+    ids = StringField("ID",validators=[DataRequired()])
+    submit = SubmitField("Submit")
 

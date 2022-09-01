@@ -1,9 +1,9 @@
 from flask import render_template, url_for, flash, redirect, request
 from app import app, models
 from app.models import User
-from app.forms import LoginForm, searchFormExampleUsers
+from app.forms import LoginForm
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import User
+from app.models import User, Student
 from werkzeug.urls import url_parse
 
 @app.route('/')
@@ -19,10 +19,11 @@ def queries():
     """Routes for queries"""
     if request.method == "POST":
         data = dict(request.form)
-        users = User.load_user(data.get('search'))
+        student = Student.query.get(data['search'])
+        print(student)
     else:
-        users = {}
-    return render_template('queries.html', title="Queries", usr=users)
+        student = {}
+    return render_template('queries.html', title="Queries", student=student)
 
 @app.route('/downloads')
 @login_required
