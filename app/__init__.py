@@ -13,18 +13,20 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-admin = Admin(app, name='NCP', template_mode='bootstrap3')
 
 from app import db, routes, models
-from app.models import User, Student, University, Grants
+from app.models import Users, Students, Universities, Campuses, Grants, SecureModelView, SecureIndexView
 # set optional bootswatch theme
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+#add admin views for tables/models
+admin = Admin(app, name='NCP', template_mode='bootstrap3', index_view= SecureIndexView())
+admin.add_view(SecureModelView(Users, db.session))
+admin.add_view(SecureModelView(Students, db.session))
+admin.add_view(SecureModelView(Grants, db.session))
+admin.add_view(SecureModelView(Universities, db.session))
+admin.add_view(SecureModelView(Campuses, db.session))
 
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Student, db.session))
-admin.add_view(ModelView(Grants, db.session))
-admin.add_view(ModelView(University, db.session))
-#admin.add_view(ModelView(Grants, db.session))
 # Add administrative views here
+
 
 #app.run()
