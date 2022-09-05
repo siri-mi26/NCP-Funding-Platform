@@ -5,17 +5,15 @@ from flask_login import current_user, login_user, login_required, logout_user
 from app.models import Users, Students
 from werkzeug.urls import url_parse
 
-@app.route('/')
+"""@app.route('/')
 #@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    """Routes for index page"""
-    return render_template('/admin', title="Home")
+    return render_template('admin/', title="Home")
 
 @app.route('/queries', methods=["GET", "POST"])
 @login_required
 def queries():
-    """Routes for queries"""
     if request.method == "POST":
         data = dict(request.form)
         student = Student.query.get(data['search'])
@@ -28,13 +26,12 @@ def queries():
 @app.route('/downloads')
 @login_required
 def downloads():
-    """Routes for downloads page"""
     return render_template('downloads.html', title="Downloads")
-
-@app.route('/login', methods=['GET', 'POST'])
+"""
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('admin.index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first()
@@ -44,7 +41,7 @@ def login():
         login_user(user)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('admin.index')
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
