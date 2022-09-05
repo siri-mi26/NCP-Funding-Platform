@@ -52,8 +52,8 @@ class UniversityModelView(ModelView):
 class StudentModelView(ModelView):
     """Custom view for Student. Login secured."""
     #searchable list. can add more
-    column_searchable_list = ('student_Number', 'First_Name', 'Last_Name', 'Prefered_Name', 'Age','Adress_Line_One', 'Adress_Line_Two', 'City', 'State', 'Nationality', 'Notes')
-    column_filters = ('id', 'student_Number', 'University_ID', 'Campus_ID', 'First_Name', 'Last_Name', 'Prefered_Name', 'Title', 'Age', 'Adress_Line_One', 'Adress_Line_Two',
+    column_searchable_list = ('student_Number', 'University.University_Name', 'Campus.Campus_Name','First_Name','Last_Name', 'Prefered_Name', 'Age','Adress_Line_One', 'Adress_Line_Two', 'City', 'State', 'Nationality', 'Notes')
+    column_filters = ('id', 'student_Number','University.University_Name','Campus.Campus_Name','University_ID', 'Campus_ID', 'First_Name', 'Last_Name', 'Prefered_Name', 'Title', 'Age', 'Adress_Line_One', 'Adress_Line_Two',
     'City','State', 'Nationality', 'Phone_Number', 'BSB', 'Account_Number', 'Country_Of_Birth','Indigenous_or_Torres_Strait_Australian','Disability')
     def is_accessible(self):
         return current_user.is_authenticated
@@ -61,6 +61,16 @@ class StudentModelView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login', next=request.url))
 
+class CampusModelView(ModelView):
+    """Custom view for Student. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ('Campus_Name', 'Campus_State','University.University_Name')
+    column_filters = ('id', 'Campus_Name', 'Campus_State','University.University_Name')
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
 class MyAdminIndexView(AdminIndexView):
     """Custom view for index. Login secured."""
     def is_accessible(self):
@@ -81,8 +91,8 @@ class Students(db.Model):
     student_Number = db.Column(db.Integer)
     University_ID =  db.Column(db.Integer, db.ForeignKey('university.id'))
     Campus_ID =  db.Column(db.Integer, db.ForeignKey('campus.id'))
-    University_Name = db.relationship("Universities")
-    Campus_Name = db.relationship("Campuses")
+    University = db.relationship("Universities")
+    Campus= db.relationship("Campuses")
     First_Name = db.Column(db.String(50))
     Last_Name = db.Column(db.String(50))
     Prefered_Name = db.Column(db.String(50))
@@ -127,7 +137,7 @@ class Campuses(db.Model):
     __tablename__ = 'campus' 
     id = db.Column(db.Integer, primary_key = True) 
     University_ID = db.Column(db.Integer, db.ForeignKey("university.id"))
-    University_Name = db.relationship("Universities")
+    University = db.relationship("Universities")
     Campus_Name = db.Column(db.String(50))
     Campus_State = db.Column(db.String(50))
 
