@@ -40,10 +40,21 @@ class SecureModelView(ModelView):
 class UniversityModelView(ModelView):
     """Custom view for University. Login secured."""
     #searchable list. can add more
-    column_searchable_list = ('University_Name', 'id', "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
-    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022")
+    column_searchable_list = ('University_Name', 'id', "ABN")
     column_filters = ('University_Name', 'id', "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022")
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+class StudentModelView(ModelView):
+    """Custom view for Student. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ('student_Number', 'First_Name', 'Last_Name', 'Prefered_Name', 'Age','Adress_Line_One', 'Adress_Line_Two', 'City', 'State', 'Nationality', 'Notes')
+    column_filters = ('id', 'student_Number', 'University_ID', 'Campus_ID', 'First_Name', 'Last_Name', 'Prefered_Name', 'Title', 'Age', 'Adress_Line_One', 'Adress_Line_Two',
+    'City','State', 'Nationality', 'Phone_Number', 'BSB', 'Account_Number', 'Country_Of_Birth','Indigenous_or_Torres_Strait_Australian','Disability')
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -98,7 +109,6 @@ class Universities(db.Model):
     __tablename__ = 'university' 
     id = db.Column(db.Integer, primary_key = True) 
     University_Name = db.Column(db.String)
-    #Campuses = db.relationship("Campus", back_populates="University_Name")
     ABN = db.Column(db.Integer)
     Member_Status_2014 = db.Column(db.Boolean)
     Member_Status_2015 = db.Column(db.Boolean)
