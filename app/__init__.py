@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_admin import Admin
-
 from flask_admin.contrib.sqla import ModelView
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -16,11 +15,12 @@ login.login_view = 'login'
 
 
 from app import db, routes, models
-from app.models import Users, Students, Universities, Campuses, Grants, SecureModelView, MyAdminIndexView, UniversityModelView, StudentModelView, CampusModelView
+from app.models import Users, Students, Universities, Campuses, Grants, SecureModelView, MyAdminIndexView, UniversityModelView, StudentModelView, CampusModelView, LogoutMenuLink
 # set optional bootswatch theme
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 #add admin views for tables/models
 admin = Admin(app, name='NCP', template_mode='bootstrap3', index_view=MyAdminIndexView())
+admin.add_link(LogoutMenuLink(name='Logout', category='', url="/logout"))
 admin.add_view(SecureModelView(Users, db.session))
 admin.add_view(StudentModelView(Students, db.session))
 admin.add_view(SecureModelView(Grants, db.session))

@@ -9,7 +9,4 @@ class LoginForm(FlaskForm):
     #remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class BasicForm(FlaskForm):
-    ids = StringField("ID",validators=[DataRequired()])
-    submit = SubmitField("Submit")
 

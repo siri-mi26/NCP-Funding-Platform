@@ -5,29 +5,6 @@ from flask_login import current_user, login_user, login_required, logout_user
 from app.models import Users, Students
 from werkzeug.urls import url_parse
 
-"""@app.route('/')
-#@app.route('/index', methods=['GET', 'POST'])
-@login_required
-def index():
-    return render_template('admin/', title="Home")
-
-@app.route('/queries', methods=["GET", "POST"])
-@login_required
-def queries():
-    if request.method == "POST":
-        data = dict(request.form)
-        student = Student.query.get(data['search'])
-        print(student)
-    else:
-        student = {}
-    return render_template('queries.html', title="Queries", student=student)
-
-
-@app.route('/downloads')
-@login_required
-def downloads():
-    return render_template('downloads.html', title="Downloads")
-"""
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -48,4 +25,5 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    #or could redirect to admin.index. not sure how we can add more security features.
+    return redirect(url_for('login'))

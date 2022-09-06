@@ -1,5 +1,7 @@
 from app import db, login
+from flask_admin.menu import MenuLink
 from flask import url_for, request, redirect
+from flask_login import current_user
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin, AdminIndexView, expose
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,6 +38,11 @@ class SecureModelView(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login', next=request.url))
+        
+class LogoutMenuLink(MenuLink):
+
+    def is_accessible(self):
+        return current_user.is_authenticated  
 
 class UniversityModelView(ModelView):
     """Custom view for University. Login secured."""
