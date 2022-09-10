@@ -1,1 +1,22 @@
-testing
+
+
+campuses.html 
+hello.py
+result.html 
+
+Those files are about create .db by .sql model (no need anymore just connect .db file in local is fine )and create flask enviroment (host:5000)to test searching 
+and updating function but too much work, i just write some code and try to make it work but fail......
+
+
+###################################################################################
+newdummydata.sql
+SQL model of database with dummydata
+
+
+###################################################################################
+ncpdummarydata.db
+new database with "test dummy data"
+
+###################################################################################
+mongoDBtest.py
+This file is showing some examples about how to connect local db file and some example about how to searching and updating data
