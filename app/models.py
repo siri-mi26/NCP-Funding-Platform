@@ -50,6 +50,7 @@ class UniversityModelView(ModelView):
     column_searchable_list = ('University_Name', 'id', "ABN")
     column_filters = ('University_Name', 'id', "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022")
+   
     def is_accessible(self):
         return current_user.is_authenticated
 
