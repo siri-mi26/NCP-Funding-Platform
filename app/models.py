@@ -10,13 +10,9 @@ from flask_login import UserMixin, current_user, login_required
 
 class Users(UserMixin, db.Model):
     __tablename__ = 'USER' 
-    """temp create login user table with sqlite.
-    can be removed when boys are done with db
-    unless we decide to keep"""
     User_Id = db.Column(db.Integer, primary_key=True)
     Username = db.Column(db.String(20), index=True, unique=True, nullable=False)
     Password_Hash = db.Column(db.String(180))
-    #email should probs/could be included & auth level. But not must have
 
     def set_password(self, password):
         self.Password_Hash = generate_password_hash(password)
@@ -44,11 +40,67 @@ class LogoutMenuLink(MenuLink):
     def is_accessible(self):
         return current_user.is_authenticated  
 
-class UniversityModelView(ModelView):
+
+class StudentsModelView(ModelView):
+    """Custom view for Students. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ('Student_Number', 'universities.University_Name', 'campuses.Campus_Name','First_Name','Last_Name', 'Age', 'State')
+    column_filters = ('Student_Id', 'universities.University_Name','campuses.Campus_Name','University_ID', 'Campus_ID', 'Title', 'First_Name', 
+    'Prefered_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+    'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability,' 'Aus_Citizen', 'Notes')
+    
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+
+class ProgramsModelView(ModelView):
+    """Custom view for Programs. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym','Class_Code','Project_Code', 'ISEO_Code', 'Program_Type')
+    column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+    'Total_Grant_Funding_Received', 'Total_Grant_Dollar_Size', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
+    'Notes')
+
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+class PaymentsModelView(ModelView):
+    """Custom view for University. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "Payment_Amount")
+    column_filters = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    "UWA_Account_Number", "Funding_Round"< "Description")
+   
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+
+class UniversitiesModelView(ModelView):
     """Custom view for University. Login secured."""
     #searchable list. can add more
     column_searchable_list = ("University_Name", "University_Id", "ABN")
-    column_filters = ("University_Name", "University_Id", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022")
    
     def is_accessible(self):
@@ -57,19 +109,8 @@ class UniversityModelView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login', next=request.url))
 
-class StudentModelView(ModelView):
-    """Custom view for Student. Login secured."""
-    #searchable list. can add more
-    column_searchable_list = ('Student_Number', 'University.University_Name', 'Campus.Campus_Name','First_Name','Last_Name', 'Prefered_Name', 'Age','Adress_Line_One', 'Adress_Line_Two', 'City', 'State', 'Nationality', 'Notes')
-    column_filters = ('id', 'student_Number','University.University_Name','Campus.Campus_Name','University_ID', 'Campus_ID', 'First_Name', 'Last_Name', 'Prefered_Name', 'Title', 'Age', 'Adress_Line_One', 'Adress_Line_Two',
-    'City','State', 'Nationality', 'Phone_Number', 'BSB', 'Account_Number', 'Country_Of_Birth','Indigenous_or_Torres_Strait_Australian','Disability')
-    def is_accessible(self):
-        return current_user.is_authenticated
 
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('login', next=request.url))
-
-class CampusModelView(ModelView):
+class CampusesModelView(ModelView):
     """Custom view for Student. Login secured."""
     #searchable list. can add more
     column_searchable_list = ('Campus_Name', 'Campus_State','University.University_Name')
@@ -237,6 +278,8 @@ class Universities(db.Model):
     def __repr__(self):
         return '<University: {}>'.format(self.University_Id, self.University_Name)
 
+
+
 class Campuses(db.Model):  
     __tablename__ = 'CAMPUS' 
     Campus_Id = db.Column(db.String(50), primary_key = True) 
@@ -246,6 +289,8 @@ class Campuses(db.Model):
 
     def __repr__(self):
         return '<Campus: {}>'.format(self.Campus_Id, self.University_Id, self.Campus_Name)
+
+
 
 class Grants(db.Model):  
     __tablename__ = 'Grants' 
