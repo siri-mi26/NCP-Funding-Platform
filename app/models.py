@@ -49,6 +49,7 @@ class LogoutMenuLink(MenuLink):
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ('Student_Number','First_Name','Last_Name', 'State')
     column_filters = ('Student_Id', 'Title', 'First_Name', 
     'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
@@ -64,6 +65,7 @@ class StudentsModelView(ModelView):
 class ProgramsModelView(ModelView):
     """Custom view for Programs. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym','Class_Code','Project_Code', 'ISEO_Code', 'Program_Type')
     column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
     'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
@@ -90,6 +92,7 @@ class ProgramsModelView(ModelView):
 class PaymentsModelView(ModelView):
     """Custom view for Payments. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "Payment_Amount")
     column_filters = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
     "UWA_Account_Number", "Funding_Round", "Description")
@@ -104,6 +107,7 @@ class PaymentsModelView(ModelView):
 class UniversitiesModelView(ModelView):
     """Custom view for University. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ("University_Name", "University_Id", "ABN")
     column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022")
@@ -118,6 +122,7 @@ class UniversitiesModelView(ModelView):
 class CampusesModelView(ModelView):
     """Custom view for Campuses. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ('Campus_Id', 'Campus_Name', 'Campus_State')
     column_filters = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
     
@@ -131,6 +136,7 @@ class CampusesModelView(ModelView):
 class GrantsModelView(ModelView):
     """Custom view for Grants. Login secured."""
     #searchable list. can add more
+    can_export = True 
     column_searchable_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     column_filters = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
     
@@ -328,10 +334,10 @@ class Grants(db.Model):
 
 def pd_access():
     # Username of your GitHub account
-    username = '' 
+    username = 'kay-rivers' 
 
     # Personal Access Token (PAO) from your GitHub account
-    token = ''
+    token = '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'
 
     # Creates a re-usable session object with your creds in-built
     github_session = requests.Session()
@@ -420,8 +426,8 @@ def load_pd_df_Students(df):
 # df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as second paramater for pd_download calls
 # load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS', '', github_session)
-# load_pd_df_Grants(df)
+#df = pd_download('GRANTS', 'GHSAT0AAAAAABXDF6PUC6NHUNKKMNU5TADGYZAQUDA', github_session)
+#load_pd_df_Grants(df)
 
 # df = pd_download('PAYMENTS', '', github_session)
 # load_pd_df_Payments(df)
@@ -432,5 +438,5 @@ def load_pd_df_Students(df):
 # df = pd_download('STUDENTS', '', github_session)
 # load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES', '', github_session)
-# load_pd_df_Universities(df)
+#df = pd_download('UNIVERSITIES', '', github_session)
+#load_pd_df_Universities(df)
