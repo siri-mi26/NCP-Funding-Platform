@@ -6,11 +6,16 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin, AdminIndexView, expose
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user, login_required
-
+import pandas as pd
+from datetime import datetime
+import io
+import requests
+from sqlalchemy import VARCHAR, create_engine
+from config import  Config    
 
 class Users(UserMixin, db.Model):
     __tablename__ = 'USER' 
-    User_Id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     Username = db.Column(db.String(20), index=True, unique=True, nullable=False)
     Password_Hash = db.Column(db.String(180))
 
@@ -319,6 +324,113 @@ class Grants(db.Model):
     Forms_Received = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)
-        
+        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
 
+def pd_access():
+    # Username of your GitHub account
+    username = '' 
+
+    # Personal Access Token (PAO) from your GitHub account
+    token = ''
+
+    # Creates a re-usable session object with your creds in-built
+    github_session = requests.Session()
+    github_session.auth = (username, token)
+    return github_session
+
+github_session = pd_access()
+
+def pd_download(file_name, token, github_session):
+    github_session = pd_access()
+    url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
+    download = github_session.get(url).content
+    # Reading the downloaded content and making it a pandas dataframe
+    df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",")
+    #print(df)
+    #print(list(df.keys()))
+    #print(Campuses.__table__.columns.keys()[1])
+    return df
+
+def str2bool(v):
+  return str(v).lower() in ("yes", "true", "t", "1")
+
+def create_user():
+    u = Users(Username = "testUser")
+    u.set_password('testPassword')
+    db.session.add(u)
+    db.session.commit()
+
+def load_pd_df_Campuses(df):
+    
+    for index, row in df.iterrows():
+        data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
+        db.session.add(data)
+        db.session.commit()
+
+def load_pd_df_Grants(df):
+    for index, row in df.iterrows():
+        data= Grants(Grant_Id=row["GRANT_ID (PK)"], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
+        db.session.add(data)
+        db.session.commit()  
+
+def load_pd_df_Universities(df):
+    for index, row in df.iterrows():
+        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Name = str2bool(row['UNIVERSITY_NAME']), ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2014"]))
+        db.session.add(data)
+        db.session.commit()    
+
+def load_pd_df_Payments(df):
+    for index, row in df.iterrows():
+        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%Y-%m-%d').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+        db.session.add(data)
+        db.session.commit()  
+
+def load_pd_df_Programs(df):
+    names = list(df.keys())
+    for index, row in df.iterrows():
+        data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
+        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(),
+        Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
+        Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
+        Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"], Mobility_Grant_Funding_Utilised=row["MOBILITY_GRANT_FUNDING_UTILISED"], Mobility_Grant_Funding_Remaining=row["MOBILITY_GRANT_FUNDING_REMAINING"],
+        Mobility_Grants_Received=row["MOBILITY_GRANTS_RECEIVED"], Mobility_Grants_Utilised=row["MOBILITY_GRANTS_UTILISED"], Mobility_Grants_Remaining=row["MOBILITY_GRANTS_UTILISED"],
+        Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"], Internship_Grant_Funding_Utilised=row["INTERNSHIP_GRANT_FUNDING_UTILISED"], Internship_Grant_Funding_Remaining=row["INTERNSHIP_GRANT_FUNDING_REMAINING"],
+        Internship_Grants_Received=row["INTERNSHIP_GRANTS_RECEIVED"], Internship_Grants_Utilised=row["INTERNSHIP_GRANTS_UTILISED"], Internship_Grants_Remaining=row["INTERNSHIP_GRANTS_REMAINING"],
+        Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"], Language_Grant_Funding_Utilised=row['LANGUAGE_GRANT_FUNDING_UTILISED'], Language_Grant_Funding_Remaining=row["LANGUAGE_GRANT_FUNDING_REMAINING"],
+        Language_Grants_Received=row["LANGUAGE_GRANTS_RECEIVED"], Language_Grants_Utilised=row["LANGUAGE_GRANTS_UTILISED"], Language_Grants_Remaining=row["LANGUAGE_GRANTS_REMAINING"],
+        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Funding_Utilised=row["ADMINISTRATION_GRANT_FUNDING_UTILISED"], Administration_Grant_Funding_Remaining=row["ADMINISTRATION_GRANT_FUNDING_REMAINING"],
+        Administration_Grants_Received=row["ADMINISTRATION_GRANTS_RECEIVED"], Administration_Grants_Utilised=row["ADMINISTRATION_GRANTS_UTILISED"], Administration_Grants_Remaining=row["ADMINISTRATION_GRANTS_REMAINING"],
+        Total_Grant_Funding_Received=row["TOTAL_GRANT_FUNDING_RECIEVED"], Total_Grant_Funding_Utilised=row["TOTAL_GRANT_FUNDING_UTILISED"], Total_Grant_Funding_Remaining=row["TOTAL_GRANT_FUNDING_REMAINING"],
+        Total_Grants_Received=row["TOTAL_GRANTS_RECEIVED"], Total_Grants_Utilised=row["TOTAL_GRANTS_UTILISED"], Total_Grants_Remaining=row["TOTAL_GRANTS_REMAINING"], Notes = row["NOTES"])
+
+        db.session.add(data)
+        db.session.commit()  
+
+def load_pd_df_Students(df):
+    for index, row in df.iterrows():
+        data = Students(Student_Id=row["STUDENT_ID (PK)"], Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
+        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%Y-%m-%d').date(), Phone_Number=row["PHONE_NUMBER"], 
+        Student_Email=row["PHONE_NUMBER"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["FIELD_OF_STUDY_CODE"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
+        db.session.add(data)
+        db.session.commit()    
+#Dummy data uploaded. Uncoment if you need tp populate the database again. 
+#create_user()
+# df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as second paramater for pd_download calls
+# load_pd_df_Campuses(df)
+
+# df = pd_download('GRANTS', '', github_session)
+# load_pd_df_Grants(df)
+
+# df = pd_download('PAYMENTS', '', github_session)
+# load_pd_df_Payments(df)
+
+# df = pd_download('PROGRAMS', '', github_session)
+# load_pd_df_Programs(df)
+
+# df = pd_download('STUDENTS', '', github_session)
+# load_pd_df_Students(df)
+
+# df = pd_download('UNIVERSITIES', '', github_session)
+# load_pd_df_Universities(df)
