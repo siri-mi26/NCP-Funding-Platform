@@ -48,8 +48,9 @@ class LogoutMenuLink(MenuLink):
 
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
-    #searchable list. can add more
+
     can_export = True 
+    #searchable list. can add more
     column_searchable_list = ('Student_Number','First_Name','Last_Name', 'State')
     column_filters = ('Student_Id', 'Title', 'First_Name', 
     'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
@@ -334,10 +335,10 @@ class Grants(db.Model):
 
 def pd_access():
     # Username of your GitHub account
-    username = 'kay-rivers' 
+    username = '' 
 
     # Personal Access Token (PAO) from your GitHub account
-    token = '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'
+    token = ''
 
     # Creates a re-usable session object with your creds in-built
     github_session = requests.Session()
@@ -346,15 +347,12 @@ def pd_access():
 
 github_session = pd_access()
 
-def pd_download(file_name, token, github_session):
+def pd_download(file_name,token, github_session,converters_columns=None):
     github_session = pd_access()
     url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
     download = github_session.get(url).content
     # Reading the downloaded content and making it a pandas dataframe
-    df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",")
-    #print(df)
-    #print(list(df.keys()))
-    #print(Campuses.__table__.columns.keys()[1])
+    df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
     return df
 
 def str2bool(v):
@@ -418,25 +416,27 @@ def load_pd_df_Students(df):
     for index, row in df.iterrows():
         data = Students(Student_Id=row["STUDENT_ID (PK)"], Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
         Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%Y-%m-%d').date(), Phone_Number=row["PHONE_NUMBER"], 
-        Student_Email=row["PHONE_NUMBER"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["FIELD_OF_STUDY_CODE"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
+        Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["FIELD_OF_STUDY_CODE"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
         db.session.add(data)
-        db.session.commit()    
+        db.session.commit()
+
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
-#create_user()
-# df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as second paramater for pd_download calls
+# create_user()
+# df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)
 
-#df = pd_download('GRANTS', 'GHSAT0AAAAAABXDF6PUC6NHUNKKMNU5TADGYZAQUDA', github_session)
-#load_pd_df_Grants(df)
+# df = pd_download('GRANTS', '', github_session)
+# load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS', '', github_session)
+# df = pd_download('PAYMENTS','', github_session)
 # load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS', '', github_session)
+# df = pd_download('PROGRAMS', '', github_session,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
 # load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS', '', github_session)
+# df = pd_download('STUDENTS','', github_session,{'PHONE_NUMBER': str} )
 # load_pd_df_Students(df)
 
-#df = pd_download('UNIVERSITIES', '', github_session)
-#load_pd_df_Universities(df)
+# df = pd_download('UNIVERSITIES','',github_session)
+# load_pd_df_Universities(df)
+
