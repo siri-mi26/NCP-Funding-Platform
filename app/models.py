@@ -44,10 +44,10 @@ class LogoutMenuLink(MenuLink):
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
     #searchable list. can add more
-    column_searchable_list = ('Student_Number', 'universities.University_Name', 'campuses.Campus_Name','First_Name','Last_Name', 'Age', 'State')
-    column_filters = ('Student_Id', 'universities.University_Name','campuses.Campus_Name','University_ID', 'Campus_ID', 'Title', 'First_Name', 
-    'Prefered_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-    'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability,' 'Aus_Citizen', 'Notes')
+    column_searchable_list = ('Student_Number','First_Name','Last_Name', 'State')
+    column_filters = ('Student_Id', 'Title', 'First_Name', 
+    'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+    'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
     def is_accessible(self):
         return current_user.is_authenticated
@@ -83,11 +83,11 @@ class ProgramsModelView(ModelView):
         return redirect(url_for('login', next=request.url))
 
 class PaymentsModelView(ModelView):
-    """Custom view for University. Login secured."""
+    """Custom view for Payments. Login secured."""
     #searchable list. can add more
     column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "Payment_Amount")
     column_filters = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round"< "Description")
+    "UWA_Account_Number", "Funding_Round", "Description")
    
     def is_accessible(self):
         return current_user.is_authenticated
@@ -111,15 +111,30 @@ class UniversitiesModelView(ModelView):
 
 
 class CampusesModelView(ModelView):
-    """Custom view for Student. Login secured."""
+    """Custom view for Campuses. Login secured."""
     #searchable list. can add more
-    column_searchable_list = ('Campus_Name', 'Campus_State','University.University_Name')
-    column_filters = ('id', 'Campus_Name', 'Campus_State','University.University_Name')
+    column_searchable_list = ('Campus_Id', 'Campus_Name', 'Campus_State')
+    column_filters = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    
     def is_accessible(self):
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login', next=request.url))
+
+
+class GrantsModelView(ModelView):
+    """Custom view for Grants. Login secured."""
+    #searchable list. can add more
+    column_searchable_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    column_filters = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
 
 class MyAdminIndexView(AdminIndexView):
     """Custom view for index. Login secured."""
@@ -137,10 +152,10 @@ class MyAdminIndexView(AdminIndexView):
 
 
 class Students(db.Model):  
-    __tablename__ = 'STUDENT' 
+    __tablename__ = 'STUDENTS' 
     Student_Id = db.Column(db.String(50), primary_key = True) 
-    University_Id =  db.Column(db.String(50), db.ForeignKey('universities.University_Id'))
-    Campus_Id =  db.Column(db.String(50), db.ForeignKey('campuses.Campus_Id'))
+    University_Id =  db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.University_Id'))
+    Campus_Id =  db.Column(db.String(50), db.ForeignKey('CAMPUSES.Campus_Id'))
     Student_Number = db.Column(db.Integer)
     Title = db.Column(db.String(50))
     First_Name = db.Column(db.String(50))
@@ -246,8 +261,8 @@ class Programs(db.Model):
 class Payments(db.Model):  
     __tablename__ = 'PAYMENTS' 
     Payment_Id = db.Column(db.String(50), primary_key = True) 
-    Student_Id = db.Column(db.String(50), db.ForeignKey('students.Student_Id'))
-    Program_Id = db.Column(db.String(50), db.ForeignKey('programs.Program_Id'))
+    Student_Id = db.Column(db.String(50), db.ForeignKey('STUDENTS.Student_Id'))
+    Program_Id = db.Column(db.String(50), db.ForeignKey('PROGRAMS.Program_Id'))
     UWA_Business_Unit = db.Column(db.Integer)
     Payment_Date = db.Column(db.Date)
     Payment_Amount = db.Column(db.Integer)
@@ -281,29 +296,29 @@ class Universities(db.Model):
 
 
 class Campuses(db.Model):  
-    __tablename__ = 'CAMPUS' 
+    __tablename__ = 'CAMPUSES' 
     Campus_Id = db.Column(db.String(50), primary_key = True) 
-    University_Id = db.Column(db.String(50), db.ForeignKey("universities.University_Id"))
+    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.University_Id'))
     Campus_Name = db.Column(db.String(50))
     Campus_State = db.Column(db.String(50))
 
     def __repr__(self):
-        return '<Campus: {}>'.format(self.Campus_Id, self.University_Id, self.Campus_Name)
+        return '<Campus: {}>'.format(self.Campus_Name)
 
 
 
 class Grants(db.Model):  
-    __tablename__ = 'Grants' 
+    __tablename__ = 'GRANTS' 
     Grant_Id = db.Column(db.String(50), primary_key = True) 
-    Program_Id = db.Column(db.String(50), db.ForeignKey("programs.Programs_Id"))
-    Student_Id = db.Column(db.String(50), db.ForeignKey("students.Student_Id"))
-    Payment_Id = db.Column(db.String(50), db.ForeignKey("payments.Payment_Id"))
-    University_Id = db.Column(db.String(50), db.ForeignKey("universities.University_Id"))
-    Campus_Id = db.Column(db.String(50), db.ForeignKey("campuses.Campus_Id"))
+    Program_Id = db.Column(db.String(50), db.ForeignKey("PROGRAMS.Program_Id"))
+    Student_Id = db.Column(db.String(50), db.ForeignKey("STUDENTS.Student_Id"))
+    Payment_Id = db.Column(db.String(50), db.ForeignKey("PAYMENTS.Payment_Id"))
+    University_Id = db.Column(db.String(50), db.ForeignKey("UNIVERSITIES.University_Id"))
+    Campus_Id = db.Column(db.String(50), db.ForeignKey("CAMPUSES.Campus_Id"))
     Awarded = db.Column(db.Boolean)
     Forms_Received = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Grant {}>'.format(self.Name)
+        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)
         
 
