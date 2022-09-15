@@ -81,7 +81,7 @@ class ProgramsModelView(ModelView):
     column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Program_Type')
 
     column_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
     'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
     'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
     'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
@@ -97,7 +97,7 @@ class ProgramsModelView(ModelView):
     'Notes')
 
     form_columns = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
     'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
     'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
     'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
@@ -114,7 +114,7 @@ class ProgramsModelView(ModelView):
 
     
     column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
     'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
     'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
     'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
@@ -514,7 +514,7 @@ def load_pd_df_Payments(df):
 def load_pd_df_Programs(df):
     names = list(df.keys())
     for index, row in df.iterrows():
-        data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
+        data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Eligibility_Ids =row["ELIGIBILITY_ID (FK)"],Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
         UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
@@ -540,8 +540,14 @@ def load_pd_df_Students(df):
         db.session.add(data)
         db.session.commit()
 
+def load_pd_df_Eligibility(df):
+    for index, row in df.iterrows():
+        data = Eligibility(Eligibility_Id=row["ELIGIBILITY_ID (PK)"], Description = row["DESCRIPTION"])
+        db.session.add(data)
+        db.session.commit()
+
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
-#github_session = pd_access()
+# github_session = pd_access()
 # create_user()
 # df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)
@@ -555,8 +561,11 @@ def load_pd_df_Students(df):
 # df = pd_download('PROGRAMS', '', github_session,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
 # load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS','', github_session,{'PHONE_NUMBER': str, 'BSB': str} )
+# df = pd_download('STUDENTS','', github_session,{'PHONE_NUMBER': str} )
 # load_pd_df_Students(df)
 
 # df = pd_download('UNIVERSITIES','', github_session)
 # load_pd_df_Universities(df)
+
+# df = pd_download('ELIGIBILITY', '', github_session)
+# load_pd_df_Eligibility(df)
