@@ -75,6 +75,9 @@ class StudentsModelView(ModelView):
     'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
     'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
+    column_sortable_list = ('Student_Id','University_Id','Campus_Id', 'Student_Number', 'Title', 'First_Name', 
+    'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+    'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -137,6 +140,22 @@ class ProgramsModelView(ModelView):
     'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
     'Notes')
 
+    column_sortable_list= ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
+    'Notes')
+
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -148,7 +167,8 @@ class PaymentsModelView(ModelView):
     #searchable list. can add more
     can_export = True 
 
-    column_searchable_list = ()
+    column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    "UWA_Account_Number", "Funding_Round", "Description")
 
     column_list = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
     "UWA_Account_Number", "Funding_Round", "Description")
@@ -159,6 +179,9 @@ class PaymentsModelView(ModelView):
     column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "Description")
     
     column_filters = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    "UWA_Account_Number", "Funding_Round", "Description")
+
+    column_sortable_list  = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
     "UWA_Account_Number", "Funding_Round", "Description")
    
     def is_accessible(self):
@@ -185,7 +208,10 @@ class UniversitiesModelView(ModelView):
     column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-   
+    
+    column_sortable_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
+    "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -205,6 +231,7 @@ class CampusesModelView(ModelView):
 
     column_filters = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
     
+    column_sortable_list = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -225,6 +252,7 @@ class GrantsModelView(ModelView):
 
     column_filters = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
     
+    column_sortable_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -245,6 +273,8 @@ class EligibilityModelView(ModelView):
 
     column_filters = ('Eligibility_Id', 'Description')
     
+    column_sortable_list = ('Eligibility_Id', 'Description')
+
     def is_accessible(self):
         return current_user.is_authenticated
 
