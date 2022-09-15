@@ -225,6 +225,25 @@ class GrantsModelView(ModelView):
         return redirect(url_for('login', next=request.url))
 
 
+class EligibilityModelView(ModelView):
+    """Custom view for Eligibility. Login secured."""
+    can_export = True 
+
+    column_searchable_list = ('Eligibility_Id', 'Description')
+
+    column_list = ('Eligibility_Id', 'Description')
+
+    form_columns = ('Eligibility_Id', 'Description')
+
+    column_filters = ('Eligibility_Id', 'Description')
+    
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+
 class MyAdminIndexView(AdminIndexView):
     """Custom view for index. Login secured."""
     def is_visible(self):
@@ -290,6 +309,7 @@ class Programs(db.Model):
     UWA_Admin_Funding_Project_Grant_Number = db.Column(db.String(50))
     Program_Type = db.Column(db.String(50))
     Project_Status = db.Column(db.String(50))
+    Eligibility_Ids = db.Column(db.String(50))
 
     Funding_Acquittal_Date = db.Column(db.Date)
     Project_Completion_Submission_Date = db.Column(db.Date)
@@ -419,6 +439,15 @@ class Grants(db.Model):
 
     def __repr__(self):
         return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+
+
+class Eligibility(db.Model):  
+    __tablename__ = 'ELIGIBILITY' 
+    Eligibility_Id = db.Column(db.Integer, primary_key = True) 
+    Description = db.Column(db.String(100))  
+
+    def __repr__(self):
+        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id) 
 
 
 #Functions to import csv files 
