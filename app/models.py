@@ -3,7 +3,7 @@ from flask_admin.menu import MenuLink
 from flask import url_for, request, redirect
 from flask_login import current_user
 from flask_admin.contrib.sqla import ModelView
-from flask_admin import Admin, AdminIndexView, expose
+from flask_admin import Admin, AdminIndexView, expose, BaseView
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user, login_required
 import pandas as pd
@@ -46,6 +46,14 @@ class LogoutMenuLink(MenuLink):
 
     def is_accessible(self):
         return current_user.is_authenticated  
+
+class InfoView(BaseView):
+    @expose('/')
+    def index(self):
+        return self.render('info.html')
+
+    #def is_accessible(self):
+        #return current_user.is_authenticated  
 
 
 class StudentsModelView(ModelView):

@@ -27,3 +27,7 @@ def logout():
     logout_user()
     #or could redirect to admin.index. not sure how we can add more security features.
     return redirect(url_for('login'))
+
+@app.route('/info')
+def info():
+   return render_template('info.html', title='Information')
