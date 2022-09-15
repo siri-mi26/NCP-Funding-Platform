@@ -92,7 +92,7 @@ class ProgramsModelView(ModelView):
     'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
     'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
     'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Dollar_Size', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
     'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
     'Notes')
 
@@ -108,7 +108,7 @@ class ProgramsModelView(ModelView):
     'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
     'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
     'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Dollar_Size', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
     'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
     'Notes')
 
@@ -125,7 +125,7 @@ class ProgramsModelView(ModelView):
     'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
     'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
     'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Dollar_Size', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
     'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
     'Notes')
 
@@ -217,6 +217,7 @@ class GrantsModelView(ModelView):
 
     column_filters = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
     
+
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -335,7 +336,6 @@ class Programs(db.Model):
     Administration_Grants_Remaining = db.Column(db.Integer)
 
     Total_Grant_Funding_Received = db.Column(db.Integer)
-    Total_Grant_Dollar_Size = db.Column(db.Integer)
     Total_Grant_Funding_Utilised = db.Column(db.Integer)
     Total_Grant_Funding_Remaining = db.Column(db.Integer)
     Total_Grants_Received = db.Column(db.Integer)
