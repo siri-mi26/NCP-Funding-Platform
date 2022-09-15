@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d480eb14b83a
+Revision ID: 7a1634e61330
 Revises: 
-Create Date: 2022-09-13 23:30:01.086283
+Create Date: 2022-09-15 19:02:40.791027
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd480eb14b83a'
+revision = '7a1634e61330'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -92,6 +92,14 @@ def upgrade():
     sa.Column('Member_Status_2020', sa.Boolean(), nullable=True),
     sa.Column('Member_Status_2021', sa.Boolean(), nullable=True),
     sa.Column('Member_Status_2022', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2023', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2024', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2025', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2026', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2027', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2028', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2029', sa.Boolean(), nullable=True),
+    sa.Column('Member_Status_2030', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('University_Id')
     )
     op.create_table('USER',
@@ -100,7 +108,9 @@ def upgrade():
     sa.Column('Password_Hash', sa.String(length=180), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_USER_Username'), 'USER', ['Username'], unique=True)
+    with op.batch_alter_table('USER', schema=None) as batch_op:
+        batch_op.create_index(batch_op.f('ix_USER_Username'), ['Username'], unique=True)
+
     op.create_table('CAMPUSES',
     sa.Column('Campus_Id', sa.String(length=50), nullable=False),
     sa.Column('University_Id', sa.String(length=50), nullable=True),
@@ -179,7 +189,9 @@ def downgrade():
     op.drop_table('PAYMENTS')
     op.drop_table('STUDENTS')
     op.drop_table('CAMPUSES')
-    op.drop_index(op.f('ix_USER_Username'), table_name='USER')
+    with op.batch_alter_table('USER', schema=None) as batch_op:
+        batch_op.drop_index(batch_op.f('ix_USER_Username'))
+
     op.drop_table('USER')
     op.drop_table('UNIVERSITIES')
     op.drop_table('PROGRAMS')
