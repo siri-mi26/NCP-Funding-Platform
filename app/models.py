@@ -58,7 +58,6 @@ class InfoView(BaseView):
 
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
-
     can_export = True 
     can_edit = True
     can_delete = True
@@ -67,25 +66,25 @@ class StudentsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Student_Id'
     
-    column_searchable_list = ('Student_Number','First_Name', 'Title','Last_Name', 'State', 'Country', 'Gender')
+    column_searchable_list = ('Student_Number','First_Name', 'Title','Last_Name', 'State', 'Country', 'Gender', 'University.University_Name', 'Campus.Campus_Name')
 
-    column_list = ('Student_Id', 'University_Id','Campus_Id', 'Student_Number','Title', 'First_Name', 
+    column_list = ('Student_Id', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
-    column_details_list = ('Student_Id', 'University_Id','Campus_Id', 'Student_Number','Title', 'First_Name', 
+    column_details_list = ('Student_Id', 'University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number','Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
 
-    form_columns = ('Student_Id','University_Id','Campus_Id', 'Student_Number', 'Title', 'First_Name',  
+    form_columns = ('Student_Id','University_Id', 'Campus_Id', 'Student_Number', 'Title', 'First_Name',  
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
 
-    column_filters = ('Student_Id','University_Id','Campus_Id', 'Student_Number', 'Title', 'First_Name', 
+    column_filters = ('Student_Id','University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
-    column_sortable_list = ('Student_Id','University_Id','Campus_Id', 'Student_Number', 'Title', 'First_Name', 
+    column_sortable_list = ('Student_Id','University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
@@ -121,134 +120,87 @@ class ProgramsModelView(ModelView):
     column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Program_Type')
 
     column_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
-    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
-    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
-    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
-    'Notes')
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+        'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
     column_details_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
-    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
-    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
-    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
-    'Notes')
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+        'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
     form_columns = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
-    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
-    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
-    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
-    'Notes')
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+        'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
     
     column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
-    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
-    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
-    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
-    'Notes')
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+        'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
     column_sortable_list= ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-    'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
-    'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-    'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-    'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-    'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-    'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-    'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
-    'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
-    'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-    'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-    'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
-    'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-    'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining',
-    'Notes')
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
+        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
+        'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
+        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
+        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
+        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
        
     column_labels = dict(Program_Id = "Program ID", ISEO_Code = 'ISEO Code', UWA_Mobility_Grant_Project_Grant_Number = 'UWA Mobility Grant Project Grant Number',
         UWA_Admin_Funding_Project_Grant_Number = 'UWA Admin Funding Project Grant Number', Eligibility_Ids = 'Eligibility IDs')
 
     column_descriptions = dict(Program_Id = "Unique Program ID",)
-    #needs completing
-
-    def is_accessible(self):
-        return current_user.is_authenticated
-
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('login', next=request.url))
-
-class PaymentsModelView(ModelView):
-    """Custom view for Payments. Login secured."""
-    can_export = True 
-    can_edit = True
-    can_delete = True
-    can_create = True
-    can_view_details = True
-    can_set_page_size = True
-    column_default_sort = 'Payment_Id'
-
-    column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-
-    column_list = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-
-    column_details_list = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-
-    form_columns = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-   
-    column_searchable_list = ("Payment_Id", "Student_Id", "Program_Id", "Description")
-    
-    column_filters = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-
-    column_sortable_list  = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
-    "UWA_Account_Number", "Funding_Round", "Description")
-   
-    column_labels = dict(Payment_Id = 'Payment ID', Student_Id = 'Student ID', Program_Id = 'Program ID', 
-        UWA_Business_Unit = 'UWA Business Unit', UWA_Account_Number = 'UWA Account Number')
-
-    column_descriptions = dict(Payment_Id = 'Unique Payment ID') 
-    #needs completing
+    ###needs completing
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -272,11 +224,11 @@ class UniversitiesModelView(ModelView):
     column_list =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-    
+
     column_details_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-    
+
     form_columns =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
@@ -288,7 +240,7 @@ class UniversitiesModelView(ModelView):
     column_sortable_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-       
+
     column_labels = dict(University_Id = 'University ID', ABN = 'ABN')
 
     column_descriptions = dict(University_Id = 'Unique University ID',) 
@@ -311,21 +263,64 @@ class CampusesModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Campus_Id'
 
-    column_searchable_list = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    column_searchable_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
 
-    column_list = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    column_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
 
-    column_details_list = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    column_details_list = ('Campus_Id',  'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
 
     form_columns = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
 
-    column_filters = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    column_filters = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id',  'University.University_Name')
     
-    column_sortable_list = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    column_sortable_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
        
     column_labels = dict(Campus_Id = 'Campus ID', University_Id = 'University ID')
 
     column_descriptions = dict(Campus_Id = 'Unique Campus ID', University_Id = 'Related Unique University ID', Campus_Name = 'Name of Campus', Campus_State = 'State Campus is Located')
+
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+
+class PaymentsModelView(ModelView):
+    """Custom view for Payments. Login secured."""
+    can_export = True 
+    can_edit = True
+    can_delete = True
+    can_create = True
+    can_view_details = True
+    can_set_page_size = True
+    column_default_sort = 'Payment_Id'
+
+    column_searchable_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+
+    column_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+
+    column_details_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+
+    form_columns = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+   
+    column_searchable_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "Description")
+    
+    column_filters = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+
+    column_sortable_list  = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+        "UWA_Account_Number", "Funding_Round", "Description")
+   
+    column_labels = dict(Payment_Id = 'Payment ID', Student_Id = 'Student ID', Program_Id = 'Program ID', 
+        UWA_Business_Unit = 'UWA Business Unit', UWA_Account_Number = 'UWA Account Number')
+
+    column_descriptions = dict(Payment_Id = 'Unique Payment ID') 
+    ###needs completing
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -344,17 +339,17 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Grant_Id' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
     
-    column_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
 
-    column_details_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
-    
+    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+
     form_columns = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
-    
-    column_sortable_list = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+
+    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
 
     column_labels = dict(Grant_Id = 'Grant ID', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
@@ -419,7 +414,55 @@ class MyAdminIndexView(AdminIndexView):
             return redirect(url_for('auth.login'))
         return super(MyAdminIndexView, self).index()
 
+
+
+
+
+
+
+
+
 #create tables for db
+
+class Universities(db.Model):  
+    __tablename__ = 'UNIVERSITIES' 
+    University_Id = db.Column(db.String(50), primary_key = True) 
+    University_Name = db.Column(db.String(100))
+    ABN = db.Column(db.Integer)
+    Member_Status_2014 = db.Column(db.Boolean)
+    Member_Status_2015 = db.Column(db.Boolean)
+    Member_Status_2016 = db.Column(db.Boolean)
+    Member_Status_2017 = db.Column(db.Boolean)
+    Member_Status_2018 = db.Column(db.Boolean)
+    Member_Status_2019 = db.Column(db.Boolean)
+    Member_Status_2020 = db.Column(db.Boolean)
+    Member_Status_2021 = db.Column(db.Boolean)
+    Member_Status_2022 = db.Column(db.Boolean)
+    Member_Status_2023 = db.Column(db.Boolean)
+    Member_Status_2024 = db.Column(db.Boolean)
+    Member_Status_2025 = db.Column(db.Boolean)
+    Member_Status_2026 = db.Column(db.Boolean)
+    Member_Status_2027 = db.Column(db.Boolean)
+    Member_Status_2028 = db.Column(db.Boolean)
+    Member_Status_2029 = db.Column(db.Boolean)
+    Member_Status_2030 = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return '<University: {}>'.format(self.University_Id, self.University_Name)
+
+
+class Campuses(db.Model):  
+    __tablename__ = 'CAMPUSES' 
+    Campus_Id = db.Column(db.String(50), primary_key = True) 
+    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.University_Id'))
+    Campus_Name = db.Column(db.String(50))
+    Campus_State = db.Column(db.String(50))
+
+    University = db.relationship(Universities, backref=db.backref('CAMPUSES', uselist=True, lazy='select'))
+
+    def __repr__(self):
+        return '<Campus: {}>'.format(self.Campus_Name)
+
 
 class Students(db.Model):  
     __tablename__ = 'STUDENTS' 
@@ -449,10 +492,12 @@ class Students(db.Model):
     Disability = db.Column(db.Boolean) 
     Aus_Citizen = db.Column(db.Boolean)
     Notes = db.Column(db.String(100))
+
+    University = db.relationship(Universities, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
+    Campus = db.relationship(Campuses, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
     
     def __repr__(self):
         return '<Student {}>'.format(self.Student_Id, self.First_Name, self.Last_Name)
-
 
 
 class Programs(db.Model):  
@@ -527,6 +572,14 @@ class Programs(db.Model):
         return '<Program {}>'.format(self.Program_Id, self.Program_Name, self.Class_Code)
 
 
+class Eligibility(db.Model):  
+    __tablename__ = 'ELIGIBILITY' 
+    Eligibility_Id = db.Column(db.Integer, primary_key = True) 
+    Description = db.Column(db.String(100))  
+
+    def __repr__(self):
+        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id) 
+
 
 class Payments(db.Model):  
     __tablename__ = 'PAYMENTS' 
@@ -540,49 +593,11 @@ class Payments(db.Model):
     Funding_Round = db.Column(db.String(50))
     Description = db.Column(db.String)
 
+    Program = db.relationship(Programs, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
+    Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
+
     def __repr__(self):
         return '<Payments: {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
-
-
-
-class Universities(db.Model):  
-    __tablename__ = 'UNIVERSITIES' 
-    University_Id = db.Column(db.String(50), primary_key = True) 
-    University_Name = db.Column(db.String(100))
-    ABN = db.Column(db.Integer)
-    Member_Status_2014 = db.Column(db.Boolean)
-    Member_Status_2015 = db.Column(db.Boolean)
-    Member_Status_2016 = db.Column(db.Boolean)
-    Member_Status_2017 = db.Column(db.Boolean)
-    Member_Status_2018 = db.Column(db.Boolean)
-    Member_Status_2019 = db.Column(db.Boolean)
-    Member_Status_2020 = db.Column(db.Boolean)
-    Member_Status_2021 = db.Column(db.Boolean)
-    Member_Status_2022 = db.Column(db.Boolean)
-    Member_Status_2023 = db.Column(db.Boolean)
-    Member_Status_2024 = db.Column(db.Boolean)
-    Member_Status_2025 = db.Column(db.Boolean)
-    Member_Status_2026 = db.Column(db.Boolean)
-    Member_Status_2027 = db.Column(db.Boolean)
-    Member_Status_2028 = db.Column(db.Boolean)
-    Member_Status_2029 = db.Column(db.Boolean)
-    Member_Status_2030 = db.Column(db.Boolean)
-
-    def __repr__(self):
-        return '<University: {}>'.format(self.University_Id, self.University_Name)
-
-
-
-class Campuses(db.Model):  
-    __tablename__ = 'CAMPUSES' 
-    Campus_Id = db.Column(db.String(50), primary_key = True) 
-    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.University_Id'))
-    Campus_Name = db.Column(db.String(50))
-    Campus_State = db.Column(db.String(50))
-
-    def __repr__(self):
-        return '<Campus: {}>'.format(self.Campus_Name)
-
 
 
 class Grants(db.Model):  
@@ -596,17 +611,18 @@ class Grants(db.Model):
     Awarded = db.Column(db.Boolean)
     Forms_Received = db.Column(db.Boolean)    
 
+    University = db.relationship(Universities, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    Program = db.relationship(Programs, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    Student = db.relationship(Students, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    Campus = db.relationship(Campuses, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    Payment = db.relationship(Payments, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+
+
     def __repr__(self):
         return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
 
 
-class Eligibility(db.Model):  
-    __tablename__ = 'ELIGIBILITY' 
-    Eligibility_Id = db.Column(db.Integer, primary_key = True) 
-    Description = db.Column(db.String(100))  
 
-    def __repr__(self):
-        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id) 
 
 
 #Functions to import csv files 
