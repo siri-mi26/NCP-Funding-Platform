@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-page"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    {% if title %}
+    <title>NCP Fund Managment App: {{ title}}</title>
+    {% else %}
+    <title> NCP Fund Managment App</title>
+    {% endif %}
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

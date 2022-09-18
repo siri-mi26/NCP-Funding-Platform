@@ -1,0 +1,30 @@
+Temporary file, brainstorm. Feel free to add/remove. Some of this can later be added to readme. 
+To run:
+1 -- setup own venv: python3 -venv venv or python3 -m venv venv
+2 -- acivate venv for mac: source venv/bin/activate or for windows via cmd: call venv/Scripts/activate
+4-- install requirements: pip install -r requirements.txt
+5 -- get into app subdirectory: cd app
+6 -- run app: flask run
+
+Temp db (app.db) login: username:testUser, password:testPassword
+
+Sprint 2: 
+-- develop login/auth system
+-- setup mutliple pages
+-- test page navigation. 
+-- test login
+-- add more security to login. Salt password, more checks etc. 
+-- query db from front end. 
+-- display query results. 
+-- test for above feature. 
+-- test to check these all work together. 
+-- db related work & tests. 
+-- script for dummy data
+-- test everything works. 
+-- impliment feature to add columns.
+-- impliment feature to download csv.
+-- impliment feature to show graphs. 
+-- test the above features. 
+-- make app more appealing, custom css. 
+-- password reset func? 
+
