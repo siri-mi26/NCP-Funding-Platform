@@ -347,17 +347,17 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Grant_Id' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
     
-    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
 
-    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
     form_columns = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
     column_labels = dict(Grant_Id = 'Grant ID', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
