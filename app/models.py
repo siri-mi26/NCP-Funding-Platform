@@ -226,29 +226,29 @@ class UniversitiesModelView(ModelView):
 
     column_searchable_list = ("University_Id","University_Name")
 
-    column_list =  ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_list =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_details_list = ("University_Id",  "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_details_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    form_columns =  ("University_Id", "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    form_columns =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_filters = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_sortable_list = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_sortable_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_labels = dict(University_Id = 'University ID', ABN = 'ABN', Universty_Acronym = "University Acronym")
+    column_labels = dict(University_Id = 'University ID', ABN = 'ABN')
 
-    column_descriptions = dict(University_Id = 'Unique University ID', University_Acronym = "Acronymn for University" , University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
+    column_descriptions = dict(University_Id = 'Unique University ID', University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
     Member_Status_2018='If The University Was A Member In 2018', Member_Status_2019='If The University Was A Member In 2019', Member_Status_2020='If The University Was A Member In 2020', Member_Status_2021='If The University Was A Member In 2021', Member_Status_2022='If The University Was A Member In 2022',Member_Status_2023='If The University Was A Member In 2023', Member_Status_2024='If The University Was A Member In 2024',
     Member_Status_2025='If The University Was A Member In 2025', Member_Status_2026='If The University Was A Member In 2026', Member_Status_2027='If The University Was A Member In 2027', Member_Status_2028='If The University Was A Member In 2028', Member_Status_2029='If The University Was A Member In 2029', Member_Status_2030 = ' If The University Was A Member In 2030') 
     #needs completing
@@ -431,10 +431,10 @@ class MyAdminIndexView(AdminIndexView):
 
 
 #create tables for db
+
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
     University_Id = db.Column(db.String(50), primary_key = True) 
-    University_Acronym = db.Column(db.String(20))
     University_Name = db.Column(db.String(100))
     ABN = db.Column(db.Integer)
     Member_Status_2014 = db.Column(db.Boolean)
@@ -672,6 +672,7 @@ def create_user():
     db.session.commit()
 
 def load_pd_df_Campuses(df):
+    
     for index, row in df.iterrows():
         data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
         db.session.add(data)
@@ -685,7 +686,7 @@ def load_pd_df_Grants(df):
 
 def load_pd_df_Universities(df):
     for index, row in df.iterrows():
-        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'],University_Acronym = row['UNIVERSITY_ACRONYM'], University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
         Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
         Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
         Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
@@ -737,24 +738,24 @@ def load_pd_df_Eligibility(df):
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 # github_session = pd_access()
 #uncomment below only if you dont't need to access a github session to get data
-create_user()
-df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
-load_pd_df_Campuses(df)
+# create_user()
+# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
+# load_pd_df_Campuses(df)
 
-df = pd_download('GRANTS')
-load_pd_df_Grants(df)
+# df = pd_download('GRANTS')
+# load_pd_df_Grants(df)
 
-df = pd_download('PAYMENTS')
-load_pd_df_Payments(df)
+# df = pd_download('PAYMENTS')
+# load_pd_df_Payments(df)
 
-df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-load_pd_df_Programs(df)
+# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+# load_pd_df_Programs(df)
 
-df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
-load_pd_df_Students(df)
+# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+# load_pd_df_Students(df)
 
-df = pd_download('UNIVERSITIES')
-load_pd_df_Universities(df)
+# df = pd_download('UNIVERSITIES')
+# load_pd_df_Universities(df)
 
-df = pd_download('ELIGIBILITY')
-load_pd_df_Eligibility(df)
+# df = pd_download('ELIGIBILITY')
+# load_pd_df_Eligibility(df)
