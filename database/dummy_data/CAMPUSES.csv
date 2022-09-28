@@ -1,0 +1,7 @@
+﻿CAMPUS_ID (PK),UNIVERSITY_ID (FK),CAMPUS_NAME,CAMPUS_STATE
+C1000,UWA,The University of Western Australia,WA
+C1002,UNSW,The University of New South Wales,NSW
+C1024,CUR,Curtin University,WA
+C1026,CUR,Kalgoorlie Campus,WA
+C1029,USC,South Bank,QLD
+C1052,GRIF,South Bank Campus - Griffith University (GU),QLD

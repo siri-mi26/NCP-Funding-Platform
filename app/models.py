@@ -226,29 +226,29 @@ class UniversitiesModelView(ModelView):
 
     column_searchable_list = ("University_Id","University_Name")
 
-    column_list =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_list =  ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_details_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_details_list = ("University_Id",  "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    form_columns =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    form_columns =  ("University_Id", "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_sortable_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_sortable_list = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_labels = dict(University_Id = 'University ID', ABN = 'ABN')
+    column_labels = dict(University_Id = 'University ID', ABN = 'ABN', Universty_Acronym = "University Acronym")
 
-    column_descriptions = dict(University_Id = 'Unique University ID', University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
+    column_descriptions = dict(University_Id = 'Unique University ID', University_Acronym = "Acronymn for University" , University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
     Member_Status_2018='If The University Was A Member In 2018', Member_Status_2019='If The University Was A Member In 2019', Member_Status_2020='If The University Was A Member In 2020', Member_Status_2021='If The University Was A Member In 2021', Member_Status_2022='If The University Was A Member In 2022',Member_Status_2023='If The University Was A Member In 2023', Member_Status_2024='If The University Was A Member In 2024',
     Member_Status_2025='If The University Was A Member In 2025', Member_Status_2026='If The University Was A Member In 2026', Member_Status_2027='If The University Was A Member In 2027', Member_Status_2028='If The University Was A Member In 2028', Member_Status_2029='If The University Was A Member In 2029', Member_Status_2030 = ' If The University Was A Member In 2030') 
     #needs completing
@@ -347,22 +347,22 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Grant_Id' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
     
-    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
 
-    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_details_list = ('Grant_Id','Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    form_columns = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    form_columns = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_filters = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_sortable_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period','Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_labels = dict(Grant_Id = 'Grant ID', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
+    column_labels = dict(Grant_Id = 'Grant ID', Start_Date = 'Start Date', End_Date ='End Date', Period ='Period', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
 
-    column_descriptions = dict(Grant_Id = 'Unique Grant ID', Program_Id = 'Related Unique Program ID', Student_Id = 'Related Unique Student ID', 
+    column_descriptions = dict(Grant_Id = 'Unique Grant ID',Start_Date = 'Start Date', End_Date ='End Date', Program_Id = 'Related Unique Program ID', Student_Id = 'Related Unique Student ID', 
         Payment_Id = 'Related Unique Payment ID', University_Id = 'Related Unique University ID', Campus_Id = 'Related Unique Campus ID',
         Awarded = 'Has the grant been awarded to the student?', Forms_Received = 'Have the forms been recieved from student?')
 
@@ -431,10 +431,10 @@ class MyAdminIndexView(AdminIndexView):
 
 
 #create tables for db
-
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
     University_Id = db.Column(db.String(50), primary_key = True) 
+    University_Acronym = db.Column(db.String(20))
     University_Name = db.Column(db.String(100))
     ABN = db.Column(db.Integer)
     Member_Status_2014 = db.Column(db.Boolean)
@@ -605,12 +605,15 @@ class Payments(db.Model):
     Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
 
     def __repr__(self):
-        return '<Payments: {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
+        return '<Payments: {} {} {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
 
 
 class Grants(db.Model):  
     __tablename__ = 'GRANTS' 
     Grant_Id = db.Column(db.String(50), primary_key = True) 
+    Start_Date = db.Column(db.Date)
+    End_Date = db.Column(db.Date)
+    Period = db.Column(db.String(50))
     Program_Id = db.Column(db.String(50), db.ForeignKey("PROGRAMS.Program_Id"))
     Student_Id = db.Column(db.String(50), db.ForeignKey("STUDENTS.Student_Id"))
     Payment_Id = db.Column(db.String(50), db.ForeignKey("PAYMENTS.Payment_Id"))
@@ -627,33 +630,36 @@ class Grants(db.Model):
 
 
     def __repr__(self):
-        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+        return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
 
 
 
 
 
-#Functions to import csv files 
-def pd_access():
-    # Username of your GitHub account
-    username = '' 
+# #Functions to import csv files from github
+# def pd_access():
+#     # Username of your GitHub account
+#     username = '' 
 
-    # Personal Access Token (PAO) from your GitHub account
-    token = ''
+#     # Personal Access Token (PAO) from your GitHub account
+#     token = ''
 
-    # Creates a re-usable session object with your creds in-built
-    github_session = requests.Session()
-    github_session.auth = (username, token)
-    return github_session
+#     # Creates a re-usable session object with your creds in-built
+#     github_session = requests.Session()
+#     github_session.auth = (username, token)
+#     return github_session
 
-
-
-def pd_download(file_name,token, github_session,converters_columns=None):
-    github_session = pd_access()
-    url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
-    download = github_session.get(url).content
-    # Reading the downloaded content and making it a pandas dataframe
-    df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+#function to download files two ways
+def pd_download(file_name,token=None, github_session=None,converters_columns=None):
+    if token is not None:
+        github_session = pd_access()
+        url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
+        download = github_session.get(url).content
+        # Reading the downloaded content and making it a pandas dataframe
+        df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+    else:
+        file="../database/dummy_data/{}.csv".format(file_name)
+        df = pd.read_csv(file)
     return df
 
 def str2bool(v):
@@ -666,7 +672,6 @@ def create_user():
     db.session.commit()
 
 def load_pd_df_Campuses(df):
-    
     for index, row in df.iterrows():
         data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
         db.session.add(data)
@@ -674,13 +679,13 @@ def load_pd_df_Campuses(df):
 
 def load_pd_df_Grants(df):
     for index, row in df.iterrows():
-        data= Grants(Grant_Id=row["GRANT_ID (PK)"], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
+        data= Grants(Grant_Id=row["GRANT_ID (PK)"],Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
         db.session.add(data)
         db.session.commit()  
 
 def load_pd_df_Universities(df):
     for index, row in df.iterrows():
-        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'],University_Acronym = row['UNIVERSITY_ACRONYM'], University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
         Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
         Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
         Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
@@ -689,7 +694,7 @@ def load_pd_df_Universities(df):
 
 def load_pd_df_Payments(df):
     for index, row in df.iterrows():
-        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%Y-%m-%d').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
         db.session.add(data)
         db.session.commit()  
@@ -718,7 +723,7 @@ def load_pd_df_Programs(df):
 def load_pd_df_Students(df):
     for index, row in df.iterrows():
         data = Students(Student_Id=row["STUDENT_ID (PK)"],University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
-        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%Y-%m-%d').date(), Phone_Number=row["PHONE_NUMBER"], 
+        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
         db.session.add(data)
         db.session.commit()
@@ -731,24 +736,25 @@ def load_pd_df_Eligibility(df):
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 # github_session = pd_access()
-# create_user()
-# df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
-# load_pd_df_Campuses(df)
+#uncomment below only if you dont't need to access a github session to get data
+create_user()
+df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
+load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS', '', github_session)
-# load_pd_df_Grants(df)
+df = pd_download('GRANTS')
+load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS','', github_session)
-# load_pd_df_Payments(df)
+df = pd_download('PAYMENTS')
+load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS', '', github_session,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-# load_pd_df_Programs(df)
+df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS','', github_session,{'PHONE_NUMBER': str} )
-# load_pd_df_Students(df)
+df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES','', github_session)
-# load_pd_df_Universities(df)
+df = pd_download('UNIVERSITIES')
+load_pd_df_Universities(df)
 
-# df = pd_download('ELIGIBILITY', '', github_session)
-# load_pd_df_Eligibility(df)
+df = pd_download('ELIGIBILITY')
+load_pd_df_Eligibility(df)
