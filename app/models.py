@@ -64,27 +64,27 @@ class StudentsModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'Student_Id'
+    column_default_sort = 'First_Name'
     
     column_searchable_list = ('Student_Number','First_Name', 'Title','Last_Name', 'State', 'Country', 'Gender', 'University.University_Name', 'Campus.Campus_Name')
 
-    column_list = ('Student_Id', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
+    column_list = ('University.University_Name', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
-    column_details_list = ('Student_Id', 'University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number','Title', 'First_Name', 
+    column_details_list = ('University.University_Name', 'Campus.Campus_Name', 'Student_Number','Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
 
-    form_columns = ('Student_Id','University_Id', 'Campus_Id', 'Student_Number', 'Title', 'First_Name',  
+    form_columns = ('Student_Number', 'Title', 'First_Name',  
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
 
-    column_filters = ('Student_Id','University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
+    column_filters = ('University.University_Name', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
-    column_sortable_list = ('Student_Id','University_Id','University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
+    column_sortable_list = ('University.University_Name', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
@@ -115,11 +115,11 @@ class ProgramsModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'Program_Id' 
+    column_default_sort = 'Program_Name' 
 
-    column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Program_Type')
+    column_searchable_list = ('Program_Name', 'Program_Acronym', 'Program_Type')
 
-    column_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_list = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -134,7 +134,7 @@ class ProgramsModelView(ModelView):
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
-    column_details_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_details_list = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -149,7 +149,7 @@ class ProgramsModelView(ModelView):
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
-    form_columns = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    form_columns = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -165,7 +165,7 @@ class ProgramsModelView(ModelView):
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
     
-    column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_filters = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -180,7 +180,7 @@ class ProgramsModelView(ModelView):
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
-    column_sortable_list= ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_sortable_list= ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'Eligibility_Ids','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -222,27 +222,27 @@ class UniversitiesModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'University_Id' 
+    column_default_sort = 'University_Name' 
 
-    column_searchable_list = ("University_Id","University_Name")
+    column_searchable_list = ("University_Id", "University_Name")
 
-    column_list =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_list =  ("University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_details_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_details_list = ("University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    form_columns =  ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
-    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
-    "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-    
-    column_filters = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    form_columns =  ("University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_sortable_list = ("University_Id", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ("University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
+    "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
+    
+    column_sortable_list = ("University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
@@ -268,19 +268,19 @@ class CampusesModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'Campus_Id'
+    column_default_sort = 'Campus_Name'
 
-    column_searchable_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
+    column_searchable_list = ('Campus_Name', 'Campus_State',  'University.University_Name')
 
-    column_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
+    column_list = ('Campus_Name', 'Campus_State', 'University_Abbreviation', 'University.University_Name')
 
-    column_details_list = ('Campus_Id',  'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
+    column_details_list = ('Campus_Name', 'Campus_State',  'University.University_Name')
 
-    form_columns = ('Campus_Id', 'University_Id', 'Campus_Name', 'Campus_State')
+    form_columns = ('Campus_Name', 'Campus_State')
 
-    column_filters = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id',  'University.University_Name')
+    column_filters = ('Campus_Name', 'Campus_State',   'University.University_Name')
     
-    column_sortable_list = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id', 'University.University_Name')
+    column_sortable_list = ('Campus_Name', 'Campus_State',  'University.University_Name')
        
     column_labels = dict(Campus_Id = 'Campus ID', University_Id = 'University ID')
 
@@ -301,26 +301,26 @@ class PaymentsModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'Payment_Id'
+    column_default_sort = 'Funding_Round'
 
-    column_searchable_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    column_searchable_list = ("Student.First_Name", "Student.Last_Name",  "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
 
-    column_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    column_list = ("Student.First_Name", "Student.Last_Name", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
 
-    column_details_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    column_details_list = ("Student.First_Name", "Student.Last_Name",  "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
 
-    form_columns = ("Payment_Id", "Student_Id", "Program_Id", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    form_columns = ("UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
    
-    column_searchable_list = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "Description")
+    column_searchable_list = ("Student.First_Name", "Student.Last_Name",  "Program.Program_Name", "Program.Year", "Description")
     
-    column_filters = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    column_filters = ("Student.First_Name", "Student.Last_Name",  "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
 
-    column_sortable_list  = ("Payment_Id", "Student_Id", "Student.First_Name", "Student.Last_Name", "Program_Id", "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
+    column_sortable_list  = ("Student.First_Name", "Student.Last_Name",  "Program.Program_Name", "Program.Year", "UWA_Business_Unit", "Payment_Date", "Payment_Amount",
         "UWA_Account_Number", "Funding_Round", "Description")
    
     column_labels = dict(Payment_Id = 'Payment ID', Student_Id = 'Student ID', Program_Id = 'Program ID', 
@@ -345,19 +345,19 @@ class GrantsModelView(ModelView):
     can_create = True
     can_view_details = True
     can_set_page_size = True
-    column_default_sort = 'Grant_Id' 
+    column_default_sort = 'Program.Year' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_searchable_list = ('Program.Year', 'Program.Program_Name',  'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount',  'University.University_Name',  'Campus.Campus_Name')
     
-    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_list = ('Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name')
 
-    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_details_list = ('Program.Year', 'Program.Program_Name',  'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount',  'University.University_Name',  'Campus.Campus_Name')
 
-    form_columns = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    form_columns = ('Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_filters = ('Program.Year', 'Program.Program_Name',  'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount',  'University.University_Name',  'Campus.Campus_Name')
 
-    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name')
+    column_sortable_list = ('Program.Year', 'Program.Program_Name',  'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount',  'University.University_Name',  'Campus.Campus_Name')
 
     column_labels = dict(Grant_Id = 'Grant ID', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
