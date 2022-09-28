@@ -633,27 +633,30 @@ class Grants(db.Model):
 
 
 
-#Functions to import csv files 
-def pd_access():
-    # Username of your GitHub account
-    username = '' 
+# #Functions to import csv files from github
+# def pd_access():
+#     # Username of your GitHub account
+#     username = '' 
 
-    # Personal Access Token (PAO) from your GitHub account
-    token = ''
+#     # Personal Access Token (PAO) from your GitHub account
+#     token = ''
 
-    # Creates a re-usable session object with your creds in-built
-    github_session = requests.Session()
-    github_session.auth = (username, token)
-    return github_session
+#     # Creates a re-usable session object with your creds in-built
+#     github_session = requests.Session()
+#     github_session.auth = (username, token)
+#     return github_session
 
-
-
-def pd_download(file_name,token, github_session,converters_columns=None):
-    github_session = pd_access()
-    url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
-    download = github_session.get(url).content
-    # Reading the downloaded content and making it a pandas dataframe
-    df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+#function to download files two ways
+def pd_download(file_name,token=None, github_session=None,converters_columns=None):
+    if token is not None:
+        github_session = pd_access()
+        url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
+        download = github_session.get(url).content
+        # Reading the downloaded content and making it a pandas dataframe
+        df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+    else:
+        file="../database/dummy_data/{}.csv".format(file_name)
+        df = pd.read_csv(file)
     return df
 
 def str2bool(v):
@@ -689,7 +692,7 @@ def load_pd_df_Universities(df):
 
 def load_pd_df_Payments(df):
     for index, row in df.iterrows():
-        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%Y-%m-%d').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
         db.session.add(data)
         db.session.commit()  
@@ -718,7 +721,7 @@ def load_pd_df_Programs(df):
 def load_pd_df_Students(df):
     for index, row in df.iterrows():
         data = Students(Student_Id=row["STUDENT_ID (PK)"],University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
-        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%Y-%m-%d').date(), Phone_Number=row["PHONE_NUMBER"], 
+        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
         db.session.add(data)
         db.session.commit()
@@ -732,23 +735,24 @@ def load_pd_df_Eligibility(df):
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 # github_session = pd_access()
 # create_user()
-# df = pd_download('CAMPUSES', '', github_session) # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
+
+# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS', '', github_session)
+# df = pd_download('GRANTS')
 # load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS','', github_session)
+# df = pd_download('PAYMENTS')
 # load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS', '', github_session,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
 # load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS','', github_session,{'PHONE_NUMBER': str} )
+# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
 # load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES','', github_session)
+# df = pd_download('UNIVERSITIES')
 # load_pd_df_Universities(df)
 
-# df = pd_download('ELIGIBILITY', '', github_session)
+# df = pd_download('ELIGIBILITY')
 # load_pd_df_Eligibility(df)
