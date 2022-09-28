@@ -349,20 +349,20 @@ class GrantsModelView(ModelView):
 
     column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
     
-    column_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
+    column_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
 
-    column_details_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_details_list = ('Grant_Id','Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    form_columns = ('Grant_Id', 'Program_Id', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    form_columns = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_filters = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_sortable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_sortable_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period','Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_labels = dict(Grant_Id = 'Grant ID', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
+    column_labels = dict(Grant_Id = 'Grant ID', Start_Date = 'Start Date', End_Date ='End Date', Period ='Period', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
 
-    column_descriptions = dict(Grant_Id = 'Unique Grant ID', Program_Id = 'Related Unique Program ID', Student_Id = 'Related Unique Student ID', 
+    column_descriptions = dict(Grant_Id = 'Unique Grant ID',Start_Date = 'Start Date', End_Date ='End Date', Program_Id = 'Related Unique Program ID', Student_Id = 'Related Unique Student ID', 
         Payment_Id = 'Related Unique Payment ID', University_Id = 'Related Unique University ID', Campus_Id = 'Related Unique Campus ID',
         Awarded = 'Has the grant been awarded to the student?', Forms_Received = 'Have the forms been recieved from student?')
 
@@ -605,12 +605,15 @@ class Payments(db.Model):
     Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
 
     def __repr__(self):
-        return '<Payments: {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
+        return '<Payments: {} {} {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
 
 
 class Grants(db.Model):  
     __tablename__ = 'GRANTS' 
     Grant_Id = db.Column(db.String(50), primary_key = True) 
+    Start_Date = db.Column(db.Date)
+    End_Date = db.Column(db.Date)
+    Period = db.Column(db.String(50))
     Program_Id = db.Column(db.String(50), db.ForeignKey("PROGRAMS.Program_Id"))
     Student_Id = db.Column(db.String(50), db.ForeignKey("STUDENTS.Student_Id"))
     Payment_Id = db.Column(db.String(50), db.ForeignKey("PAYMENTS.Payment_Id"))
@@ -627,7 +630,7 @@ class Grants(db.Model):
 
 
     def __repr__(self):
-        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+        return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
 
 
 
@@ -677,7 +680,7 @@ def load_pd_df_Campuses(df):
 
 def load_pd_df_Grants(df):
     for index, row in df.iterrows():
-        data= Grants(Grant_Id=row["GRANT_ID (PK)"], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
+        data= Grants(Grant_Id=row["GRANT_ID (PK)"],Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
         db.session.add(data)
         db.session.commit()  
 
@@ -734,8 +737,8 @@ def load_pd_df_Eligibility(df):
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 # github_session = pd_access()
+#uncomment below only if you dont't need to access a github session to get data
 # create_user()
-
 # df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)
 
