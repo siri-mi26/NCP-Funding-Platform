@@ -1,7 +1,7 @@
-﻿UNIVERSITY_ID (PK),UNIVERSITY_NAME,ABN,MEMBER_STATUS_2014,MEMBER_STATUS_2015,MEMBER_STATUS_2016,MEMBER_STATUS_2017,MEMBER_STATUS_2018,MEMBER_STATUS_2019,MEMBER_STATUS_2020,MEMBER_STATUS_2021,MEMBER_STATUS_2022,MEMBER_STATUS_2023,MEMBER_STATUS_2024,MEMBER_STATUS_2025,MEMBER_STATUS_2026,MEMBER_STATUS_2027,MEMBER_STATUS_2028,MEMBER_STATUS_2029,MEMBER_STATUS_2030
-UWA,The University of Western Australia,37882817280,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
-UNSW,University of New South Wales,57195873179,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
-MACU,Macquarie University,90952801237,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
-CUR,Curtin University,99143842569,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
-USC,University of the Sunshine Coast,28441859157,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
-GRIF,Griffith University,78106094461,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
+﻿UNIVERSITY_ID (PK),UNIVERSITY_ACRONYM,UNIVERSITY_NAME,ABN,MEMBER_STATUS_2014,MEMBER_STATUS_2015,MEMBER_STATUS_2016,MEMBER_STATUS_2017,MEMBER_STATUS_2018,MEMBER_STATUS_2019,MEMBER_STATUS_2020,MEMBER_STATUS_2021,MEMBER_STATUS_2022,MEMBER_STATUS_2023,MEMBER_STATUS_2024,MEMBER_STATUS_2025,MEMBER_STATUS_2026,MEMBER_STATUS_2027,MEMBER_STATUS_2028,MEMBER_STATUS_2029,MEMBER_STATUS_2030
+U1000,UWA,The University of Western Australia,37882817280,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
+U1001,UNSW,University of New South Wales,57195873179,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
+U1002,MACU,Macquarie University,90952801237,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
+U1003,CUR,Curtin University,99143842569,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
+U1004,USC,University of the Sunshine Coast,28441859157,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
+U1005,GRIF,Griffith University,78106094461,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
