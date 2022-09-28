@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d68ec4d403f7
+Revision ID: 9fdf8041b9ad
 Revises: 
-Create Date: 2022-09-15 22:42:29.415893
+Create Date: 2022-09-29 07:42:36.505694
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd68ec4d403f7'
+revision = '9fdf8041b9ad'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -86,6 +86,7 @@ def upgrade():
     )
     op.create_table('UNIVERSITIES',
     sa.Column('University_Id', sa.String(length=50), nullable=False),
+    sa.Column('University_Acronym', sa.String(length=20), nullable=True),
     sa.Column('University_Name', sa.String(length=100), nullable=True),
     sa.Column('ABN', sa.Integer(), nullable=True),
     sa.Column('Member_Status_2014', sa.Boolean(), nullable=True),
@@ -171,6 +172,9 @@ def upgrade():
     )
     op.create_table('GRANTS',
     sa.Column('Grant_Id', sa.String(length=50), nullable=False),
+    sa.Column('Start_Date', sa.Date(), nullable=True),
+    sa.Column('End_Date', sa.Date(), nullable=True),
+    sa.Column('Period', sa.String(length=50), nullable=True),
     sa.Column('Program_Id', sa.String(length=50), nullable=True),
     sa.Column('Student_Id', sa.String(length=50), nullable=True),
     sa.Column('Payment_Id', sa.String(length=50), nullable=True),
