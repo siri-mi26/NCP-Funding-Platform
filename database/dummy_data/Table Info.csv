@@ -1,9 +1,0 @@
-﻿TABLES,DESCRIPTION,PRIMARY KEYS,FOREIGN KEYS,,,,
-STUDENTS,Table of students with a new student per row and personal info in each column,STUDENT_ID,UNIVERSITY_ID,CAMPUS_ID,,,
-PAYMENTS,Table of records of payments to students with a new payment per row and payment info in each column,PAYMENT_ID,STUDENT_ID,PROGRAM_ID,,,
-PROGRAMS,Table of programs with a new program in each row and characteristics and funding info in each column,PROGRAM_ID,ELIGIBILITY_ID,,,,
-ELIGIBILITY,Table of binary eligibliity criterea for which students need to satisfy for consideration for program grant,ELIGIBILITY_ID,,,,,
-UNIVERSITIES,Table of universities with a new university in each row and characteristics in columns,UNIVERSITY_ID,,,,,
-CAMPUSES,Table of university campuses with a new campus in each row and characteristics in columns,CAMPUS_ID,UNIVERSITY_ID,,,,
-GRANTS,Table of individual grants which links all tables where each row is a new grant for a program to a student and a payment,GRANT_ID,STUDENT_ID,PROGRAM_ID,UNIVERSITY_ID,CAMPUS_ID,PAYMENT_ID
-LOGIN,Secure hashed table of login code required to login to webpage,,,,,,
