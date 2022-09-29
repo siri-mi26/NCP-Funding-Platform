@@ -587,15 +587,6 @@ class Programs(db.Model):
         return '<Program {}>'.format(self.Program_Id, self.Program_Name, self.Class_Code)
 
 
-class Eligibility(db.Model):  
-    __tablename__ = 'ELIGIBILITY' 
-    Eligibility_Id = db.Column(db.Integer, primary_key = True) 
-    Description = db.Column(db.String(100))  
-
-    def __repr__(self):
-        return '<Grant {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id) 
-
-
 class Payments(db.Model):  
     __tablename__ = 'PAYMENTS' 
     Payment_Id = db.Column(db.String(50), primary_key = True) 
@@ -672,8 +663,8 @@ def create_user():
     u.set_password('testPassword')
     db.session.add(u)
     db.session.commit()
+
 def load_pd_df_Campuses(df):
-    
     for index, row in df.iterrows():
         data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
         db.session.add(data)
@@ -705,7 +696,7 @@ def load_pd_df_Programs(df):
     names = list(df.keys())
     for index, row in df.iterrows():
         data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
-        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"],Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
+        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"], Mobility_Grant_Funding_Utilised=row["MOBILITY_GRANT_FUNDING_UTILISED"], Mobility_Grant_Funding_Remaining=row["MOBILITY_GRANT_FUNDING_REMAINING"],
@@ -718,39 +709,32 @@ def load_pd_df_Programs(df):
         Administration_Grants_Received=row["ADMINISTRATION_GRANTS_RECEIVED"], Administration_Grants_Utilised=row["ADMINISTRATION_GRANTS_UTILISED"], Administration_Grants_Remaining=row["ADMINISTRATION_GRANTS_REMAINING"],
         Total_Grant_Funding_Received=row["TOTAL_GRANT_FUNDING_RECIEVED"], Total_Grant_Funding_Utilised=row["TOTAL_GRANT_FUNDING_UTILISED"], Total_Grant_Funding_Remaining=row["TOTAL_GRANT_FUNDING_REMAINING"],
         Total_Grants_Received=row["TOTAL_GRANTS_RECEIVED"], Total_Grants_Utilised=row["TOTAL_GRANTS_UTILISED"], Total_Grants_Remaining=row["TOTAL_GRANTS_REMAINING"], Notes = row["NOTES"])
-
         db.session.add(data)
-        db.session.commit()  
+        db.session.commit()
 
 def load_pd_df_Students(df):
     for index, row in df.iterrows():
         data = Students(Student_Id=row["STUDENT_ID (PK)"],University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
         Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
-        Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), Notes=row["NOTES"])
-        
+        Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]), Notes=row["NOTES"])
         db.session.add(data)
         db.session.commit()
 
-def load_pd_df_Eligibility(df):
-    for index, row in df.iterrows():
-        data = Eligibility(Eligibility_Id=row["ELIGIBILITY_ID (PK)"], Description = row["DESCRIPTION"])
-        db.session.add(data)
-        db.session.commit()
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 #github_session = pd_access()
-create_user()
-df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
-load_pd_df_Campuses(df)
+#create_user()
+# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
+# load_pd_df_Campuses(df)
 
-df = pd_download('GRANTS')
-load_pd_df_Grants(df)
+# df = pd_download('GRANTS')
+# load_pd_df_Grants(df)
 
-df = pd_download('PAYMENTS')
-load_pd_df_Payments(df)
+# df = pd_download('PAYMENTS')
+# load_pd_df_Payments(df)
 
-df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-load_pd_df_Programs(df)
+# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+# load_pd_df_Programs(df)
 
 df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
 load_pd_df_Students(df)
@@ -758,5 +742,3 @@ load_pd_df_Students(df)
 df = pd_download('UNIVERSITIES')
 load_pd_df_Universities(df)
 
-df = pd_download('ELIGIBILITY')
-load_pd_df_Eligibility(df)
