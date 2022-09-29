@@ -1,8 +1,66 @@
 {% extends "admin/base.html" %} {% block body %}
 <h1>New Colombo Plan Funding Managment Platform</h1>
 <body class="text-center">
-  This 
+  This website allows for the organisation of data required by the NCP funding managment.<br>
+  This page explains what all the tables signify and general infomation on how to use the site.<br>
 </body>
+
+<head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  </head>
+  <body>
+  
+  <table>
+    <tr>
+      <th>Table Name</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Students</td>
+      <td>Holds all the information of a particular Student</td>
+    </tr>
+    <tr>
+      <td>Programs</td>
+      <td>Holds all the information regarding the available Programs</td>
+    </tr>
+    <tr>
+      <td>Payments</td>
+      <td>Holds all the past payments, amount, who it went to etc</td>
+    </tr>
+    <tr>
+      <td>Universities</td>
+      <td>Holds all the information of every University</td>
+    </tr>
+    <tr>
+      <td>Campuses</td>
+      <td>Holds all the different campuses and their respective Universities</td>
+    </tr>
+    <tr>
+      <td>Grants</td>
+      <td>Holda all Grants either awarded or forms recieved</td>
+    </tr>
+  </table>
+  
+  </body>
+
+
+<!--<img src="/app/templates/images/test.jpeg" alt="Test"> -->
 
 <h2>What is the New Colombo Plan</h2>
 <body class="text-center">
@@ -26,6 +84,10 @@
       (if eligible) to support them in the program. Read more about us 
       here: <a href="url">https://www.acicis.edu.au/about-us/.</a></p>
 </body>
-<img src="NCP_Branding_Image.jpg" alt="NCP Logo">
-<!-- <img src='NCP_Branding_Image.jpg'> -->
+
+
+<!-- <img src="/images/NCP_Branding_Image.jpg" alt="NCP Logo" width="500" height="600> -->
+
+
+
 {% endblock %}
