@@ -687,7 +687,7 @@ def load_pd_df_Grants(df):
 
 def load_pd_df_Universities(df):
     for index, row in df.iterrows():
-        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
         Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
         Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
         Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
@@ -739,24 +739,24 @@ def load_pd_df_Eligibility(df):
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 #github_session = pd_access()
-# create_user()
-# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
-# load_pd_df_Campuses(df)
+create_user()
+df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the toke for the file and add as third paramater for pd_download calls
+load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS')
-# load_pd_df_Grants(df)
+df = pd_download('GRANTS')
+load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS')
-# load_pd_df_Payments(df)
+df = pd_download('PAYMENTS')
+load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-# load_pd_df_Programs(df)
+df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
-# load_pd_df_Students(df)
+df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES')
-# load_pd_df_Universities(df)
+df = pd_download('UNIVERSITIES')
+load_pd_df_Universities(df)
 
-# df = pd_download('ELIGIBILITY')
-# load_pd_df_Eligibility(df)
+df = pd_download('ELIGIBILITY')
+load_pd_df_Eligibility(df)
