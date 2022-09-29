@@ -1,20 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:app/migrations/versions/41aa1e237616_.py
-<<<<<<<< HEAD:app/migrations/versions/41aa1e237616_.py
-Revision ID: 41aa1e237616
+Revision ID: e008c0df8a99
 Revises: 
-Create Date: 2022-09-29 16:47:16.263656
-========
-Revision ID: 9fdf8041b9ad
-Revises: 
-Create Date: 2022-09-29 07:42:36.505694
->>>>>>>> 981f4a26a7a8cd0b0d38ae7cfb65c5513f89b352:app/migrations/versions/9fdf8041b9ad_.py
-========
-Revision ID: 9fdf8041b9ad
-Revises: 
-Create Date: 2022-09-29 07:42:36.505694
->>>>>>>> 981f4a26a7a8cd0b0d38ae7cfb65c5513f89b352:app/migrations/versions/9fdf8041b9ad_.py
+Create Date: 2022-09-29 17:33:44.909777
 
 """
 from alembic import op
@@ -22,15 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:app/migrations/versions/41aa1e237616_.py
-<<<<<<<< HEAD:app/migrations/versions/41aa1e237616_.py
-revision = '41aa1e237616'
-========
-revision = '9fdf8041b9ad'
->>>>>>>> 981f4a26a7a8cd0b0d38ae7cfb65c5513f89b352:app/migrations/versions/9fdf8041b9ad_.py
-========
-revision = '9fdf8041b9ad'
->>>>>>>> 981f4a26a7a8cd0b0d38ae7cfb65c5513f89b352:app/migrations/versions/9fdf8041b9ad_.py
+revision = 'e008c0df8a99'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,7 +30,9 @@ def upgrade():
     sa.Column('UWA_Admin_Funding_Project_Grant_Number', sa.String(length=50), nullable=True),
     sa.Column('Program_Type', sa.String(length=50), nullable=True),
     sa.Column('Project_Status', sa.String(length=50), nullable=True),
-    sa.Column('Eligibility_Ids', sa.String(length=50), nullable=True),
+    sa.Column('CITIZENS_PR', sa.Boolean(), nullable=True),
+    sa.Column('SHORT_TERM_GRANT', sa.Boolean(), nullable=True),
+    sa.Column('SEMESTER_GRANT', sa.Boolean(), nullable=True),
     sa.Column('Funding_Acquittal_Date', sa.Date(), nullable=True),
     sa.Column('Project_Completion_Submission_Date', sa.Date(), nullable=True),
     sa.Column('Project_Completion_Report_Link', sa.String(), nullable=True),
@@ -101,7 +83,7 @@ def upgrade():
     )
     op.create_table('UNIVERSITIES',
     sa.Column('University_Id', sa.String(length=50), nullable=False),
-    sa.Column('University_Acronym', sa.String(length=20), nullable=True),
+    sa.Column('University_Acronym', sa.String(length=120), nullable=True),
     sa.Column('University_Name', sa.String(length=100), nullable=True),
     sa.Column('ABN', sa.Integer(), nullable=True),
     sa.Column('Member_Status_2014', sa.Boolean(), nullable=True),
@@ -166,6 +148,9 @@ def upgrade():
     sa.Column('Indigenous_Australian', sa.Boolean(), nullable=True),
     sa.Column('Disability', sa.Boolean(), nullable=True),
     sa.Column('Aus_Citizen', sa.Boolean(), nullable=True),
+    sa.Column('CITIZENS_PR', sa.Boolean(), nullable=True),
+    sa.Column('SHORT_TERM_GRANT', sa.Boolean(), nullable=True),
+    sa.Column('SEMESTER_GRANT', sa.Boolean(), nullable=True),
     sa.Column('Notes', sa.String(length=100), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.Campus_Id'], ),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.University_Id'], ),
