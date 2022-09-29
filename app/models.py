@@ -226,23 +226,23 @@ class UniversitiesModelView(ModelView):
 
     column_searchable_list = ("University_Id", "University_Name")
 
-    column_list =  ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_list =  ("University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_details_list = ("University_Id",  "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_details_list = ("University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    form_columns =  ("University_Id", "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    form_columns =  ("University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_filters = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ("University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_sortable_list = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_sortable_list = ("University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
@@ -347,17 +347,17 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Program.Year' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_searchable_list = ('Program.Year', 'Program.Program_Name','Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
     
-    column_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
+    column_list = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
 
-    column_details_list = ('Grant_Id','Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_details_list = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name' 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    form_columns = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    form_columns = ('Start_Date', 'End_Date', 'Period', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_filters = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name','Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_sortable_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period','Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_sortable_list = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
     column_labels = dict(Grant_Id = 'Grant ID', Start_Date = 'Start Date', End_Date ='End Date', Period ='Period', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
         University_Id = 'University ID', Campus_Id = 'Campus ID')
