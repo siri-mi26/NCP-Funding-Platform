@@ -88,9 +88,9 @@ class StudentsModelView(ModelView):
         'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'Notes')
     
-    column_labels = dict(Student_Id = 'Student ID', University_Acronym = 'University Acronym', University_Id = 'University ID', Campus_Id = 'Campus ID', BSB = 'BSB')
+    column_labels = dict( University_Acronym = 'University Acronym', University_Id = 'University ID', Campus_Id = 'Campus ID', BSB = 'BSB')
     
-    column_descriptions = dict(Student_Id = 'Unique Student ID', University_Acronym = 'Related University Acronym',University_Id = 'Unique University ID', Campus_Id = 'Unique Campus ID', Student_Number = 'Student University Number', 
+    column_descriptions = dict( University_Acronym = 'Related University Acronym', Student_Number = 'Student University Number', 
         Title = 'Student\'s Title', First_Name = 'Student\'s First Name', Preferred_Name = 'Student\'s Preferred Name', Last_Name = 'Student\'s Last Name or Surname', 
         Address_Line_One = 'Student\'s Residential First Address Line', Address_Line_Two = 'Student\'s Reseidential Second Address Line (if needed)', 
         City ='Student\'s Residential City or Suburb', Postcode = 'Student\'s Residential Postcode', State = 'Student\'s Residential State', Country = 'Student\'s Residential Country', 
@@ -196,10 +196,10 @@ class ProgramsModelView(ModelView):
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
        
-    column_labels = dict(Program_Id = "Program ID", ISEO_Code = 'ISEO Code', UWA_Mobility_Grant_Project_Grant_Number = 'UWA Mobility Grant Project Grant Number',
+    column_labels = dict(ISEO_Code = 'ISEO Code', UWA_Mobility_Grant_Project_Grant_Number = 'UWA Mobility Grant Project Grant Number',
         UWA_Admin_Funding_Project_Grant_Number = 'UWA Admin Funding Project Grant Number', Eligibility_Ids = 'Eligibility IDs')
 
-    column_descriptions = dict(Program_Id = 'Unique Program ID',Program_Name = 'Name of Grant Program', Program_Acronym = 'Grant Program Acronym', Year = 'Year Of Program', Class_Code = 'Class Code Of Program ', Project_Code = 'Class Code Of Project ', ISEO_Code = 'ISEO Code Of Program', UWA_Mobility_Grant_Project_Grant_Number = '',UWA_Admin_Funding_Project_Grant_Number = '', Program_Type = 'Whether It Is Short-Term or Semester', Project_Status = '', Eligibility_Ids = 'A Unique Number For Each Eligibility Criteria ',Funding_Acquittal_Date = '', Project_Completion_Submission_Date = 'Completion Date Of Project ',Project_Completion_Report_Link = '', Refund_Utilisation_Commonwealth_Date = '', Commonwealth_Refund_Invoice_Link = '', Statutory_Decleration_Date = '',Statutory_Decleration_Link = '', Original_Project_Schedule = '', Deed_Of_Variation_One = '', Deed_Of_Variation_Two = '', Deed_Of_Variation_Three = '',Mobility_Grant_Funding_Received = 'Value Of Mobility Grant Funding Received', Mobility_Grant_Dollar_Size = 'Mobility Grant Value In Dollars ', Mobility_Grant_Funding_Utilised = 'Value Of Mobility Grant Funding Used ', Mobility_Grant_Funding_Remaining = 'Value Of Mobility Grant Funding Remaining ',Mobility_Grants_Received = 'Number Of Mobility Grants Received', Mobility_Grants_Utilised = 'Number Of Mobility Grants Used', Mobility_Grants_Remaining = 'Number Of Mobility Grants Remaining', Internship_Grant_Funding_Received = 'Value Of Internship Grant Funding Received ', Internship_Grant_Dollar_Size = 'Internship Grant Value In Dollars', Internship_Grant_Funding_Utilised = 'Value Of Internship Grant Funding Used ', Internship_Grant_Funding_Remaining = 'Value Of Internship Grant Funding Remaining ',Internship_Grants_Received = 'Number Of Internship Grants Received ', Internship_Grants_Utilised = 'Number Of Internship Grants Used ', Internship_Grants_Remaining = 'Number Of Internship Grants Remaining ',Language_Grant_Funding_Received = 'Value Of Language Grant Funding Received ', Language_Grant_Dollar_Size = 'Language Grant Value In Dollars ', Language_Grant_Funding_Utilised = 'Value Of Language Grant Funding Used ', Language_Grant_Funding_Remaining = 'Value Of Language Grant Funding Remaining ',
+    column_descriptions = dict(Program_Name = 'Name of Grant Program', Program_Acronym = 'Grant Program Acronym', Year = 'Year Of Program', Class_Code = 'Class Code Of Program ', Project_Code = 'Class Code Of Project ', ISEO_Code = 'ISEO Code Of Program', UWA_Mobility_Grant_Project_Grant_Number = '',UWA_Admin_Funding_Project_Grant_Number = '', Program_Type = 'Whether It Is Short-Term or Semester', Project_Status = '', Eligibility_Ids = 'A Unique Number For Each Eligibility Criteria ',Funding_Acquittal_Date = '', Project_Completion_Submission_Date = 'Completion Date Of Project ',Project_Completion_Report_Link = '', Refund_Utilisation_Commonwealth_Date = '', Commonwealth_Refund_Invoice_Link = '', Statutory_Decleration_Date = '',Statutory_Decleration_Link = '', Original_Project_Schedule = '', Deed_Of_Variation_One = '', Deed_Of_Variation_Two = '', Deed_Of_Variation_Three = '',Mobility_Grant_Funding_Received = 'Value Of Mobility Grant Funding Received', Mobility_Grant_Dollar_Size = 'Mobility Grant Value In Dollars ', Mobility_Grant_Funding_Utilised = 'Value Of Mobility Grant Funding Used ', Mobility_Grant_Funding_Remaining = 'Value Of Mobility Grant Funding Remaining ',Mobility_Grants_Received = 'Number Of Mobility Grants Received', Mobility_Grants_Utilised = 'Number Of Mobility Grants Used', Mobility_Grants_Remaining = 'Number Of Mobility Grants Remaining', Internship_Grant_Funding_Received = 'Value Of Internship Grant Funding Received ', Internship_Grant_Dollar_Size = 'Internship Grant Value In Dollars', Internship_Grant_Funding_Utilised = 'Value Of Internship Grant Funding Used ', Internship_Grant_Funding_Remaining = 'Value Of Internship Grant Funding Remaining ',Internship_Grants_Received = 'Number Of Internship Grants Received ', Internship_Grants_Utilised = 'Number Of Internship Grants Used ', Internship_Grants_Remaining = 'Number Of Internship Grants Remaining ',Language_Grant_Funding_Received = 'Value Of Language Grant Funding Received ', Language_Grant_Dollar_Size = 'Language Grant Value In Dollars ', Language_Grant_Funding_Utilised = 'Value Of Language Grant Funding Used ', Language_Grant_Funding_Remaining = 'Value Of Language Grant Funding Remaining ',
         Language_Grants_Received = 'Number Of Language Grants Received ', Language_Grants_Utilised = 'Number Of Language Grants Used', Language_Grants_Remaining = 'Number Of Language Grants Remaining ',
         Administration_Grant_Funding_Received = 'Value Of Administration Grant Funding Received', Administration_Grant_Dollar_Size = 'Administration Grant Value In Dollars', Administration_Grant_Funding_Utilised = 'Value Of Administration Grant Funding Used', Administration_Grant_Funding_Remaining = 'Value Of Administration Grant Funding Remaining',
         Administration_Grants_Received = 'Number Of Administration Grants Received ', Administration_Grants_Utilised = 'Number Of Administration Grants Used', Administration_Grants_Remaining = 'Number Of Administration Grants Remaining',
@@ -224,31 +224,31 @@ class UniversitiesModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'University_Name' 
 
-    column_searchable_list = ("University_Id", "University_Name")
+    column_searchable_list = ("University_Acronym", "University_Name")
 
-    column_list =  ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_list =  ("University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_details_list = ("University_Id",  "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_details_list = (  "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    form_columns =  ("University_Id", "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
-    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
-    "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
-    
-    column_filters = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    form_columns =  ( "University_Acronym","University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
     
-    column_sortable_list = ("University_Id", "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    column_filters = ( "University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
+    "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
+    "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
+    
+    column_sortable_list = ("University_Acronym", "University_Name", "ABN", "Member_Status_2014", "Member_Status_2015", "Member_Status_2016", "Member_Status_2017",
     "Member_Status_2018", "Member_Status_2019", "Member_Status_2020", "Member_Status_2021", "Member_Status_2022","Member_Status_2023", "Member_Status_2024",
     "Member_Status_2025", "Member_Status_2026", "Member_Status_2027", "Member_Status_2028", "Member_Status_2029", "Member_Status_2030")
 
-    column_labels = dict(University_Id = 'University ID', ABN = 'ABN', Universty_Acronym = "University Acronym")
+    column_labels = dict( ABN = 'ABN', Universty_Acronym = "University Acronym")
 
-    column_descriptions = dict(University_Id = 'Unique University ID', University_Acronym = "Acronymn for University" , University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
+    column_descriptions = dict( University_Acronym = "Acronymn for University" , University_Name='Name Of Each University', ABN='ABN Number Of Each University', Member_Status_2014='If The University Was A Member In 2014', Member_Status_2015='If The University Was A Member In 2015', Member_Status_2016='If The University Was A Member In 2016', Member_Status_2017='If The University Was A Member In 2017',
     Member_Status_2018='If The University Was A Member In 2018', Member_Status_2019='If The University Was A Member In 2019', Member_Status_2020='If The University Was A Member In 2020', Member_Status_2021='If The University Was A Member In 2021', Member_Status_2022='If The University Was A Member In 2022',Member_Status_2023='If The University Was A Member In 2023', Member_Status_2024='If The University Was A Member In 2024',
     Member_Status_2025='If The University Was A Member In 2025', Member_Status_2026='If The University Was A Member In 2026', Member_Status_2027='If The University Was A Member In 2027', Member_Status_2028='If The University Was A Member In 2028', Member_Status_2029='If The University Was A Member In 2029', Member_Status_2030 = ' If The University Was A Member In 2030') 
     #needs completing
@@ -282,9 +282,9 @@ class CampusesModelView(ModelView):
     
     column_sortable_list = ('Campus_Name', 'Campus_State', 'University.University_Acronym', 'University.University_Name')
        
-    column_labels = dict(Campus_Id = 'Campus ID', University_Id = 'University ID', University_Acronym = 'University Acronym')
+    column_labels = dict(University_Acronym = 'University Acronym')
 
-    column_descriptions = dict(Campus_Id = 'Unique Campus ID', University_Acronym = 'RelatedUniversity Acronym', University_Id = 'Related Unique University ID', Campus_Name = 'Name of Campus', Campus_State = 'State Campus is Located')
+    column_descriptions = dict(University_Acronym = 'RelatedUniversity Acronym', Campus_Name = 'Name of Campus', Campus_State = 'State Campus is Located')
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -347,23 +347,21 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Program.Year' 
 
-    column_searchable_list = ('Grant_Id', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_searchable_list = ( 'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
     
-    column_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Forms_Received', 'Awarded')
+    column_list = ( 'Start_Date', 'End_Date', 'Period',  'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount', 'University.University_Name',  'Campus.Campus_Name', 'Forms_Received', 'Awarded')
 
-    column_details_list = ('Grant_Id','Start_Date', 'End_Date', 'Period', 'Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_details_list = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    form_columns = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Student_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Awarded', 'Forms_Received')
+    form_columns = ('Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received')
 
-    column_filters = ('Grant_Id', 'Program_Id','Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_filters = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name', 'Student.First_Name', 'Student.Last_Name',  'Payment.Payment_Amount',  'University.University_Name','Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_sortable_list = ('Grant_Id', 'Start_Date', 'End_Date', 'Period','Program_Id', 'Program.Year', 'Program.Program_Name', 'Student_Id', 'Student.First_Name', 'Student.Last_Name', 'Payment_Id', 'Payment.Payment_Amount', 'University_Id', 'University.University_Name', 'Campus_Id', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
+    column_sortable_list = ('Start_Date', 'End_Date', 'Period', 'Program.Year', 'Program.Program_Name',  'Student.First_Name', 'Student.Last_Name', 'Payment.Payment_Amount', 'University.University_Name', 'Campus.Campus_Name', 'Awarded', 'Forms_Received')
 
-    column_labels = dict(Grant_Id = 'Grant ID', Start_Date = 'Start Date', End_Date ='End Date', Period ='Period', Program_Id = 'Program ID', Student_Id = 'Student ID', Payment_Id = 'Payment ID', 
-        University_Id = 'University ID', Campus_Id = 'Campus ID')
+    column_labels = dict( Start_Date = 'Start Date', End_Date ='End Date', Period ='Period' )
 
-    column_descriptions = dict(Grant_Id = 'Unique Grant ID',Start_Date = 'Start Date', End_Date ='End Date', Program_Id = 'Related Unique Program ID', Student_Id = 'Related Unique Student ID', 
-        Payment_Id = 'Related Unique Payment ID', University_Id = 'Related Unique University ID', Campus_Id = 'Related Unique Campus ID',
+    column_descriptions = dict(Start_Date = 'Start Date', End_Date ='End Date', Period = 'Relevant Study Period',
         Awarded = 'Has the grant been awarded to the student?', Forms_Received = 'Have the forms been recieved from student?')
 
     def is_accessible(self):
