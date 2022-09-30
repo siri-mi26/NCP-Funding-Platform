@@ -28,10 +28,11 @@ admin.add_link(LogoutMenuLink(name='Logout', category='', url="/logout"))
 admin.add_view(InfoView(name='Information', endpoint='info'))
 admin.add_view(StudentsModelView(Students, db.session))
 admin.add_view(ProgramsModelView(Programs, db.session))
-admin.add_view(PaymentsModelView(Payments, db.session))
 admin.add_view(UniversitiesModelView(Universities, db.session))
 admin.add_view(CampusesModelView(Campuses, db.session))
+admin.add_view(PaymentsModelView(Payments, db.session))
 admin.add_view(GrantsModelView(Grants, db.session))
+
 
 
 

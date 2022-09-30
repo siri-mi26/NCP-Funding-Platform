@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block body %}
-<h1>Sign In</h1>
-<body class="text-center">
+<h1 style="color:#317EAC"> New Colombo Plan Funding Management Platform </h1>
+<h1 style="color:#317EAC">Sign In</h1><br>
+<body class="text-center" style="color:#317EAC">
     <form action="" method="post" novalidate class="form-signin fadeIn">
         {{ form.hidden_tag() }}
         <p>
@@ -13,5 +14,6 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+
 </body>
 {% endblock %}

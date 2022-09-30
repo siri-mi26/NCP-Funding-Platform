@@ -1,10 +1,4 @@
 {% extends "admin/base.html" %} {% block body %}
-<h1>New Colombo Plan Funding Managment Platform</h1>
-<body class="text-center">
-  This website allows for the organisation of data required by the NCP funding managment.<br>
-  This page explains what all the tables signify and general infomation on how to use the site.<br>
-</body>
-
 <head>
   <style>
   table {
@@ -24,70 +18,52 @@
   }
   </style>
   </head>
-  <body>
+
+
+<body class="text-center">
+  <h1>Table Information</h1><br>
+  
+  This platform allows for the organisation of data required by the NCP funding managment.<br>
+  This page explains what information is captured in each table.<br><br>
   
   <table>
     <tr>
       <th>Table Name</th>
       <th>Description</th>
+      <th>Connections</th>
     </tr>
     <tr>
       <td>Students</td>
-      <td>Holds all the information of a particular Student</td>
+      <td>Contains the each student's personal information for each row.</td>
+      <td>Universities & Campuses</td>
     </tr>
     <tr>
       <td>Programs</td>
-      <td>Holds all the information regarding the available Programs</td>
-    </tr>
-    <tr>
-      <td>Payments</td>
-      <td>Holds all the past payments, amount, who it went to etc</td>
+      <td>Contains all information regarding the available Programs offered to students.</td>
+      <td>No connections</td>
     </tr>
     <tr>
       <td>Universities</td>
-      <td>Holds all the information of every University</td>
+      <td>Contains basic information of every University previously or currently associated with NCP.</td>
+      <td>No connections</td>
     </tr>
     <tr>
       <td>Campuses</td>
-      <td>Holds all the different campuses and their respective Universities</td>
+      <td>Contains basic information of the different campuses and their respective Universities.</td>
+      <td>Universities</td>
+    </tr>
+    <tr>
+      <td>Payments</td>
+      <td>Contains information of all past payments to students.</td>
+      <td>Students & Programs</td>
     </tr>
     <tr>
       <td>Grants</td>
-      <td>Holda all Grants either awarded or forms recieved</td>
+      <td>Contains information of all grants awarded or tentatively awarded to students</td>
+      <td>Programs, Students, Payments, Universities & Campuses</td>
     </tr>
   </table>
   
   </body>
-
-
-<!--<img src="/app/templates/images/test.jpeg" alt="Test"> -->
-
-<h2>What is the New Colombo Plan</h2>
-<body class="text-center">
-  <p> The New Colombo Plan Mobility Program (NCP) provides funding to 
-    Australian universities to support Australian undergraduate students 
-    participation in study, internships, mentorships, practicums and 
-    research in 40 host locations across the Indo-Pacific region. 
-    Read more here: <a href="url">https://www.dfat.gov.au/people-to-people/new-colombo-plan/mobility-program.</a> 
-    Background: Who are ACICIS Study Indonesia The Australian Consortium for 
-    In-Country Indonesian Studies (ACICIS pronounced Ah-chee-chis, 
-    as an Indonesian would say it) is a non-profit international educational 
-    consortium of 17 Australia universities. The secretariat is housed at 
-    UWA, next to Hackett caf. We facilitate study abroad programs in Indonesia 
-    for predominantly Australian undergraduate students. These study abroad 
-    programs include short-term options (2,3 or 6 week programs) and semester 
-    long programs. Our programs are in a range of disciplines including Indonesian 
-    language, journalism, development, business, law, creative arts, agriculture, 
-    sustainable tourism and international relations. We were established in 1995 
-    and since then have sent around 3,700 students to Indonesia. Students can typically
-     do our programs for academic credit and receive a New Colombo Plan mobility grant
-      (if eligible) to support them in the program. Read more about us 
-      here: <a href="url">https://www.acicis.edu.au/about-us/.</a></p>
-</body>
-
-
-<!-- <img src="/images/NCP_Branding_Image.jpg" alt="NCP Logo" width="500" height="600> -->
-
-
 
 {% endblock %}
