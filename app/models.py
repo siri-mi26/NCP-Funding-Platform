@@ -58,6 +58,9 @@ class InfoView(BaseView):
 
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
+    list_template = 'student_info.html'
+    edit_template = 'student_edit.html'
+    create_template = 'student_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -109,6 +112,9 @@ class StudentsModelView(ModelView):
 
 class ProgramsModelView(ModelView):
     """Custom view for Programs. Login secured."""
+    list_template = 'program_info.html'
+    edit_template = 'program_edit.html'
+    create_template = 'program_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -205,7 +211,6 @@ class ProgramsModelView(ModelView):
         Administration_Grants_Received = 'Number Of Administration Grants Received ', Administration_Grants_Utilised = 'Number Of Administration Grants Used', Administration_Grants_Remaining = 'Number Of Administration Grants Remaining',
         Total_Grant_Funding_Received = 'Value Of Total Grant Funding Received', Total_Grant_Funding_Utilised = 'Value Of Total Grant Funding Used', Total_Grant_Funding_Remaining = 'Value Of Total Grant Funding Remaining',
         Total_Grants_Received = 'Number Of Total Grants Received', Total_Grants_Utilised = 'Number Of Total Grants Used', Total_Grants_Remaining = 'Number Of Total Grants Remaining', Notes = 'Any Extra Notes On The Program')
-    ###needs completing
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -216,6 +221,9 @@ class ProgramsModelView(ModelView):
 
 class UniversitiesModelView(ModelView):
     """Custom view for University. Login secured."""
+    list_template = 'university_info.html'
+    edit_template = 'university_edit.html'
+    create_template = 'university_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -262,6 +270,9 @@ class UniversitiesModelView(ModelView):
 
 class CampusesModelView(ModelView):
     """Custom view for Campuses. Login secured."""
+    list_template = 'campus_info.html'
+    edit_template = 'campus_edit.html'
+    create_template = 'campus_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -295,6 +306,9 @@ class CampusesModelView(ModelView):
 
 class PaymentsModelView(ModelView):
     """Custom view for Payments. Login secured."""
+    list_template = 'payment_info.html'
+    edit_template = 'payment_edit.html'
+    create_template = 'payment_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -337,6 +351,9 @@ class PaymentsModelView(ModelView):
 
 class GrantsModelView(ModelView):
     """Custom view for Grants. Login secured."""
+    list_template = 'grant_info.html'
+    edit_template = 'grant_edit.html'
+    create_template = 'grant_create.html'
     can_export = True 
     can_edit = True
     can_delete = True
@@ -361,39 +378,6 @@ class GrantsModelView(ModelView):
 
     column_descriptions = dict(Start_Date = 'Start Date', End_Date ='End Date', Period = 'Relevant Study Period',
         Awarded = 'Has the grant been awarded to the student?', Forms_Received = 'Have the forms been recieved from student?')
-
-    def is_accessible(self):
-        return current_user.is_authenticated
-
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('login', next=request.url))
-
-
-class EligibilityModelView(ModelView):
-    """Custom view for Eligibility. Login secured."""
-    can_export = True 
-    can_edit = True
-    can_delete = True
-    can_create = True
-    can_view_details = True
-    can_set_page_size = True
-    column_default_sort = 'Eligibility_Id' 
-
-    column_searchable_list = ('Eligibility_Id', 'Description')
-
-    column_list = ('Eligibility_Id', 'Description')
-
-    column_details_list = ('Eligibility_Id', 'Description')
-
-    form_columns = ('Eligibility_Id', 'Description')
-
-    column_filters = ('Eligibility_Id', 'Description')
-    
-    column_sortable_list = ('Eligibility_Id', 'Description')
-   
-    column_labels = dict(Eligibility_Id  = 'Eligibility ID')
-
-    column_descriptions = dict(Eligibility_Id  = 'Unique Eligibility ID', Description = 'Description of the Eligibility Criteria')
 
     def is_accessible(self):
         return current_user.is_authenticated
