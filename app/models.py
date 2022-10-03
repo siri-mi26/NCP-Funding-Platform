@@ -56,6 +56,7 @@ class InfoView(BaseView):
         return current_user.is_authenticated  
 
 
+##  COMPLETE ##
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
     list_template = 'student_info.html'
@@ -69,38 +70,49 @@ class StudentsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Student_Number'
     
-    column_searchable_list = ('Student_Number','First_Name', 'Title','Last_Name', 'State', 'Country', 'Gender', 'University.University_Name', 'Campus.Campus_Name')
+    column_searchable_list = ('Student_Number','First_Name','Last_Name', 'Country', 'Gender', 'University.University_Name', 'Campus.Campus_Name')
 
-    column_list = ( 'University.University_Name',  'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
-        'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen','CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'Student_Id', 'University_Id','Campus_Id')
+    column_list = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
+         'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'Student_Id', 'University_Id','Campus_Id')
     
-    column_details_list = ('University.University_Name',  'Campus.Campus_Name', 'Student_Number','Title', 'First_Name', 
-        'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Notes','Student_Id', 'University_Id','Campus_Id')
+    column_details_list = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
+         'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'Student_Id', 'University_Id','Campus_Id')
 
-    form_columns = ( 'Student_Number', 'Title', 'First_Name',  
-        'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen','CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes','Student_Id', 'University_Id','Campus_Id')
+    form_columns = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
+         'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id','Campus_Id')
 
-    column_filters = ('University.University_Name', 'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
-        'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Notes','Student_Id', 'University_Id','Campus_Id')
-    
-    column_sortable_list = ('University.University_Name',  'Campus.Campus_Name', 'Student_Number', 'Title', 'First_Name', 
-        'Preferred_Name', 'Last_Name', 'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
-        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen','CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes','Student_Id', 'University_Id','Campus_Id')
-    
-    column_labels = dict( University_Acronym = 'University Acronym', University_Id = 'University ID', Campus_Id = 'Campus ID', BSB = 'BSB',Student_Id = 'Student ID')
-    
-    column_descriptions = dict( University_Acronym = 'Related University Acronym', Student_Number = 'Student University Number', 
-        Title = 'Student\'s Title', First_Name = 'Student\'s First Name', Preferred_Name = 'Student\'s Preferred Name', Last_Name = 'Student\'s Last Name or Surname', 
-        Address_Line_One = 'Student\'s Residential First Address Line', Address_Line_Two = 'Student\'s Reseidential Second Address Line (if needed)', 
-        City ='Student\'s Residential City or Suburb', Postcode = 'Student\'s Residential Postcode', State = 'Student\'s Residential State', Country = 'Student\'s Residential Country', 
-        Date_Of_Birth = 'Student\'s Date of Birth', Phone_Number = 'Student\'s Mobile Phone Number', Student_Email = 'Student\'s University Email Address', 
-        Gender = 'Student\'s Identified Gender', BSB = 'Student\'s Bank Account BSB', Account_Number = 'Student\'s Bank Account Number', 
-        Field_Of_Study = 'Student\'s Designated Field of Study', Country_Of_Birth = 'Student\'s Country of Birth', Indigenous_Australian = 'Does Student identify as an Indigenous Australian?', 
-        Disability = 'Does Student identify as having a Disability?', Aus_Citizen = 'Is the Student an Australian Citizen?', CITIZENS_PR = ' ',SHORT_TERM_GRANT='',SEMESTER_GRANT='',Notes = 'Any extra notes on the Student',Student_Id = 'Student ID', University_Id = 'University ID',Campus_Id = 'Campus ID')
+    column_filters = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
+         'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'Student_Id', 'University_Id','Campus_Id')
+
+    column_sortable_list = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
+         'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
+        'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'Student_Id', 'University_Id','Campus_Id')
+
+    column_labels = { 'University_Acronym': 'University Acronym', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'BSB': 'BSB', 'Student_Id': 'Student ID', 
+        'Student_Number': 'Student Number', 'First_Name': 'First Name', 'Last_Name': 'Last Name', 'CITIZENS_PR': 'Citizen\'s PR', 'SHORT_TERM_GRANT': 'Short Term Grant', 
+        'SEMESTER_GRANT': 'Semester Grant', 'University.University_Name': 'University Name',  'Campus.Campus_Name': 'Campus Name' , 'Indigenous_Australian': 'Indigenous Aus',
+        'Notes': 'Extra Notes'}
+
+    column_descriptions = {'University_Acronym': 'Related University Acronym', 'Student_Number': 'Student University Number', 
+        'Title': 'Student\'s Title', 'First_Name': 'Student\'s First Name', 'Preferred_Name' : 'Student\'s Preferred Name', 'Last_Name': 'Student\'s Last Name or Surname', 
+        'Address_Line_One': 'Student\'s Residential First Address Line', 'Address_Line_Two': 'Student\'s Reseidential Second Address Line (if needed)', 
+        'City': 'Student\'s Residential City or Suburb', 'Postcode': 'Student\'s Residential Postcode', 'State': 'Student\'s Residential State', 'Country': 'Student\'s Residential Country', 
+        'Date_Of_Birth': 'Student\'s Date of Birth', 'Phone_Number': 'Student\'s Mobile Phone Number', 'Student_Email': 'Student\'s University Email Address', 
+        'Gender': 'Student\'s Identified Gender', 'BSB': 'Student\'s Bank Account BSB', 'Account_Number': 'Student\'s Bank Account Number', 
+        'Field_Of_Study': 'Student\'s Designated Field of Study', 'Country_Of_Birth': 'Student\'s Country of Birth', 'Indigenous_Australian': 'Does Student identify as an Indigenous Australian?', 
+        'Disability': 'Does Student identify as having a Disability?', 'Aus_Citizen': 'Is the Student an Australian Citizen?', 
+        'CITIZENS_PR': 'Not previously Indonesian Citizen and/or Permanent Resident','SHORT_TERM_GRANT': 'Previously Received a Short Term Grant','SEMESTER_GRANT': 'Previously Received a Semester Grant',
+        'Notes': 'Any extra notes on the Student','Student_Id': 'Student ID', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'Campus.Campus_Name': 'Name of Campus Student Attends', 
+        'University.University_Name': 'Name of University that Student Attends'}
 
 
     def is_accessible(self):
@@ -295,7 +307,7 @@ class CampusesModelView(ModelView):
        
     column_labels = dict(University_Acronym = 'University Acronym',Campus_Id = 'Campus ID')
 
-    column_descriptions = dict(University_Acronym = 'RelatedUniversity Acronym', Campus_Name = 'Name of Campus', Campus_State = 'State Campus is Located',Campus_Id = 'Campus ID')
+    column_descriptions = dict(University_Acronym = 'Related University Acronym', Campus_Name = 'Name of Campus', Campus_State = 'State Campus is Located',Campus_Id = 'Campus ID')
 
     def is_accessible(self):
         return current_user.is_authenticated
