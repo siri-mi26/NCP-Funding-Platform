@@ -111,7 +111,7 @@ class StudentsModelView(ModelView):
         'Field_Of_Study': 'Student\'s Designated Field of Study', 'Country_Of_Birth': 'Student\'s Country of Birth', 'Indigenous_Australian': 'Does Student identify as an Indigenous Australian?', 
         'Disability': 'Does Student identify as having a Disability?', 'Aus_Citizen': 'Is the Student an Australian Citizen?', 
         'CITIZENS_PR': 'Not previously Indonesian Citizen and/or Permanent Resident','SHORT_TERM_GRANT': 'Previously Received a Short Term Grant','SEMESTER_GRANT': 'Previously Received a Semester Grant',
-        'Notes': 'Any extra notes on the Student','Student_Id': 'Student ID', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'Campus.Campus_Name': 'Name of Campus Student Attends', 
+        'Notes': 'Any extra notes on the Student','Student_Id': 'Student ID', 'University_Id': 'University ID of University Student Attends', 'Campus_Id': 'Campus ID of Campus Student Attends', 'Campus.Campus_Name': 'Name of Campus Student Attends', 
         'University.University_Name': 'Name of University that Student Attends'}
 
 
