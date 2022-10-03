@@ -20,7 +20,7 @@ login.login_view = 'login'
 from app import db, routes, models
 from app.models import Users, Students, Programs, Payments, Universities, Campuses, Grants, MyAdminIndexView, StudentsModelView, ProgramsModelView, PaymentsModelView, UniversitiesModelView, CampusesModelView, GrantsModelView, LogoutMenuLink, InfoView
 # set optional bootswatch theme
-#app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 #add admin views for tables/models
 admin = Admin(app, name='NCP', template_mode='bootstrap3', index_view=MyAdminIndexView()) 
 admin.add_link(LogoutMenuLink(name='Logout', category='', url="/logout"))
