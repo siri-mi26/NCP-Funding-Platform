@@ -642,10 +642,24 @@ class Programs(db.Model):
 
     Internship_Grant_Funding_Received = db.Column(db.Integer)
     Internship_Grant_Dollar_Size = db.Column(db.Integer)
+    Internship_Grants_Utilised = db.Column(db.Integer)
+    @hybrid_property
+    def Internship_Grant_Funding_Utilised_2(self):
+        return self.Internship_Grants_Utilised * self.Internship_Grant_Dollar_Size
+    @hybrid_property
+    def Internship_Grant_Funding_Remaining_2(self):
+        return self.Internship_Grant_Funding_Received - self.Internship_Grant_Funding_Utilised_2
+    @hybrid_property
+    def Internship_Grants_Received_2(self):
+        return self.Internship_Grant_Funding_Received / self.Internship_Grant_Dollar_Size
+    @hybrid_property
+    def Internship_Grants_Remaining_2(self):
+        return self.Internship_Grants_Received_2 - self.Internship_Grants_Utilised
+
     Internship_Grant_Funding_Utilised = db.Column(db.Integer)
     Internship_Grant_Funding_Remaining = db.Column(db.Integer)
     Internship_Grants_Received = db.Column(db.Integer)
-    Internship_Grants_Utilised = db.Column(db.Integer)
+
     Internship_Grants_Remaining = db.Column(db.Integer)
     
     Language_Grant_Funding_Received = db.Column(db.Integer)
