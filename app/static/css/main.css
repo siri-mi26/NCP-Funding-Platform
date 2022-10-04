@@ -1,0 +1,51 @@
+td{
+    font-size: 12px;
+    
+    
+}
+
+.container{
+    margin-left:auto;
+    margin-right: auto;
+    padding-left:0%;
+    padding-right:0%;
+
+}
+
+
+
+th{
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+input{
+    margin-left: -2%;
+    margin-top: 1%;
+    margin-bottom:1%;
+}
+
+
+input.btn.btn-primary{
+    display:block;
+
+}
+
+input.btn.btn-default{
+    display:block;
+
+}
+
+input.btn.btn-default{
+    display: block;
+}
+
+a.btn.btn-danger{
+    
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-left: -2%;
+
+}
+/* green colour -> #809B3E
+blue colour -> #317EAC */

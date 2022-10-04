@@ -1,6 +1,73 @@
 {% extends "admin/base.html" %} {% block body %}
-<h1>Information</h1>
+{% block head_css %}
+  {{super()}}
+  <link rel="stylesheet" href="/static/css/main.css">
+{% endblock head_css %}
+<head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  </head>
+
+
 <body class="text-center">
-  <p>Hi this is an introduction....</p>
-</body>
+  <h1>All Table Information</h1><br>
+  
+  This platform allows for the organisation of data required by the NCP funding managment.<br>
+  This page explains what information is captured in each table.<br><br>
+  
+  <table>
+    <tr>
+      <th>Table Name</th>
+      <th>Description</th>
+      <th>Connections</th>
+    </tr>
+    <tr>
+      <td>Students</td>
+      <td>Contains the each student's personal information for each row.</td>
+      <td>Universities & Campuses</td>
+    </tr>
+    <tr>
+      <td>Programs</td>
+      <td>Contains all information regarding the available Programs offered to students.</td>
+      <td>No connections</td>
+    </tr>
+    <tr>
+      <td>Universities</td>
+      <td>Contains basic information of every University previously or currently associated with NCP.</td>
+      <td>No connections</td>
+    </tr>
+    <tr>
+      <td>Campuses</td>
+      <td>Contains basic information of the different campuses and their respective Universities.</td>
+      <td>Universities</td>
+    </tr>
+    <tr>
+      <td>Payments</td>
+      <td>Contains information of all past payments to students.</td>
+      <td>Students & Programs</td>
+    </tr>
+    <tr>
+      <td>Grants</td>
+      <td>Contains information of all grants awarded or tentatively awarded to students</td>
+      <td>Programs, Students, Payments, Universities & Campuses</td>
+    </tr>
+  </table>
+  
+  </body>
+
 {% endblock %}

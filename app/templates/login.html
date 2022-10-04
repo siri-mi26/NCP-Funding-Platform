@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block body %}
-<h1>Sign In</h1>
-<body class="text-center">
+<h1 style="color:#317EAC; text-align: center;"> New Colombo Plan Funding Management Platform </h1>
+<h1 style="color:#317EAC; text-align: center;">Sign In</h1><br>
+<body class="text-center" style="color:#317EAC; text-align: center;">
     <form action="" method="post" novalidate class="form-signin fadeIn">
         {{ form.hidden_tag() }}
         <p>
@@ -13,5 +14,8 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+
+    <img src="https://www.acicis.edu.au/wp-content/uploads/2016/09/2017_NCP_MediaRelease.jpg" alt="NCP Branding Image 2" style="max-width:70%; max-height:70%">
+    
 </body>
 {% endblock %}
