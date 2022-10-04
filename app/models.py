@@ -150,7 +150,7 @@ class ProgramsModelView(ModelView):
 
     column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Program_Type')
 
-    column_list = ('SUM','Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -326,7 +326,7 @@ class UniversitiesModelView(ModelView):
     'Member_Status_2018', 'Member_Status_2019', 'Member_Status_2020', 'Member_Status_2021', 'Member_Status_2022','Member_Status_2023', 'Member_Status_2024',
     'Member_Status_2025', 'Member_Status_2026', 'Member_Status_2027', 'Member_Status_2028', 'Member_Status_2029', 'Member_Status_2030')
 
-    column_labels = {'ABN': 'ABN', 'Universty_Acronym': 'University Acronym', 'University_Id': 'University ID', 'University_Name': 'University Name'}
+    column_labels = {'ABN': 'ABN', 'University_Acronym': 'University Acronym', 'University_Id': 'University ID', 'University_Name': 'University Name'}
 
     column_descriptions = {'University_Id': 'Unique University ID', 'University_Acronym': 'Acronym for University' , 'University_Name': 'Name Of Each University', 'ABN': 'ABN Number Of Each University', 
         'Member_Status_2014': 'If The University Was A Member In 2014', 'Member_Status_2015': 'If The University Was A Member In 2015', 'Member_Status_2016': 'If The University Was A Member In 2016', 
