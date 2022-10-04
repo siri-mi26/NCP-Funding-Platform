@@ -145,23 +145,17 @@ class ProgramsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'Program_Id' 
 
-    # def _sum_formatter(view,context,model,name):
-    #     return ('model.Total_Grants_Utilised' + 'model.Total_Grants_Remaining')
-    
-    # column_formatters = {'TESTSUM': _sum_formatter}
-
     column_searchable_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Program_Type')
 
-    column_list = ('SUM','Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_list = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 
         'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
         'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2', 'Mobility_Grants_Utilised_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
-        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
+        'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining','Internship_Grants_Utilised_2',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
         'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
         'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
@@ -173,9 +167,7 @@ class ProgramsModelView(ModelView):
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
-        'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
         'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2','Mobility_Grants_Utilised_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
@@ -190,8 +182,7 @@ class ProgramsModelView(ModelView):
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
@@ -206,8 +197,8 @@ class ProgramsModelView(ModelView):
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status','CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size','Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
+        'Mobility_Grants_Received_2', 'Mobility_Grants_Utilised_2', 'Mobility_Grants_Remaining_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
@@ -221,8 +212,8 @@ class ProgramsModelView(ModelView):
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status','CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
-        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
-        'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
+        'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
+        'Mobility_Grants_Received_2', 'Mobility_Grants_Utilised_2', 'Mobility_Grants_Remaining_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
@@ -241,9 +232,9 @@ class ProgramsModelView(ModelView):
         'Refund_Utilisation_Commonwealth_Date': 'Refund Utilisation Commonwealth Date', 'Commonwealth_Refund_Invoice_Link': 'Commonwealth Refund Invoice Link', 
         'Statutory_Decleration_Date': 'Statutory Decleration Date','Statutory_Decleration_Link': 'Statutory Decleration Link', 'Original_Project_Schedule': 'Original Project Schedule', 
         'Deed_Of_Variation_One': 'Deed Of Variation One', 'Deed_Of_Variation_Two': 'Deed Of Variation Two', 'Deed_Of_Variation_Three': 'Deed Of Variation Three',
-        'Mobility_Grant_Funding_Received': 'Mobility Grant Funding Received', 'Mobility_Grant_Dollar_Size': 'Mobility Grant Dollar Size', 'Mobility_Grant_Funding_Utilised': 'Mobility Grant Funding Utilised', 
-        'Mobility_Grant_Funding_Remaining': 'Mobility Grant Funding Remaining', 'Mobility_Grants_Received': 'Mobility Grants Received', 'Mobility_Grants_Utilised': 'Mobility Grants Utilised', 
-        'Mobility_Grants_Remaining': 'Mobility Grants Remaining', 'Internship_Grant_Funding_Received': 'Internship Grant Funding Received', 
+        'Mobility_Grant_Funding_Received': 'Mobility Grant Funding Received', 'Mobility_Grant_Dollar_Size': 'Mobility Grant Dollar Size', 'Mobility_Grant_Funding_Utilised_2': 'Mobility Grant Funding Utilised', 
+        'Mobility_Grant_Funding_Remaining_2': 'Mobility Grant Funding Remaining', 'Mobility_Grants_Received_2': 'Mobility Grants Received', 'Mobility_Grants_Utilised_2': 'Mobility Grants Utilised', 
+        'Mobility_Grants_Remaining_2': 'Mobility Grants Remaining', 'Internship_Grant_Funding_Received': 'Internship Grant Funding Received', 
         'Internship_Grant_Dollar_Size': 'Internship Grant Dollar Size', 'Internship_Grant_Funding_Utilised': 'Internship Grant Funding Utilised', 
         'Internship_Grant_Funding_Remaining': 'Internship Grant Funding Remaining', 'Internship_Grants_Received': 'Internship Grants Received', 
         'Internship_Grants_Utilised': 'Internship Grants Utilised', 'Internship_Grants_Remaining': 'Internship Grants Remaining', 'Language_Grant_Funding_Received': 'Language Grant Funding Received', 
@@ -264,8 +255,8 @@ class ProgramsModelView(ModelView):
         'Funding_Acquittal_Date' : '###', 'Project_Completion_Submission_Date': 'Completion Date Of Project', 'Project_Completion_Report_Link': 'Link to Project Completion Report in Dropbox',
         'Refund_Utilisation_Commonwealth_Date': '###', 'Commonwealth_Refund_Invoice_Link': '###', 'Statutory_Decleration_Date': '###', 'Statutory_Decleration_Link': '###', 
         'Original_Project_Schedule': '###', 'Deed_Of_Variation_One': '###', 'Deed_Of_Variation_Two': '###', 'Deed_Of_Variation_Three': '###', 'Mobility_Grant_Funding_Received': 'Value Of Mobility Grant Funding Received',
-        'Mobility_Grant_Dollar_Size': 'Mobility Grant Value In Dollars', 'Mobility_Grant_Funding_Utilised': 'Value Of Mobility Grant Funding Used', 'Mobility_Grant_Funding_Remaining': 'Value Of Mobility Grant Funding Remaining',
-        'Mobility_Grants_Received': 'Number Of Mobility Grants Received', 'Mobility_Grants_Utilised': 'Number Of Mobility Grants Used', 'Mobility_Grants_Remaining': 'Number Of Mobility Grants Remaining',
+        'Mobility_Grant_Dollar_Size': 'Mobility Grant Value In Dollars', 'Mobility_Grant_Funding_Utilised_2': 'Value Of Mobility Grant Funding Used', 'Mobility_Grant_Funding_Remaining_2': 'Value Of Mobility Grant Funding Remaining',
+        'Mobility_Grants_Received_2': 'Number Of Mobility Grants Received', 'Mobility_Grants_Utilised_2': 'Number Of Mobility Grants Used', 'Mobility_Grants_Remaining_2': 'Number Of Mobility Grants Remaining',
         'Internship_Grant_Funding_Received': 'Value Of Internship Grant Funding Received', 'Internship_Grant_Dollar_Size': 'Internship Grant Value In Dollars', 
         'Internship_Grant_Funding_Utilised': 'Value Of Internship Grant Funding Used', 'Internship_Grant_Funding_Remaining': 'Value Of Internship Grant Funding Remaining', 
         'Internship_Grants_Received': 'Number Of Internship Grants Received', 'Internship_Grants_Utilised': 'Number Of Internship Grants Used', 'Internship_Grants_Remaining': 'Number Of Internship Grants Remaining',
@@ -450,33 +441,33 @@ class GrantsModelView(ModelView):
     column_default_sort = 'Grant_Id' 
 
     column_searchable_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Period', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Period', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Grant_Type')
     
     column_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id','Grant_Type')
     
     column_details_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id','Grant_Type')
     
-    form_columns = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    form_columns = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id','Grant_Type')
     
     column_filters = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id','Grant_Type')
     
     column_sortable_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id','Grant_Type')
     
     column_labels = {'Grant_Id': 'Grant ID', 'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 'Program.Program_Name': 'Program Name', 
         'Program.Year': 'Program Year', 'Payment.Payment_Amount': 'Payment Amount', 'University.University_Name': 'University Name', 
         'Campus.Campus_Name': 'Campus Name', 'Start_Date': 'Start Date', 'End_Date': 'End Date', 'Period': 'Period', 'Awarded': 'Awarded',
         'Forms_Received': 'Forms Received', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'Payment_Id': 'Payment ID', 
-        'University_Id': 'University ID', 'Campus_Id': 'Campus ID'}
+        'University_Id': 'University ID', 'Campus_Id': 'Campus ID','Grant_Type':'Grant Type'}
 
     column_descriptions = {'Grant_Id': 'Unique Grant ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 'Program.Program_Name': 'Related Program\'s Name', 
         'Program.Year': 'Related Program\'s Year', 'Payment.Payment_Amount': 'Related Payment Amount', 'University.University_Name': 'Related University\'s Name', 
         'Campus.Campus_Name': 'Related Campus\' Name', 'Start_Date': 'Study Start Date', 'End_Date': 'Study End Date', 'Period': 'Study Period', 'Awarded': 'Program Awarded to Student',
         'Forms_Received': 'Forms Received for Grant to be Processed', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID', 'Payment_Id': 'Related Payment ID', 
-        'University_Id': 'Related University ID', 'Campus_Id': 'Related Campus ID'}
+        'University_Id': 'Related University ID', 'Campus_Id': 'Related Campus ID','Grant_Type': "Type of Grant"}
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -621,10 +612,23 @@ class Programs(db.Model):
     Mobility_Grant_Funding_Received = db.Column(db.Integer)
     Mobility_Grant_Dollar_Size = db.Column(db.Integer)
     Mobility_Grants_Utilised = db.Column(db.Integer)
+    # @hybrid_property
+    # def Mobility_Grant_Funding_Received_2(self):
+    #     return self.Mobility_Grant_Funding_Received
+    # @hybrid_property
+    # def Mobility_Grant_Dollar_Size_2(self):
+    #     return self.Mobility_Grant_Dollar_Size
+   
+    @hybrid_property
+    def Mobility_Grants_Utilised_2(self):
+        return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Mobility")).count()
+    @Mobility_Grants_Utilised_2.expression
+    def Mobility_Grants_Utilised_2(cls):
+        return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id & (Grants.Grant_Type == "Mobility")).scalar_subquery()
 
     @hybrid_property
     def Mobility_Grant_Funding_Utilised_2(self):
-        return self.Mobility_Grants_Utilised * self.Mobility_Grant_Dollar_Size
+        return self.Mobility_Grants_Utilised_2 * self.Mobility_Grant_Dollar_Size
     @hybrid_property
     def Mobility_Grant_Funding_Remaining_2(self):
         return self.Mobility_Grant_Funding_Received - self.Mobility_Grant_Funding_Utilised_2
@@ -633,14 +637,8 @@ class Programs(db.Model):
         return self.Mobility_Grant_Funding_Received / self.Mobility_Grant_Dollar_Size
     @hybrid_property
     def Mobility_Grants_Remaining_2(self):
-        return self.Mobility_Grants_Received_2 - self.Mobility_Grants_Utilised
+        return self.Mobility_Grants_Received_2 - self.Mobility_Grants_Utilised_2
 
-    @hybrid_property
-    def Mobility_Grants_Utilised_2(self):
-        return object_session(self).query(Grants).filter(Grants.Program_Id == self.Program_Id).count()
-    @Mobility_Grants_Utilised_2.expression
-    def Mobility_Grants_Utilised_2(cls):
-        return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id)
 
     Mobility_Grant_Funding_Utilised = db.Column(db.Integer)
     Mobility_Grant_Funding_Remaining = db.Column(db.Integer)
@@ -650,18 +648,25 @@ class Programs(db.Model):
     Internship_Grant_Funding_Received = db.Column(db.Integer)
     Internship_Grant_Dollar_Size = db.Column(db.Integer)
     Internship_Grants_Utilised = db.Column(db.Integer)
-    @hybrid_property
-    def Internship_Grant_Funding_Utilised_2(self):
-        return self.Internship_Grants_Utilised * self.Internship_Grant_Dollar_Size
-    @hybrid_property
-    def Internship_Grant_Funding_Remaining_2(self):
-        return self.Internship_Grant_Funding_Received - self.Internship_Grant_Funding_Utilised_2
-    @hybrid_property
-    def Internship_Grants_Received_2(self):
-        return self.Internship_Grant_Funding_Received / self.Internship_Grant_Dollar_Size
-    @hybrid_property
-    def Internship_Grants_Remaining_2(self):
-        return self.Internship_Grants_Received_2 - self.Internship_Grants_Utilised
+    # @hybrid_property
+    # def Internship_Grant_Funding_Utilised_2(self):
+    #     return self.Internship_Grants_Utilised * self.Internship_Grant_Dollar_Size
+    # @hybrid_property
+    # def Internship_Grant_Funding_Remaining_2(self):
+    #     return self.Internship_Grant_Funding_Received - self.Internship_Grant_Funding_Utilised_2
+    # @hybrid_property
+    # def Internship_Grants_Received_2(self):
+    #     return self.Internship_Grant_Funding_Received / self.Internship_Grant_Dollar_Size
+    # @hybrid_property
+    # def Internship_Grants_Remaining_2(self):
+    #     return self.Internship_Grants_Received_2 - self.Internship_Grants_Utilised
+
+    # @hybrid_property
+    # def Internship_Grants_Utilised_2(self):
+    #     return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Internship")).count()
+    # @Internship_Grants_Utilised_2.expression
+    # def Internship_Grants_Utilised_2(cls):
+    #     return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id & (Grants.Grant_Type == "Internship"))
 
     Internship_Grant_Funding_Utilised = db.Column(db.Integer)
     Internship_Grant_Funding_Remaining = db.Column(db.Integer)
@@ -677,6 +682,13 @@ class Programs(db.Model):
     Language_Grants_Utilised = db.Column(db.Integer)
     Language_Grants_Remaining = db.Column(db.Integer)
 
+    # @hybrid_property
+    # def Language_Grants_Utilised_2(self):
+    #     return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Language")).count()
+    # @Language_Grants_Utilised_2.expression
+    # def Language_Grants_Utilised_2(cls):
+    #     return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id & (Grants.Grant_Type == "Language"))
+
     Administration_Grant_Funding_Received = db.Column(db.Integer)
     Administration_Grant_Dollar_Size = db.Column(db.Integer)
     Administration_Grant_Funding_Utilised = db.Column(db.Integer)
@@ -684,6 +696,12 @@ class Programs(db.Model):
     Administration_Grants_Received = db.Column(db.Integer)
     Administration_Grants_Utilised = db.Column(db.Integer)
     Administration_Grants_Remaining = db.Column(db.Integer)
+    # @hybrid_property
+    # def Administration_Grants_Utilised_2(self):
+    #     return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Administration")).count()
+    # @Administration_Grants_Utilised_2.expression
+    # def Administration_Grants_Utilised_2(cls):
+    #     return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id & (Grants.Grant_Type == "Administration"))
 
     Total_Grant_Funding_Received = db.Column(db.Integer)
     Total_Grant_Funding_Utilised = db.Column(db.Integer)
@@ -730,6 +748,7 @@ class Grants(db.Model):
     Payment_Id = db.Column(db.String(50), db.ForeignKey("PAYMENTS.Payment_Id"))
     University_Id = db.Column(db.String(50), db.ForeignKey("UNIVERSITIES.University_Id"))
     Campus_Id = db.Column(db.String(50), db.ForeignKey("CAMPUSES.Campus_Id"))
+    Grant_Type = db.Column(db.String(50))
     Awarded = db.Column(db.Boolean)
     Forms_Received = db.Column(db.Boolean)    
     University = db.relationship(Universities, backref=db.backref('GRANTS', uselist=True, lazy='select'))
@@ -740,11 +759,6 @@ class Grants(db.Model):
     
     def __repr__(self):
         return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
-# def mobilityCount():
-#     counts = db.session.execute("SELECT COUNT(Grants.Program_Id) FROM Grants WHERE Grants.Program_Id == Program_Id GROUP BY Program_Id")
-#     for value in counts:
-#         print(value[0])
-# mobilityCount()
 
 
 # #Functions to import csv files from github
@@ -761,82 +775,85 @@ class Grants(db.Model):
 #     return github_session
 
 #function to download files two ways
-# def pd_download(file_name,token=None, github_session=None,converters_columns=None):
-#     if token is not None:
-#         github_session = pd_access()
-#         url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
-#         download = github_session.get(url).content
-#         # Reading the downloaded content and making it a pandas dataframe
-#         df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
-#     else:
-#         file="../database/dummy_data/{}.csv".format(file_name)
-#         df = pd.read_csv(file)
-#     return df
+def pd_download(file_name,token=None, github_session=None,converters_columns=None):
+    if token is not None:
+        github_session = pd_access()
+        url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
+        download = github_session.get(url).content
+        # Reading the downloaded content and making it a pandas dataframe
+        df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+    else:
+        file="../database/dummy_data/{}.csv".format(file_name)
+        df = pd.read_csv(file)
+    return df
 
-# def str2bool(v):
-#   return str(v).lower() in ("yes", "true", "t", "1")
+def str2bool(v):
+  return str(v).lower() in ("yes", "true", "t", "1")
 
-# def create_user():
-#     u = Users(Username = "testUser")
-#     u.set_password('testPassword')
-#     db.session.add(u)
-#     db.session.commit()
+def create_user():
+    u = Users(Username = "testUser")
+    u.set_password('testPassword')
+    db.session.add(u)
+    db.session.commit()
 
-# def load_pd_df_Campuses(df):
-#     for index, row in df.iterrows():
-#         data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Campuses(df):
+    for index, row in df.iterrows():
+        data = Campuses(Campus_Id = row['CAMPUS_ID (PK)'],  University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
+        db.session.add(data)
+        db.session.commit()
 
-# def load_pd_df_Grants(df):
-#     for index, row in df.iterrows():
-#         data= Grants(Grant_Id=row["GRANT_ID (PK)"],Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
-#         db.session.add(data)
-#         db.session.commit()  
+def load_pd_df_Grants(df):
+    for index, row in df.iterrows():
+        data= Grants(Grant_Id=row["GRANT_ID (PK)"],Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
+        db.session.add(data)
+        db.session.commit()  
 
-# def load_pd_df_Universities(df):
-#     for index, row in df.iterrows():
-#         data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
-#         Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
-#         Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
-#         Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
-#         db.session.add(data)
-#         db.session.commit()    
+def load_pd_df_Universities(df):
+    for index, row in df.iterrows():
+        data = Universities(University_Id =row['UNIVERSITY_ID (PK)'], University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
+        Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
+        Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
+        db.session.add(data)
+        db.session.commit()    
 
-# def load_pd_df_Payments(df):
-#     for index, row in df.iterrows():
-#         data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
-#         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
-#         db.session.add(data)
-#         db.session.commit()  
+def load_pd_df_Payments(df):
+    for index, row in df.iterrows():
+        data= Payments(Payment_Id=row["PAYMENT_ID"], Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+        db.session.add(data)
+        db.session.commit()  
 
-# def load_pd_df_Programs(df):
-#     names = list(df.keys())
-#     for index, row in df.iterrows():
-#         data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
-#         UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
-#         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
-#         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
-#         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"], Mobility_Grants_Utilised=row["MOBILITY_GRANTS_UTILISED"],
-#         Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],Internship_Grants_Utilised=row["INTERNSHIP_GRANTS_UTILISED"],
-#         Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
-#         Language_Grants_Utilised=row["LANGUAGE_GRANTS_UTILISED"], 
-#         Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"], Administration_Grants_Utilised=row["ADMINISTRATION_GRANTS_UTILISED"], 
-#         Notes = row["NOTES"])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Programs(df):
+    names = list(df.keys())
+    for index, row in df.iterrows():
+        data = Programs(Program_Id=row["PROGRAM_ID (PK)"], Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
+        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
+        Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
+        Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
+        Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
+        Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"], Internship_Grant_Funding_Utilised=row["INTERNSHIP_GRANT_FUNDING_UTILISED"], Internship_Grant_Funding_Remaining=row["INTERNSHIP_GRANT_FUNDING_REMAINING"],
+        Internship_Grants_Received=row["INTERNSHIP_GRANTS_RECEIVED"], Internship_Grants_Utilised=row["INTERNSHIP_GRANTS_UTILISED"], Internship_Grants_Remaining=row["INTERNSHIP_GRANTS_REMAINING"],
+        Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"], Language_Grant_Funding_Utilised=row['LANGUAGE_GRANT_FUNDING_UTILISED'], Language_Grant_Funding_Remaining=row["LANGUAGE_GRANT_FUNDING_REMAINING"],
+        Language_Grants_Received=row["LANGUAGE_GRANTS_RECEIVED"], Language_Grants_Utilised=row["LANGUAGE_GRANTS_UTILISED"], Language_Grants_Remaining=row["LANGUAGE_GRANTS_REMAINING"],
+        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"], Administration_Grant_Funding_Utilised=row["ADMINISTRATION_GRANT_FUNDING_UTILISED"], Administration_Grant_Funding_Remaining=row["ADMINISTRATION_GRANT_FUNDING_REMAINING"],
+        Administration_Grants_Received=row["ADMINISTRATION_GRANTS_RECEIVED"], Administration_Grants_Utilised=row["ADMINISTRATION_GRANTS_UTILISED"], Administration_Grants_Remaining=row["ADMINISTRATION_GRANTS_REMAINING"],
+        Total_Grant_Funding_Received=row["TOTAL_GRANT_FUNDING_RECIEVED"], Total_Grant_Funding_Utilised=row["TOTAL_GRANT_FUNDING_UTILISED"], Total_Grant_Funding_Remaining=row["TOTAL_GRANT_FUNDING_REMAINING"],
+        Total_Grants_Received=row["TOTAL_GRANTS_RECEIVED"], Total_Grants_Utilised=row["TOTAL_GRANTS_UTILISED"], Total_Grants_Remaining=row["TOTAL_GRANTS_REMAINING"], Notes = row["NOTES"])
+        db.session.add(data)
+        db.session.commit()
 
-# def load_pd_df_Students(df):
-#     for index, row in df.iterrows():
-#         data = Students(Student_Id=row["STUDENT_ID (PK)"],University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
-#         Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
-#         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]), Notes=row["NOTES"])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Students(df):
+    for index, row in df.iterrows():
+        data = Students(Student_Id=row["STUDENT_ID (PK)"],University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
+        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
+        Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]), Notes=row["NOTES"])
+        db.session.add(data)
+        db.session.commit()
 
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
-#github_session = pd_access()
+# # # #github_session = pd_access()
 # create_user()
 # df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e008c0df8a99
+Revision ID: 889c71d4c805
 Revises: 
-Create Date: 2022-09-29 17:33:44.909777
+Create Date: 2022-10-04 21:45:28.432845
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e008c0df8a99'
+revision = '889c71d4c805'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,17 +46,17 @@ def upgrade():
     sa.Column('Deed_Of_Variation_Three', sa.String(), nullable=True),
     sa.Column('Mobility_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grant_Dollar_Size', sa.Integer(), nullable=True),
+    sa.Column('Mobility_Grants_Utilised', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grant_Funding_Utilised', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grant_Funding_Remaining', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grants_Utilised', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Dollar_Size', sa.Integer(), nullable=True),
+    sa.Column('Internship_Grants_Utilised', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Funding_Utilised', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Funding_Remaining', sa.Integer(), nullable=True),
     sa.Column('Internship_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grants_Utilised', sa.Integer(), nullable=True),
     sa.Column('Internship_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Dollar_Size', sa.Integer(), nullable=True),
@@ -180,6 +180,7 @@ def upgrade():
     sa.Column('Payment_Id', sa.String(length=50), nullable=True),
     sa.Column('University_Id', sa.String(length=50), nullable=True),
     sa.Column('Campus_Id', sa.String(length=50), nullable=True),
+    sa.Column('Grant_Type', sa.String(length=50), nullable=True),
     sa.Column('Awarded', sa.Boolean(), nullable=True),
     sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.Campus_Id'], ),
