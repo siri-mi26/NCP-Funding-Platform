@@ -62,6 +62,7 @@ class StudentsModelView(ModelView):
     list_template = 'list_templates/student_info.html'
     edit_template = 'edit_templates/student_edit.html'
     create_template = 'create_templates/student_create.html'
+    details_template = 'details_templates/student_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -83,7 +84,7 @@ class StudentsModelView(ModelView):
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
         'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
 
-    form_columns = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
+    form_columns = ('Student_Id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
         'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
@@ -128,6 +129,7 @@ class ProgramsModelView(ModelView):
     list_template = 'list_templates/program_info.html'
     edit_template = 'edit_templates/program_edit.html'
     create_template = 'create_templates/program_create.html'
+    details_template = 'details_templates/program_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -169,7 +171,7 @@ class ProgramsModelView(ModelView):
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
-    form_columns = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    form_columns = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -249,7 +251,7 @@ class ProgramsModelView(ModelView):
         'Original_Project_Schedule': '###', 'Deed_Of_Variation_One': '###', 'Deed_Of_Variation_Two': '###', 'Deed_Of_Variation_Three': '###', 'Mobility_Grant_Funding_Received': 'Value Of Mobility Grant Funding Received',
         'Mobility_Grant_Dollar_Size': 'Mobility Grant Value In Dollars', 'Mobility_Grant_Funding_Utilised': 'Value Of Mobility Grant Funding Used', 'Mobility_Grant_Funding_Remaining': 'Value Of Mobility Grant Funding Remaining',
         'Mobility_Grants_Received': 'Number Of Mobility Grants Received', 'Mobility_Grants_Utilised': 'Number Of Mobility Grants Used', 'Mobility_Grants_Remaining': 'Number Of Mobility Grants Remaining',
-        'Internship_Grant_Funding_Received': 'Value Of Internship Grant Funding Received', ' Internship_Grant_Dollar_Size': 'Internship Grant Value In Dollars', 
+        'Internship_Grant_Funding_Received': 'Value Of Internship Grant Funding Received', 'Internship_Grant_Dollar_Size': 'Internship Grant Value In Dollars', 
         'Internship_Grant_Funding_Utilised': 'Value Of Internship Grant Funding Used', 'Internship_Grant_Funding_Remaining': 'Value Of Internship Grant Funding Remaining', 
         'Internship_Grants_Received': 'Number Of Internship Grants Received', 'Internship_Grants_Utilised': 'Number Of Internship Grants Used', 'Internship_Grants_Remaining': 'Number Of Internship Grants Remaining',
         'Language_Grant_Funding_Received': 'Value Of Language Grant Funding Received', 'Language_Grant_Dollar_Size': 'Language Grant Value In Dollars', 'Language_Grant_Funding_Utilised': 'Value Of Language Grant Funding Used',
@@ -274,6 +276,7 @@ class UniversitiesModelView(ModelView):
     list_template = 'list_templates/university_info.html'
     edit_template = 'edit_templates/university_edit.html'
     create_template = 'create_templates/university_create.html'
+    details_template = 'details_templates/university_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -293,7 +296,7 @@ class UniversitiesModelView(ModelView):
     'Member_Status_2018', 'Member_Status_2019', 'Member_Status_2020', 'Member_Status_2021', 'Member_Status_2022','Member_Status_2023', 'Member_Status_2024',
     'Member_Status_2025', 'Member_Status_2026', 'Member_Status_2027', 'Member_Status_2028', 'Member_Status_2029', 'Member_Status_2030')
 
-    form_columns =  ('University_Acronym', 'University_Name', 'ABN', 'Member_Status_2014', 'Member_Status_2015', 'Member_Status_2016', 'Member_Status_2017',
+    form_columns =  ('University_Id', 'University_Acronym', 'University_Name', 'ABN', 'Member_Status_2014', 'Member_Status_2015', 'Member_Status_2016', 'Member_Status_2017',
     'Member_Status_2018', 'Member_Status_2019', 'Member_Status_2020', 'Member_Status_2021', 'Member_Status_2022','Member_Status_2023', 'Member_Status_2024',
     'Member_Status_2025', 'Member_Status_2026', 'Member_Status_2027', 'Member_Status_2028', 'Member_Status_2029', 'Member_Status_2030')
 
@@ -327,6 +330,7 @@ class CampusesModelView(ModelView):
     list_template = 'list_templates/campus_info.html'
     edit_template = 'edit_templates/campus_edit.html'
     create_template = 'create_templates/campus_create.html'
+    details_template = 'details_templates/campus_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -342,7 +346,7 @@ class CampusesModelView(ModelView):
 
     column_details_list = ('Campus_Id', 'Campus_Name', 'University.University_Name', 'University.University_Acronym', 'Campus_State', 'University_Id')
 
-    form_columns = ('Campus_Name', 'Campus_State', 'University_Id')
+    form_columns = ('Campus_Id', 'Campus_Name', 'Campus_State', 'University_Id')
 
     column_filters = ('Campus_Id', 'Campus_Name', 'University.University_Name', 'University.University_Acronym', 'Campus_State', 'University_Id')
     
@@ -366,6 +370,7 @@ class PaymentsModelView(ModelView):
     list_template = 'list_templates/payment_info.html'
     edit_template = 'edit_templates/payment_edit.html'
     create_template = 'create_templates/payment_create.html'
+    details_template = 'details_templates/payment_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -384,7 +389,7 @@ class PaymentsModelView(ModelView):
     column_details_list = ('Payment_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    form_columns = ('UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+    form_columns = ('Payment_Id', 'UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
     column_filters = ('Payment_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
@@ -414,6 +419,7 @@ class GrantsModelView(ModelView):
     list_template = 'list_templates/grant_info.html'
     edit_template = 'edit_templates/grant_edit.html'
     create_template = 'create_templates/grant_create.html'
+    details_template = 'details_templates/grant_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -432,7 +438,7 @@ class GrantsModelView(ModelView):
     column_details_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
         'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
-    form_columns = ('Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    form_columns = ('Grant_Id', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     column_filters = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
         'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
