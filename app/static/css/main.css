@@ -26,7 +26,26 @@ input{
 }
 
 
+input.btn.btn-primary{
+    display:block;
 
+}
 
+input.btn.btn-default{
+    display:block;
+
+}
+
+input.btn.btn-default{
+    display: block;
+}
+
+a.btn.btn-danger{
+    
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-left: -2%;
+
+}
 /* green colour -> #809B3E
 blue colour -> #317EAC */
