@@ -10,6 +10,7 @@ import pandas as pd
 from datetime import datetime
 import io
 import requests
+import tablib
 from sqlalchemy import VARCHAR, create_engine
 from config import  Config    
 
@@ -58,10 +59,11 @@ class InfoView(BaseView):
 
 class StudentsModelView(ModelView):
     """Custom view for Students. Login secured."""
-    list_template = 'student_info.html'
-    edit_template = 'student_edit.html'
-    create_template = 'student_create.html'
+    list_template = 'list_templates/student_info.html'
+    edit_template = 'edit_templates/student_edit.html'
+    create_template = 'create_templates/student_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -123,10 +125,11 @@ class StudentsModelView(ModelView):
 
 class ProgramsModelView(ModelView):
     """Custom view for Programs. Login secured."""
-    list_template = 'program_info.html'
-    edit_template = 'program_edit.html'
-    create_template = 'program_create.html'
+    list_template = 'list_templates/program_info.html'
+    edit_template = 'edit_templates/program_edit.html'
+    create_template = 'create_templates/program_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -268,10 +271,11 @@ class ProgramsModelView(ModelView):
 
 class UniversitiesModelView(ModelView):
     """Custom view for University. Login secured."""
-    list_template = 'university_info.html'
-    edit_template = 'university_edit.html'
-    create_template = 'university_create.html'
+    list_template = 'list_templates/university_info.html'
+    edit_template = 'edit_templates/university_edit.html'
+    create_template = 'create_templates/university_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -320,10 +324,11 @@ class UniversitiesModelView(ModelView):
 
 class CampusesModelView(ModelView):
     """Custom view for Campuses. Login secured."""
-    list_template = 'campus_info.html'
-    edit_template = 'campus_edit.html'
-    create_template = 'campus_create.html'
+    list_template = 'list_templates/campus_info.html'
+    edit_template = 'edit_templates/campus_edit.html'
+    create_template = 'create_templates/campus_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -358,10 +363,11 @@ class CampusesModelView(ModelView):
 
 class PaymentsModelView(ModelView):
     """Custom view for Payments. Login secured."""
-    list_template = 'payment_info.html'
-    edit_template = 'payment_edit.html'
-    create_template = 'payment_create.html'
+    list_template = 'list_templates/payment_info.html'
+    edit_template = 'edit_templates/payment_edit.html'
+    create_template = 'create_templates/payment_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -380,9 +386,6 @@ class PaymentsModelView(ModelView):
 
     form_columns = ('UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    column_searchable_list = ('Payment_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
-        'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
-
     column_filters = ('Payment_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
@@ -390,7 +393,7 @@ class PaymentsModelView(ModelView):
         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
     column_labels = {'UWA_Business_Unit': 'UWA Business Unit', 'UWA_Account_Number': 'UWA Account Number', 'Payment_Id': 'Payment ID', 
-        'Student.First_Name': 'Student\'s First Name', 'Student.Last_Name': 'Student\'s Last Name', 
+        'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 
         'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Payment_Amount': 'Payment Amount',
         'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID'}
 
@@ -408,10 +411,11 @@ class PaymentsModelView(ModelView):
 
 class GrantsModelView(ModelView):
     """Custom view for Grants. Login secured."""
-    list_template = 'grant_info.html'
-    edit_template = 'grant_edit.html'
-    create_template = 'grant_create.html'
+    list_template = 'list_templates/grant_info.html'
+    edit_template = 'edit_templates/grant_edit.html'
+    create_template = 'create_templates/grant_create.html'
     can_export = True 
+    export_types = ['csv', 'xls']
     can_edit = True
     can_delete = True
     can_create = True
@@ -436,8 +440,8 @@ class GrantsModelView(ModelView):
     column_sortable_list = ('Grant_Id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
         'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
-    column_labels = {'Grant_Id': 'Grant ID', 'Student.First_Name': 'Student\'s First Name', 'Student.Last_Name': 'Student\'s Last Name', 'Program.Program_Name': 'Program\'s Name', 
-        'Program.Year': 'Program\'s Year', 'Payment.Payment_Amount': 'Payment Amount', 'University.University_Name': 'University Name', 
+    column_labels = {'Grant_Id': 'Grant ID', 'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 'Program.Program_Name': 'Program Name', 
+        'Program.Year': 'Program Year', 'Payment.Payment_Amount': 'Payment Amount', 'University.University_Name': 'University Name', 
         'Campus.Campus_Name': 'Campus Name', 'Start_Date': 'Start Date', 'End_Date': 'End Date', 'Period': 'Period', 'Awarded': 'Awarded',
         'Forms_Received': 'Forms Received', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'Payment_Id': 'Payment ID', 
         'University_Id': 'University ID', 'Campus_Id': 'Campus ID'}
@@ -459,7 +463,7 @@ class MyAdminIndexView(AdminIndexView):
     """Custom view for index. Login secured."""
     def is_visible(self):
         # This view won't appear in the menu structure
-        return False
+        return False 
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -470,10 +474,6 @@ class MyAdminIndexView(AdminIndexView):
         if not current_user.is_authenticated and current_user.is_admin:
             return redirect(url_for('auth.login'))
         return super(MyAdminIndexView, self).index()
-
-
-
-
 
 
 
