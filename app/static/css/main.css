@@ -2,7 +2,7 @@ td{
     background-color: rgb(248,248,255);
     border: 1px solid silver;
     width: 20%;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 12px;
     
     
@@ -19,14 +19,16 @@ td{
 a{
 
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #809B3E;
+    color: #317EAC;
     
-}
+    
+    
+} 
 
 th{
     font-size: 13px;
     white-space: nowrap;
-    color:#809B3E;
+    color:#317EAC;
 }
 
 input{
@@ -36,8 +38,8 @@ input{
 }
 
 div#admin-navbar-collapse.collapse.navbar-collapse{
-    background-color: #809B3E;
-    border-color: #809B3E;
+    background-color: #317EAC;
+    border-color: #317EAC;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -48,3 +50,5 @@ div#admin-navbar-collapse.collapse.navbar-collapse{
     color: rgb(9, 9, 9);
 }
 
+/* green colour -> #809B3E
+blue colour -> #317EAC */
