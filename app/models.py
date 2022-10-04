@@ -1,3 +1,4 @@
+from itertools import count
 from app import db, login
 from flask_admin.menu import MenuLink
 from flask import url_for, request, redirect
@@ -11,11 +12,12 @@ from datetime import datetime
 import io
 import requests
 import tablib
-from sqlalchemy import VARCHAR, create_engine
+from sqlalchemy.orm import column_property
+from sqlalchemy import VARCHAR, create_engine, select, func
 from config import  Config    
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
+from sqlalchemy.orm import relationship, object_session
 
 class Users(UserMixin, db.Model):
     __tablename__ = 'USER' 
@@ -154,7 +156,7 @@ class ProgramsModelView(ModelView):
         'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
         'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
         'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
-        'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2',
+        'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2', 'Mobility_Grants_Utilised_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
@@ -171,7 +173,7 @@ class ProgramsModelView(ModelView):
         'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 'Mobility_Grant_Funding_Utilised', 'Mobility_Grant_Funding_Remaining',
         'Mobility_Grants_Received', 'Mobility_Grants_Utilised', 'Mobility_Grants_Remaining',
         'Mobility_Grant_Funding_Utilised_2', 'Mobility_Grant_Funding_Remaining_2',
-        'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2',
+        'Mobility_Grants_Received_2', 'Mobility_Grants_Remaining_2','Mobility_Grants_Utilised_2',
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 'Internship_Grant_Funding_Utilised', 'Internship_Grant_Funding_Remaining',
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
@@ -492,9 +494,6 @@ class MyAdminIndexView(AdminIndexView):
         return super(MyAdminIndexView, self).index()
 
 
-
-
-
 #create tables for db
 
 class Universities(db.Model):  
@@ -614,6 +613,7 @@ class Programs(db.Model):
     Mobility_Grant_Funding_Received = db.Column(db.Integer)
     Mobility_Grant_Dollar_Size = db.Column(db.Integer)
     Mobility_Grants_Utilised = db.Column(db.Integer)
+
     @hybrid_property
     def Mobility_Grant_Funding_Utilised_2(self):
         return self.Mobility_Grants_Utilised * self.Mobility_Grant_Dollar_Size
@@ -626,6 +626,13 @@ class Programs(db.Model):
     @hybrid_property
     def Mobility_Grants_Remaining_2(self):
         return self.Mobility_Grants_Received_2 - self.Mobility_Grants_Utilised
+
+    @hybrid_property
+    def Mobility_Grants_Utilised_2(self):
+        return object_session(self).query(Grants).filter(Grants.Program_Id == self.Program_Id).count()
+    @Mobility_Grants_Utilised_2.expression
+    def Mobility_Grants_Utilised_2(cls):
+        return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id)
 
     Mobility_Grant_Funding_Utilised = db.Column(db.Integer)
     Mobility_Grant_Funding_Remaining = db.Column(db.Integer)
@@ -708,10 +715,15 @@ class Grants(db.Model):
     Student = db.relationship(Students, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     Campus = db.relationship(Campuses, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     Payment = db.relationship(Payments, backref=db.backref('GRANTS', uselist=True, lazy='select'))
-
-
+    
     def __repr__(self):
         return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+# def mobilityCount():
+#     counts = db.session.execute("SELECT COUNT(Grants.Program_Id) FROM Grants WHERE Grants.Program_Id == Program_Id GROUP BY Program_Id")
+#     for value in counts:
+#         print(value[0])
+# mobilityCount()
+
 
 # #Functions to import csv files from github
 # def pd_access():
