@@ -721,7 +721,7 @@ class Programs(db.Model):
     @hybrid_property
     def Administration_Grants_Remaining(self):
         return self.Administration_Grants_Received - self.Administration_Grants_Utilised
-        
+
 
     @hybrid_property
     def Total_Grant_Funding_Received(self):
