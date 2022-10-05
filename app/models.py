@@ -188,8 +188,7 @@ class ProgramsModelView(ModelView):
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 
         'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 
-        'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
-        'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
+        'Notes')
 
     
     column_filters = ('Program_Id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
@@ -722,36 +721,29 @@ class Programs(db.Model):
     @hybrid_property
     def Administration_Grants_Remaining(self):
         return self.Administration_Grants_Received - self.Administration_Grants_Utilised
+        
 
-    Total_Grant_Funding_Received = db.Column(db.Integer)
-    Total_Grant_Funding_Utilised = db.Column(db.Integer)
-    Total_Grant_Funding_Remaining = db.Column(db.Integer)
-    Total_Grants_Received = db.Column(db.Integer)
-    Total_Grants_Utilised = db.Column(db.Integer)
-    Total_Grants_Remaining = db.Column(db.Integer)
-
-    # @hybrid_property
-    # def Total_Grant_Funding_Received(self):
-    #     return self.Mobility_Grant_Funding_Received + self.Internship_Grant_Funding_Received + self.Language_Grant_Funding_Received + self.Administration_Grant_Funding_Received
-    # @hybrid_property
-    # def Total_Grant_Funding_Utilised(self):
-    #     return self.Mobility_Grant_Funding_Utilised + self.Internship_Grant_Funding_Utilised + self.Language_Grant_Funding_Utilised + self.Administration_Grant_Funding_Utilised
-    # @hybrid_property
-    # def Total_Grant_Funding_Remaining(self):
-    #     return self.Mobility_Grant_Funding_Remaining + self.Internship_Grant_Funding_Remaining + self.Language_Grant_Funding_Remaining + self.Administration_Grant_Funding_Remaining
-    # @hybrid_property
-    # def Total_Grants_Received(self):
-    #     return self.Mobility_Grants_Received + self.Internship_Grants_Received + self.Language_Grants_Received + self.Administration_Grants_Received
-    # @hybrid_property
-    # def Total_Grants_Utilised(self):
-    #     return self.Mobility_Grants_Utilised + self.Internship_Grants_Utilised + self.Language_Grants_Utilised + self.Administration_Grants_Utilised
-    # @hybrid_property
-    # def Total_Grants_Remaining(self):
-    #     return self.Mobility_Grants_Remaining+ self.Internship_Grants_Remaining+ self.Language_Grants_Remaining + self.Administration_Grants_Remaining
+    @hybrid_property
+    def Total_Grant_Funding_Received(self):
+        return self.Mobility_Grant_Funding_Received + self.Internship_Grant_Funding_Received + self.Language_Grant_Funding_Received + self.Administration_Grant_Funding_Received
+    @hybrid_property
+    def Total_Grant_Funding_Utilised(self):
+        return self.Mobility_Grant_Funding_Utilised + self.Internship_Grant_Funding_Utilised + self.Language_Grant_Funding_Utilised + self.Administration_Grant_Funding_Utilised
+    @hybrid_property
+    def Total_Grant_Funding_Remaining(self):
+        return self.Mobility_Grant_Funding_Remaining + self.Internship_Grant_Funding_Remaining + self.Language_Grant_Funding_Remaining + self.Administration_Grant_Funding_Remaining
+    @hybrid_property
+    def Total_Grants_Received(self):
+        return self.Mobility_Grants_Received + self.Internship_Grants_Received + self.Language_Grants_Received + self.Administration_Grants_Received
+    @hybrid_property
+    def Total_Grants_Utilised(self):
+        return self.Mobility_Grants_Utilised + self.Internship_Grants_Utilised + self.Language_Grants_Utilised + self.Administration_Grants_Utilised
+    @hybrid_property
+    def Total_Grants_Remaining(self):
+        return self.Mobility_Grants_Remaining+ self.Internship_Grants_Remaining+ self.Language_Grants_Remaining + self.Administration_Grants_Remaining
 
     Notes = db.Column(db.String)
 
-    
 
     def __repr__(self):
         return '<Program {}>'.format(self.Program_Id, self.Program_Name, self.Class_Code)
@@ -874,8 +866,7 @@ def load_pd_df_Programs(df):
         Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],
         Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
         Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"],
-        Total_Grant_Funding_Received=row["TOTAL_GRANT_FUNDING_RECIEVED"], Total_Grant_Funding_Utilised=row["TOTAL_GRANT_FUNDING_UTILISED"], Total_Grant_Funding_Remaining=row["TOTAL_GRANT_FUNDING_REMAINING"],
-        Total_Grants_Received=row["TOTAL_GRANTS_RECEIVED"], Total_Grants_Utilised=row["TOTAL_GRANTS_UTILISED"], Total_Grants_Remaining=row["TOTAL_GRANTS_REMAINING"], Notes = row["NOTES"])
+        Notes = row["NOTES"])
         db.session.add(data)
         db.session.commit()
 
