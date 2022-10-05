@@ -102,7 +102,7 @@ class StudentsModelView(ModelView):
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
         'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
 
-    column_labels = { 'University_Acronym': 'University Acronym', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'BSB': 'BSB', 'Student_Id': 'Student ID', 
+    column_labels = {'id': 'Student ID', 'University_Acronym': 'University Acronym', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'BSB': 'BSB', 'Student_Id': 'Student ID', 
         'Student_Number': 'Student Number', 'First_Name': 'First Name', 'Last_Name': 'Last Name', 'CITIZENS_PR': 'Citizen\'s PR', 'SHORT_TERM_GRANT': 'Short Term Grant', 
         'SEMESTER_GRANT': 'Semester Grant', 'University.University_Name': 'University Name',  'Campus.Campus_Name': 'Campus Name' , 'Indigenous_Australian': 'Indigenous Aus',
         'Notes': 'Extra Notes'}
@@ -180,7 +180,7 @@ class ProgramsModelView(ModelView):
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
 
-    form_columns = ('id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    form_columns = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
@@ -268,7 +268,7 @@ class ProgramsModelView(ModelView):
         'Administration_Grants_Utilised': 'Number Of Administration Grants Used', 'Administration_Grants_Remaining': 'Number Of Administration Grants Remaining', 
         'Total_Grant_Funding_Received': 'Value Of Total Grant Funding Received', 'Total_Grant_Funding_Utilised': 'Value Of Total Grant Funding Used', 'Total_Grant_Funding_Remaining': 'Value Of Total Grant Funding Remaining',
         'Total_Grants_Received': 'Number Of Total Grants Received', 'Total_Grants_Utilised': 'Number Of Total Grants Used', 'Total_Grants_Remaining': 'Number Of Total Grants Remaining', 
-        'Notes': 'Any Extra Notes On The Program', 'id': 'Program ID'}
+        'Notes': 'Any Extra Notes On The Program', 'id': 'Unique Program ID'}
     
     # actor_table  = db.select(db.Programs.c.Mobility_Grants_Utilised)
     session = db.Session()
@@ -411,7 +411,7 @@ class PaymentsModelView(ModelView):
     column_labels = {'UWA_Business_Unit': 'UWA Business Unit', 'UWA_Account_Number': 'UWA Account Number', 'id': 'Payment ID', 
         'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 
         'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Payment_Amount': 'Payment Amount',
-        'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID'}
+        'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'id': 'Payment ID'}
 
     column_descriptions = {'id': 'Unique Payment ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 
         'Program.Program_Name': 'Related Program\'s Name', 'Program.Year': 'Related Program\'s Year', 'UWA_Business_Unit': 'UWA\'s Business Unit', 
