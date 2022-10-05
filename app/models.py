@@ -541,7 +541,7 @@ class Students(db.Model):
     Student_Id = db.Column(db.String(50), primary_key = True) 
     University_Id =  db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.University_Id'), nullable = False)
     Campus_Id =  db.Column(db.String(50), db.ForeignKey('CAMPUSES.Campus_Id'), nullable = False)
-    Student_Number = db.Column(db.Integer, nullable = False) #, db.CheckConstraint('Student_Number > 10')
+    Student_Number = db.Column(db.Integer, db.CheckConstraint('Student_Number > 10'), nullable = False)
     Title = db.Column(db.String(50))
     First_Name = db.Column(db.String(50), nullable = False)
     Preferred_Name = db.Column(db.String(50))
