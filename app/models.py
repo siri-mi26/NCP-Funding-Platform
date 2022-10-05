@@ -881,22 +881,22 @@ def load_pd_df_Students(df):
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
 # #github_session = pd_access()
-# create_user()
-# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
-# load_pd_df_Campuses(df)
+create_user()
+df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
+load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS')
-# load_pd_df_Grants(df)
+df = pd_download('GRANTS')
+load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS')
-# load_pd_df_Payments(df)
+df = pd_download('PAYMENTS')
+load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-# load_pd_df_Programs(df)
+df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
-# load_pd_df_Students(df)
+df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES')
-# load_pd_df_Universities(df)
+df = pd_download('UNIVERSITIES')
+load_pd_df_Universities(df)
 
