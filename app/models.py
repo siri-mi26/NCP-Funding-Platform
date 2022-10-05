@@ -235,7 +235,7 @@ class ProgramsModelView(ModelView):
         'Mobility_Grant_Funding_Received': 'Mobility Grant Funding Received', 'Mobility_Grant_Dollar_Size': 'Mobility Grant Dollar Size', 'Mobility_Grant_Funding_Utilised_2': 'Mobility Grant Funding Utilised', 
         'Mobility_Grant_Funding_Remaining_2': 'Mobility Grant Funding Remaining', 'Mobility_Grants_Received_2': 'Mobility Grants Received', 'Mobility_Grants_Utilised_2': 'Mobility Grants Utilised', 
         'Mobility_Grants_Remaining_2': 'Mobility Grants Remaining', 'Internship_Grant_Funding_Received': 'Internship Grant Funding Received', 
-        'Internship_Grant_Dollar_Size': 'Internship Grant Dollar Size', 'Internship_Grant_Funding_Utilised': 'Internship Grant Funding Utilised', 
+        'Internship_Grant_Dollar_Size': 'Internship Grant Dollar Size', 'Internship_Grant_Funding_Utilised_2':'Internship Grant Funding Utilised',
         'Internship_Grant_Funding_Remaining_2': 'Internship Grant Funding Remaining', 'Internship_Grants_Received_2': 'Internship Grants Received', 
         'Internship_Grants_Utilised_2': 'Internship Grants Utilised', 'Internship_Grants_Remaining_2': 'Internship Grants Remaining', 
         'Language_Grant_Funding_Received': 'Language Grant Funding Received', 
@@ -610,16 +610,10 @@ class Programs(db.Model):
     Deed_Of_Variation_Two = db.Column(db.String)
     Deed_Of_Variation_Three = db.Column(db.String)
 
+
     Mobility_Grant_Funding_Received = db.Column(db.Integer)
     Mobility_Grant_Dollar_Size = db.Column(db.Integer)
-    Mobility_Grants_Utilised = db.Column(db.Integer)
-    # @hybrid_property
-    # def Mobility_Grant_Funding_Received_2(self):
-    #     return self.Mobility_Grant_Funding_Received
-    # @hybrid_property
-    # def Mobility_Grant_Dollar_Size_2(self):
-    #     return self.Mobility_Grant_Dollar_Size
-   
+
     @hybrid_property
     def Mobility_Grants_Utilised_2(self):
         return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Mobility")).count()
@@ -645,14 +639,8 @@ class Programs(db.Model):
         return self.Mobility_Grants_Received_2 - self.Mobility_Grants_Utilised_2
 
 
-    Mobility_Grant_Funding_Utilised = db.Column(db.Integer)
-    Mobility_Grant_Funding_Remaining = db.Column(db.Integer)
-    Mobility_Grants_Received = db.Column(db.Integer)
-    Mobility_Grants_Remaining = db.Column(db.Integer)
-
     Internship_Grant_Funding_Received = db.Column(db.Integer)
     Internship_Grant_Dollar_Size = db.Column(db.Integer)
-    Internship_Grants_Utilised = db.Column(db.Integer)
 
     @hybrid_property
     def Internship_Grants_Utilised_2(self):
@@ -660,7 +648,6 @@ class Programs(db.Model):
     @Internship_Grants_Utilised_2.expression
     def Internship_Grants_Utilised_2(cls):
         return select([func.count(Grants.Grant_Id)]).where(Grants.Program_Id == cls.Program_Id & (Grants.Grant_Type == "Internship")).scalar_subquery()
-
 
     @hybrid_property
     def Internship_Grant_Funding_Utilised_2(self):
@@ -682,20 +669,9 @@ class Programs(db.Model):
         return self.Internship_Grants_Received_2 - self.Internship_Grants_Utilised_2
 
 
-    Internship_Grant_Funding_Utilised = db.Column(db.Integer)
-    Internship_Grant_Funding_Remaining = db.Column(db.Integer)
-    Internship_Grants_Received = db.Column(db.Integer)
-
-    Internship_Grants_Remaining = db.Column(db.Integer)
-    
     Language_Grant_Funding_Received = db.Column(db.Integer)
     Language_Grant_Dollar_Size = db.Column(db.Integer)
-    Language_Grant_Funding_Utilised = db.Column(db.Integer)
-    Language_Grant_Funding_Remaining = db.Column(db.Integer)
-    Language_Grants_Received = db.Column(db.Integer)
-    Language_Grants_Utilised = db.Column(db.Integer)
-    Language_Grants_Remaining = db.Column(db.Integer)
-
+   
     @hybrid_property
     def Language_Grants_Utilised_2(self):
         return object_session(self).query(Grants).filter((Grants.Program_Id == self.Program_Id) & (Grants.Grant_Type == "Language")).count()
@@ -720,14 +696,9 @@ class Programs(db.Model):
     def Language_Grants_Remaining_2(self):
         return self.Language_Grants_Received_2 - self.Language_Grants_Utilised_2
 
+
     Administration_Grant_Funding_Received = db.Column(db.Integer)
     Administration_Grant_Dollar_Size = db.Column(db.Integer)
-    Administration_Grant_Funding_Utilised = db.Column(db.Integer)
-    Administration_Grant_Funding_Remaining = db.Column(db.Integer)
-    Administration_Grants_Received = db.Column(db.Integer)
-    Administration_Grants_Utilised = db.Column(db.Integer)
-    Administration_Grants_Remaining = db.Column(db.Integer)
-    
 
     @hybrid_property
     def Administration_Grants_Utilised_2(self):
@@ -882,12 +853,9 @@ def load_pd_df_Programs(df):
         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
-        Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"], Internship_Grant_Funding_Utilised=row["INTERNSHIP_GRANT_FUNDING_UTILISED"], Internship_Grant_Funding_Remaining=row["INTERNSHIP_GRANT_FUNDING_REMAINING"],
-        Internship_Grants_Received=row["INTERNSHIP_GRANTS_RECEIVED"], Internship_Grants_Utilised=row["INTERNSHIP_GRANTS_UTILISED"], Internship_Grants_Remaining=row["INTERNSHIP_GRANTS_REMAINING"],
-        Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"], Language_Grant_Funding_Utilised=row['LANGUAGE_GRANT_FUNDING_UTILISED'], Language_Grant_Funding_Remaining=row["LANGUAGE_GRANT_FUNDING_REMAINING"],
-        Language_Grants_Received=row["LANGUAGE_GRANTS_RECEIVED"], Language_Grants_Utilised=row["LANGUAGE_GRANTS_UTILISED"], Language_Grants_Remaining=row["LANGUAGE_GRANTS_REMAINING"],
-        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"], Administration_Grant_Funding_Utilised=row["ADMINISTRATION_GRANT_FUNDING_UTILISED"], Administration_Grant_Funding_Remaining=row["ADMINISTRATION_GRANT_FUNDING_REMAINING"],
-        Administration_Grants_Received=row["ADMINISTRATION_GRANTS_RECEIVED"], Administration_Grants_Utilised=row["ADMINISTRATION_GRANTS_UTILISED"], Administration_Grants_Remaining=row["ADMINISTRATION_GRANTS_REMAINING"],
+        Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],
+        Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
+        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"],
         Total_Grant_Funding_Received=row["TOTAL_GRANT_FUNDING_RECIEVED"], Total_Grant_Funding_Utilised=row["TOTAL_GRANT_FUNDING_UTILISED"], Total_Grant_Funding_Remaining=row["TOTAL_GRANT_FUNDING_REMAINING"],
         Total_Grants_Received=row["TOTAL_GRANTS_RECEIVED"], Total_Grants_Utilised=row["TOTAL_GRANTS_UTILISED"], Total_Grants_Remaining=row["TOTAL_GRANTS_REMAINING"], Notes = row["NOTES"])
         db.session.add(data)
@@ -903,7 +871,7 @@ def load_pd_df_Students(df):
 
 
 #Dummy data uploaded. Uncoment if you need tp populate the database again. 
-# # #github_session = pd_access()
+# #github_session = pd_access()
 # create_user()
 # df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
 # load_pd_df_Campuses(df)

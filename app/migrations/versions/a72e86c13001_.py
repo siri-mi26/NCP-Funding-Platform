@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 420c918bbd04
+Revision ID: a72e86c13001
 Revises: 
-Create Date: 2022-10-05 14:16:23.960905
+Create Date: 2022-10-05 14:57:50.569475
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '420c918bbd04'
+revision = 'a72e86c13001'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,32 +46,12 @@ def upgrade():
     sa.Column('Deed_Of_Variation_Three', sa.String(), nullable=True),
     sa.Column('Mobility_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Mobility_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grants_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grant_Funding_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grant_Funding_Remaining', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Internship_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grants_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grant_Funding_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grant_Funding_Remaining', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Language_Grant_Funding_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Language_Grant_Funding_Remaining', sa.Integer(), nullable=True),
-    sa.Column('Language_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Language_Grants_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Language_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Administration_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Administration_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grant_Funding_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grant_Funding_Remaining', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grants_Received', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grants_Utilised', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grants_Remaining', sa.Integer(), nullable=True),
     sa.Column('Total_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Total_Grant_Funding_Utilised', sa.Integer(), nullable=True),
     sa.Column('Total_Grant_Funding_Remaining', sa.Integer(), nullable=True),
