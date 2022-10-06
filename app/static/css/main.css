@@ -15,7 +15,7 @@ td{
 
 
 th{
-    font-size: 13px;
+    font-size: 14px;
     white-space: nowrap;
 }
 
@@ -32,7 +32,7 @@ input.btn.btn-primary{
 }
 
 input.btn.btn-default{
-    display:block;
+    display: block;
 
 }
 
@@ -47,5 +47,16 @@ a.btn.btn-danger{
     margin-left: -2%;
 
 }
+
+input.form-control{
+    height: 34px;
+}
+
+input#fa_filter.form-control{
+    margin: 2px;
+    
+}
+
+
 /* green colour -> #809B3E
 blue colour -> #317EAC */
