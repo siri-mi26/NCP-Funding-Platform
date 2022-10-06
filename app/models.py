@@ -13,7 +13,7 @@ import io
 import requests
 import tablib
 from sqlalchemy.orm import column_property
-from sqlalchemy import VARCHAR, create_engine, select, func#, CheckConstraint
+from sqlalchemy import VARCHAR, create_engine, select, func, or_ #, CheckConstraint
 from config import  Config    
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -80,7 +80,7 @@ class StudentsModelView(ModelView):
     column_list = ('id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
-        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
+        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id', 'Test')
     
     column_details_list = ('id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
@@ -568,6 +568,19 @@ class Students(db.Model):
     SHORT_TERM_GRANT = db.Column(db.Boolean)
     SEMESTER_GRANT = db.Column(db.Boolean)
 
+    # @hybrid_property
+    # def SHORT_TERM_GRANT(self):
+    #     return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Period.like('%Summer%'))).count()
+    # @SHORT_TERM_GRANT.expression
+    # def SHORT_TERM_GRANT(cls):
+    #     return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Period.like('%Summer%'))).scalar_subquery()
+
+    @hybrid_property
+    def Test(self):
+        return object_session(self).query(Grants).filter((Grants.Student_Id == self.id) & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).count()
+    @Test.expression
+    def Test(cls):
+        return select([func.count(Grants.id)]).where(Grants.Student_Id == cls.id & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).scalar_subquery()
 
     Notes = db.Column(db.String(100))
 
