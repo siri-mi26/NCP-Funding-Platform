@@ -249,11 +249,11 @@ class ProgramsModelView(ModelView):
 
     
     column_descriptions = {'Program_Name': 'Name of Grant Program', 'Program_Acronym': 'Grant Program Acronym', 'Year': 'Year Of Program', 'Class_Code': 'Class Code Of Program',
-        'Project_Code': 'Class Code Of Project', 'ISEO_Code': 'ISEO Code Of Program', 'UWA_Mobility_Grant_Project_Grant_Number': 'UWA Mobility Grant Project Grant Number', 
-        'UWA_Admin_Funding_Project_Grant_Number': 'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type': 'Type of Program - Short-Term or Semester', 'Project_Status': 'If the Project Funding is Completed', 
+        'Project_Code': 'Class Code Of Project', 'ISEO_Code': 'ISEO Code Of Program', 'UWA_Mobility_Grant_Project_Grant_Number': 'Unique Code Set Up For Each Year’s NCP Mobility Grant Funding Allocations', 
+        'UWA_Admin_Funding_Project_Grant_Number': 'Unique Code Set Up For Each Year’s NCP Admin Grant Funding Allocations', 'Program_Type': 'Type of Program - Short-Term or Semester', 'Project_Status': 'If the Project Funding is Completed', 
         'CITIZENS_PR': 'Not previously Indonesian Citizen and/or Permanent Resident', 'SHORT_TERM_GRANT': 'Previously Received a Short Term Grant', 'SEMESTER_GRANT': 'Previously Received a Semester Grant', 
-        'Funding_Acquittal_Date' : '###', 'Project_Completion_Submission_Date': 'Completion Date Of Project', 'Project_Completion_Report_Link': 'Link to Project Completion Report in Dropbox',
-        'Refund_Utilisation_Commonwealth_Date': '###', 'Commonwealth_Refund_Invoice_Link': '###', 'Statutory_Decleration_Date': '###', 'Statutory_Decleration_Link': '###', 
+        'Funding_Acquittal_Date' : 'Due Date For The Acquittal', 'Project_Completion_Submission_Date': 'Completion Date Of Project', 'Project_Completion_Report_Link': 'Link to Project Completion Report in Dropbox',
+        'Refund_Utilisation_Commonwealth_Date': 'Date Refund Is Processed ', 'Commonwealth_Refund_Invoice_Link': '###', 'Statutory_Decleration_Date': 'The Date Of The Statuatory Declaration Being Signed & Submitted', 'Statutory_Decleration_Link': '###', 
         'Original_Project_Schedule': '###', 'Deed_Of_Variation_One': '###', 'Deed_Of_Variation_Two': '###', 'Deed_Of_Variation_Three': '###', 'Mobility_Grant_Funding_Received': 'Value Of Mobility Grant Funding Received',
         'Mobility_Grant_Dollar_Size': 'Mobility Grant Value In Dollars', 'Mobility_Grant_Funding_Utilised': 'Value Of Mobility Grant Funding Used', 'Mobility_Grant_Funding_Remaining': 'Value Of Mobility Grant Funding Remaining',
         'Mobility_Grants_Received': 'Number Of Mobility Grants Received', 'Mobility_Grants_Utilised': 'Number Of Mobility Grants Used', 'Mobility_Grants_Remaining': 'Number Of Mobility Grants Remaining',
@@ -414,8 +414,8 @@ class PaymentsModelView(ModelView):
         'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'id': 'Payment ID'}
 
     column_descriptions = {'id': 'Unique Payment ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 
-        'Program.Program_Name': 'Related Program\'s Name', 'Program.Year': 'Related Program\'s Year', 'UWA_Business_Unit': 'UWA\'s Business Unit', 
-        'Payment_Date': 'Date of Payment to Student', 'Payment_Amount': 'Amount Paid to Student', 'UWA_Account_Number': 'UWA\'s Account Number for Transaction', 
+        'Program.Program_Name': 'Related Program\'s Name', 'Program.Year': 'Related Program\'s Year', 'UWA_Business_Unit': 'UWA Global Learning Business Unit', 
+        'Payment_Date': 'Date of Payment to Student', 'Payment_Amount': 'Amount Paid to Student', 'UWA_Account_Number': 'ACICIS Account Number', 
         'Funding_Round': 'Funding Round Payment is from', 'Description': 'Summary Description of Payment Details', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID'} 
 
     def is_accessible(self):
