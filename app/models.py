@@ -572,21 +572,19 @@ class Students(db.Model):
     Aus_Citizen = db.Column(db.Boolean)
 
     CITIZENS_PR = db.Column(db.Boolean)
-    SHORT_TERM_GRANT = db.Column(db.Boolean)
-    SEMESTER_GRANT = db.Column(db.Boolean)
-
-    # @hybrid_property
-    # def SHORT_TERM_GRANT(self):
-    #     return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Period.like('%Summer%'))).count()
-    # @SHORT_TERM_GRANT.expression
-    # def SHORT_TERM_GRANT(cls):
-    #     return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Period.like('%Summer%'))).scalar_subquery()
 
     @hybrid_property
-    def Test(self):
+    def SHORT_TERM_GRANT(self):
+        return object_session(self).query(Grants).filter((Grants.id == self.id) & (or_(Grants.Period.like('%Summer%'),Grants.Period.like('%Winter%')))).count()
+    @SHORT_TERM_GRANT.expression
+    def SHORT_TERM_GRANT(cls):
+        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (or_(Grants.Period.like('%Summer%'),Grants.Period.like('%Winter%')))).scalar_subquery()
+
+    @hybrid_property
+    def SEMESTER_GRANT(self):
         return object_session(self).query(Grants).filter((Grants.Student_Id == self.id) & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).count()
-    @Test.expression
-    def Test(cls):
+    @SEMESTER_GRANT.expression
+    def SEMESTER_GRANT(cls):
         return select([func.count(Grants.id)]).where(Grants.Student_Id == cls.id & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).scalar_subquery()
 
     Notes = db.Column(db.String(100))
