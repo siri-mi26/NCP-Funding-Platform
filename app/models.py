@@ -533,7 +533,7 @@ class Universities(db.Model):
 class Campuses(db.Model):  
     __tablename__ = 'CAMPUSES' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
-    University_Id = db.Column(db.Integer, db.ForeignKey('UNIVERSITIES.id'), nullable = False)
+    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Campus_Name = db.Column(db.String(50), nullable = False)
     Campus_State = db.Column(db.String(50))
 
@@ -546,8 +546,8 @@ class Campuses(db.Model):
 class Students(db.Model):  
     __tablename__ = 'STUDENTS' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
-    University_Id =  db.Column(db.Integer, db.ForeignKey('UNIVERSITIES.id'), nullable = False)
-    Campus_Id =  db.Column(db.Integer, db.ForeignKey('CAMPUSES.id'), nullable = False)
+    University_Id =  db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
+    Campus_Id =  db.Column(db.String(50), db.ForeignKey('CAMPUSES.id'), nullable = False)
     Student_Number = db.Column(db.Integer, nullable = False) #db.CheckConstraint('Student_Number > 10'), (before nullable)
     Title = db.Column(db.String(50))
     First_Name = db.Column(db.String(50), nullable = False)
