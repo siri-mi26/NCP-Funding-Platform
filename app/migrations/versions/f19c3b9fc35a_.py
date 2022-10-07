@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 91336745718e
+Revision ID: f19c3b9fc35a
 Revises: 
-Create Date: 2022-10-05 22:16:22.928503
+Create Date: 2022-10-07 13:34:03.124646
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '91336745718e'
+revision = 'f19c3b9fc35a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,7 +53,10 @@ def upgrade():
     sa.Column('Administration_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Administration_Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Notes', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('Class_Code'),
+    sa.UniqueConstraint('ISEO_Code'),
+    sa.UniqueConstraint('Project_Code')
     )
     op.create_table('UNIVERSITIES',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
@@ -123,8 +126,6 @@ def upgrade():
     sa.Column('Disability', sa.Boolean(), nullable=True),
     sa.Column('Aus_Citizen', sa.Boolean(), nullable=True),
     sa.Column('CITIZENS_PR', sa.Boolean(), nullable=True),
-    sa.Column('SHORT_TERM_GRANT', sa.Boolean(), nullable=True),
-    sa.Column('SEMESTER_GRANT', sa.Boolean(), nullable=True),
     sa.Column('Notes', sa.String(length=100), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.id'], ),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
@@ -154,7 +155,7 @@ def upgrade():
     sa.Column('Payment_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
     sa.Column('Campus_Id', sa.Integer(), nullable=False),
-    sa.Column('Grant_Type', sa.String(length=50), nullable=False),
+    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Administration', 'Internship', name='granttype'), nullable=False),
     sa.Column('Awarded', sa.Boolean(), nullable=True),
     sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.id'], ),
