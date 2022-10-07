@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ce5ac0029535
+Revision ID: ea5f8af987d4
 Revises: 
-Create Date: 2022-10-07 15:22:53.463890
+Create Date: 2022-10-07 15:55:31.241628
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ce5ac0029535'
+revision = 'ea5f8af987d4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -97,6 +97,17 @@ def upgrade():
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('PROGRAMSBYUNIVERSITY',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('Allocation_Year', sa.Integer(), nullable=True),
+    sa.Column('Grants_Allocated', sa.Integer(), nullable=True),
+    sa.Column('Grant_Type', sa.String(length=50), nullable=True),
+    sa.Column('Program_Id', sa.Integer(), nullable=False),
+    sa.Column('University_Id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['Program_Id'], ['PROGRAMS.id'], ),
+    sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('STUDENTS',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('University_Id', sa.String(length=50), nullable=False),
@@ -171,6 +182,7 @@ def downgrade():
     op.drop_table('GRANTS')
     op.drop_table('PAYMENTS')
     op.drop_table('STUDENTS')
+    op.drop_table('PROGRAMSBYUNIVERSITY')
     op.drop_table('CAMPUSES')
     with op.batch_alter_table('USER', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_USER_Username'))

@@ -848,7 +848,7 @@ class Grants(db.Model):
 class ProgramsByUniversity(db.Model):
     __tablename__ = 'PROGRAMSBYUNIVERSITY' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    Allocation_Year = db.Column(db.Date)
+    Allocation_Year = db.Column(db.Integer)
     Grants_Allocated = db.Column(db.Integer, default = 0)
     Grant_Type = db.Column(db.String(50))
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
@@ -950,32 +950,36 @@ def load_pd_df_Students(df):
         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), Notes=row["NOTES"])
         db.session.add(data)
         db.session.commit()
-def load_pd_df_Programs_By_Universities(df):
+
+def load_pd_df_Allocations(df):
     for index, row in df.iterrows():
-        data = Students(Grants_Allocated = row["GRANTS_ALLOCATED"], Allocation_Year = row["ALLOCATION_YEAR"], Program_Id = row["PROGRAM_ID"], University_Id = row["UNIVERSITY_ID"], Grant_Type = row["GRANT_TYPE"])
+        data = ProgramsByUniversity(Grants_Allocated = row["GRANTS_ALLOCATED"], Allocation_Year = row["ALLOCATION_YEAR"], Program_Id = row["PROGRAM_ID"], University_Id = row["UNIVERSITY_ID"], Grant_Type = row["GRANT_TYPE"])
         db.session.add(data)
         db.session.commit()
+
 ################
 ### Dummy data uploaded. Uncoment if you need tp populate the database again. 
 ################
 
 # github_session = pd_access()
-# create_user()
-# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
-# load_pd_df_Campuses(df)
+create_user()
+df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
+load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS')
-# load_pd_df_Grants(df)
+df = pd_download('GRANTS')
+load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS')
-# load_pd_df_Payments(df)
+df = pd_download('PAYMENTS')
+load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-# load_pd_df_Programs(df)
+df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
-# load_pd_df_Students(df)
+df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES')
-# load_pd_df_Universities(df)
+df = pd_download('UNIVERSITIES')
+load_pd_df_Universities(df)
 
+df = pd_download('ALLOCATIONS')
+load_pd_df_Allocations(df)
