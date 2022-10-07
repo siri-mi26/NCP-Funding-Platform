@@ -159,8 +159,7 @@ class ProgramsModelView(ModelView):
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
         'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Administration_Grant_Funding_Received',
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
@@ -175,8 +174,7 @@ class ProgramsModelView(ModelView):
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
         'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Administration_Grant_Funding_Received',
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
@@ -188,7 +186,7 @@ class ProgramsModelView(ModelView):
         'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 
         'Internship_Grant_Funding_Received', 'Internship_Grant_Dollar_Size', 
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 
-        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 
+        'Administration_Grant_Funding_Received', 
         'Notes')
 
     
@@ -203,8 +201,7 @@ class ProgramsModelView(ModelView):
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
         'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Administration_Grant_Funding_Received',
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
@@ -219,8 +216,7 @@ class ProgramsModelView(ModelView):
         'Internship_Grants_Received', 'Internship_Grants_Utilised', 'Internship_Grants_Remaining',
         'Language_Grant_Funding_Received', 'Language_Grant_Dollar_Size', 'Language_Grant_Funding_Utilised', 'Language_Grant_Funding_Remaining',
         'Language_Grants_Received', 'Language_Grants_Utilised', 'Language_Grants_Remaining',
-        'Administration_Grant_Funding_Received', 'Administration_Grant_Dollar_Size', 'Administration_Grant_Funding_Utilised', 'Administration_Grant_Funding_Remaining',
-        'Administration_Grants_Received', 'Administration_Grants_Utilised', 'Administration_Grants_Remaining',
+        'Administration_Grant_Funding_Received',
         'Total_Grant_Funding_Received', 'Total_Grant_Funding_Utilised', 'Total_Grant_Funding_Remaining',
         'Total_Grants_Received', 'Total_Grants_Utilised', 'Total_Grants_Remaining', 'Notes')
 
@@ -241,10 +237,7 @@ class ProgramsModelView(ModelView):
         'Language_Grant_Funding_Received': 'Language Grant Funding Received', 
         'Language_Grant_Dollar_Size': 'Language Grant Dollar Size', 'Language_Grant_Funding_Utilised': 'Language Grant Funding Utilised', 'Language_Grant_Funding_Remaining': 'Language Grant Funding Remaining',
         'Language_Grants_Received': 'Language Grants Received', 'Language_Grants_Utilised': 'Language Grants Utilised', 'Language_Grants_Remaining': 'Language Grants Remaining',
-        'Administration_Grant_Funding_Received': 'Administration Grant Funding Received', 'Administration_Grant_Dollar_Size': 'Administration Grant Dollar Size', 
-        'Administration_Grant_Funding_Utilised': 'Administration Grant Funding Utilised', 'Administration_Grant_Funding_Remaining': 'Administration Grant Funding Remaining',
-        'Administration_Grants_Received': 'Administration Grants Received', 'Administration_Grants_Utilised': 'Administration Grants Utilised', 
-        'Administration_Grants_Remaining': 'Administration Grants Remaining', 'Total_Grant_Funding_Received': 'Total Grant Funding Received', 'Total_Grant_Funding_Utilised': 'Total Grant Funding Utilised', 
+        'Administration_Grant_Funding_Received': 'Administration Grant Funding Received', 'Total_Grant_Funding_Received': 'Total Grant Funding Received', 'Total_Grant_Funding_Utilised': 'Total Grant Funding Utilised', 
         'Total_Grant_Funding_Remaining': 'Total Grant Funding Remaining', 'Total_Grants_Received': 'Total Grants Received', 'Total_Grants_Utilised': 'Total Grants Utilised', 
         'Total_Grants_Remaining': 'Total Grants Remaining', 'Notes': 'Extra Notes', 'id': 'Program ID'}
 
@@ -264,9 +257,6 @@ class ProgramsModelView(ModelView):
         'Language_Grant_Funding_Received': 'Value Of Language Grant Funding Received', 'Language_Grant_Dollar_Size': 'Language Grant Value In Dollars', 'Language_Grant_Funding_Utilised': 'Value Of Language Grant Funding Used',
         'Language_Grant_Funding_Remaining': 'Value Of Language Grant Funding Remaining', 'Language_Grants_Received': 'Number Of Language Grants Received', 'Language_Grants_Utilised': 'Number Of Language Grants Used',
         'Language_Grants_Remaining': 'Number Of Language Grants Remaining', 'Administration_Grant_Funding_Received': 'Value Of Administration Grant Funding Received', 
-        'Administration_Grant_Dollar_Size': 'Administration Grant Value In Dollars', 'Administration_Grant_Funding_Utilised': 'Value Of Administration Grant Funding Used', 
-        'Administration_Grant_Funding_Remaining': 'Value Of Administration Grant Funding Remaining', 'Administration_Grants_Received': 'Number Of Administration Grants Received',
-        'Administration_Grants_Utilised': 'Number Of Administration Grants Used', 'Administration_Grants_Remaining': 'Number Of Administration Grants Remaining', 
         'Total_Grant_Funding_Received': 'Value Of Total Grant Funding Received', 'Total_Grant_Funding_Utilised': 'Value Of Total Grant Funding Used', 'Total_Grant_Funding_Remaining': 'Value Of Total Grant Funding Remaining',
         'Total_Grants_Received': 'Number Of Total Grants Received', 'Total_Grants_Utilised': 'Number Of Total Grants Used', 'Total_Grants_Remaining': 'Number Of Total Grants Remaining', 
         'Notes': 'Any Extra Notes On The Program', 'id': 'Unique Program ID'}
@@ -498,7 +488,6 @@ class MyAdminIndexView(AdminIndexView):
 class GrantType(enum.Enum):
     Mobility = "Mobility"
     Language = "Language"
-    Administration = "Administrator"
     Internship = "Internship"
 
 
@@ -570,7 +559,6 @@ class Students(db.Model):
     Indigenous_Australian = db.Column(db.Boolean) 
     Disability = db.Column(db.Boolean) 
     Aus_Citizen = db.Column(db.Boolean)
-
     CITIZENS_PR = db.Column(db.Boolean)
 
     @hybrid_property
@@ -714,7 +702,6 @@ class Programs(db.Model):
 
 
     Administration_Grant_Funding_Received = db.Column(db.Integer)
-    Administration_Grant_Dollar_Size = db.Column(db.Integer)
 
     @hybrid_property
     def Administration_Grants_Utilised(self):
@@ -723,42 +710,25 @@ class Programs(db.Model):
     def Administration_Grants_Utilised(cls):
         return select([func.count(Grants.id)]).where(Grants.Program_Id== cls.id & (Grants.Grant_Type.like('%Administration%'))).scalar_subquery()
 
-    @hybrid_property
-    def Administration_Grant_Funding_Utilised(self):
-        return self.Administration_Grants_Utilised * self.Administration_Grant_Dollar_Size
-    @hybrid_property
-    def Administration_Grant_Funding_Remaining(self):
-        return self.Administration_Grant_Funding_Received - self.Administration_Grant_Funding_Utilised
-    @hybrid_property
-    def Administration_Grants_Received(self):
-        try:
-            result = self.Administration_Grant_Funding_Received / self.Administration_Grant_Dollar_Size
-        except ZeroDivisionError:
-            result  = 0
-        return result
-    @hybrid_property
-    def Administration_Grants_Remaining(self):
-        return self.Administration_Grants_Received - self.Administration_Grants_Utilised
-
 
     @hybrid_property
     def Total_Grant_Funding_Received(self):
-        return self.Mobility_Grant_Funding_Received + self.Internship_Grant_Funding_Received + self.Language_Grant_Funding_Received + self.Administration_Grant_Funding_Received
+        return self.Mobility_Grant_Funding_Received + self.Internship_Grant_Funding_Received + self.Language_Grant_Funding_Received
     @hybrid_property
     def Total_Grant_Funding_Utilised(self):
-        return self.Mobility_Grant_Funding_Utilised + self.Internship_Grant_Funding_Utilised + self.Language_Grant_Funding_Utilised + self.Administration_Grant_Funding_Utilised
+        return self.Mobility_Grant_Funding_Utilised + self.Internship_Grant_Funding_Utilised + self.Language_Grant_Funding_Utilised 
     @hybrid_property
     def Total_Grant_Funding_Remaining(self):
-        return self.Mobility_Grant_Funding_Remaining + self.Internship_Grant_Funding_Remaining + self.Language_Grant_Funding_Remaining + self.Administration_Grant_Funding_Remaining
+        return self.Mobility_Grant_Funding_Remaining + self.Internship_Grant_Funding_Remaining + self.Language_Grant_Funding_Remaining
     @hybrid_property
     def Total_Grants_Received(self):
-        return self.Mobility_Grants_Received + self.Internship_Grants_Received + self.Language_Grants_Received + self.Administration_Grants_Received
+        return self.Mobility_Grants_Received + self.Internship_Grants_Received + self.Language_Grants_Received
     @hybrid_property
     def Total_Grants_Utilised(self):
-        return self.Mobility_Grants_Utilised + self.Internship_Grants_Utilised + self.Language_Grants_Utilised + self.Administration_Grants_Utilised
+        return self.Mobility_Grants_Utilised + self.Internship_Grants_Utilised + self.Language_Grants_Utilised 
     @hybrid_property
     def Total_Grants_Remaining(self):
-        return self.Mobility_Grants_Remaining+ self.Internship_Grants_Remaining+ self.Language_Grants_Remaining + self.Administration_Grants_Remaining
+        return self.Mobility_Grants_Remaining+ self.Internship_Grants_Remaining+ self.Language_Grants_Remaining 
 
     Notes = db.Column(db.String)
  
@@ -916,7 +886,7 @@ def load_pd_df_Programs(df):
         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
         Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],
         Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
-        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"],
+        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"],
         Notes = row["NOTES"])
         db.session.add(data)
         db.session.commit()
@@ -933,23 +903,23 @@ def load_pd_df_Students(df):
 ### Dummy data uploaded. Uncoment if you need tp populate the database again. 
 ################
 
-#github_session = pd_access()
-# create_user()
-# df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
-# load_pd_df_Campuses(df)
+github_session = pd_access()
+create_user()
+df = pd_download('CAMPUSES') # Make sure the url is the raw version of the file on GitHub, get the token for the file and add as third paramater for pd_download calls
+load_pd_df_Campuses(df)
 
-# df = pd_download('GRANTS')
-# load_pd_df_Grants(df)
+df = pd_download('GRANTS')
+load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS')
-# load_pd_df_Payments(df)
+df = pd_download('PAYMENTS')
+load_pd_df_Payments(df)
 
-# df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
-# load_pd_df_Programs(df)
+df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
+load_pd_df_Programs(df)
 
-# df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
-# load_pd_df_Students(df)
+df = pd_download('STUDENTS',None, None, {'PHONE_NUMBER': str} )
+load_pd_df_Students(df)
 
-# df = pd_download('UNIVERSITIES')
-# load_pd_df_Universities(df)
+df = pd_download('UNIVERSITIES')
+load_pd_df_Universities(df)
 

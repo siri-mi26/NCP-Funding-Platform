@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: b20a278564f7
+Revision ID: ce5ac0029535
 Revises: 
-Create Date: 2022-10-07 14:26:33.505866
+Create Date: 2022-10-07 15:22:53.463890
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b20a278564f7'
+revision = 'ce5ac0029535'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,7 +50,6 @@ def upgrade():
     sa.Column('Language_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Administration_Grant_Funding_Received', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Notes', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('Class_Code'),
@@ -154,7 +153,7 @@ def upgrade():
     sa.Column('Payment_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
     sa.Column('Campus_Id', sa.Integer(), nullable=False),
-    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Administration', 'Internship', name='granttype'), nullable=False),
+    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Internship', name='granttype'), nullable=False),
     sa.Column('Awarded', sa.Boolean(), nullable=True),
     sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.id'], ),
