@@ -540,7 +540,7 @@ class Campuses(db.Model):
     University = db.relationship(Universities, backref=db.backref('CAMPUSES', uselist=True, lazy='select'))
 
     def __repr__(self):
-        return '<Campus: {}>'.format(self.Campus_Name)
+        return '<Campus: {}>'.format(self.id, self.Campus_Name)
 
 
 class Students(db.Model):  
@@ -783,7 +783,7 @@ class Payments(db.Model):
     Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
 
     def __repr__(self):
-        return '<Payments: {}>'.format(self.Payment_Id, self.Student_Id, self.Payment_Amount)
+        return '<Payments: {}>'.format(self.id, self.Student_Id, self.Payment_Amount)
 
 
 class Grants(db.Model):  
@@ -807,7 +807,7 @@ class Grants(db.Model):
     Payment = db.relationship(Payments, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     
     def __repr__(self):
-        return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+        return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
 
 
 # class ProgramsByUniversity(db.Model):
@@ -819,11 +819,11 @@ class Grants(db.Model):
 #     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
 #     Program = db.relationship(Programs, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
 
-    # Program Year (link to programs)
-    # Program Type (relationship)
-    # PRogram Name (link to programs)
-    # Grants Allocated number 
-    # $ per grant (link to programs)
+    # Program.Program_Year (link to programs)
+    # Program.Program_Type (relationship)
+    # Program.Program_Name (link to programs)
+    # Grants_Allocated 
+    # Program. (link to programs)
     # total funding
     # funding aquittal date (link to programs)
 
