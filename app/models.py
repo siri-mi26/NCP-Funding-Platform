@@ -91,7 +91,7 @@ class StudentsModelView(ModelView):
     form_columns = ('id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
-        'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
+        'CITIZENS_PR', 'Notes', 'University_Id', 'Campus_Id')
 
     column_filters = ('id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number', 'University.University_Name',  'Campus.Campus_Name',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
@@ -604,13 +604,13 @@ class Programs(db.Model):
     Program_Name = db.Column(db.String(100), nullable = False)
     Program_Acronym = db.Column(db.String(50), nullable = False)
     Year = db.Column(db.Integer, nullable = False)
-    Class_Code = db.Column(db.String(50))
-    Project_Code = db.Column(db.String(50))
-    ISEO_Code = db.Column(db.String(50), nullable = False)
+    Class_Code = db.Column(db.String(50), unique = True)
+    Project_Code = db.Column(db.String(50), unique = True)
+    ISEO_Code = db.Column(db.String(50), nullable = False, unique = True)
     UWA_Mobility_Grant_Project_Grant_Number = db.Column(db.String(50))
     UWA_Admin_Funding_Project_Grant_Number = db.Column(db.String(50))
     Program_Type = db.Column(db.String(50), nullable = False)
-    Project_Status = db.Column(db.String(50))
+    Project_Status = db.Column(db.String(50)) ### should be hybrid property that changes if total funding remaining = 0
     CITIZENS_PR = db.Column(db.Boolean)
     SHORT_TERM_GRANT = db.Column(db.Boolean)
     SEMESTER_GRANT = db.Column(db.Boolean)
@@ -810,6 +810,25 @@ class Grants(db.Model):
     
     def __repr__(self):
         return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
+
+
+# class ProgramsByUniversity(db.Model):
+#     __tablename__ = 'PROGRAMSBYUNIVERSITY' 
+#     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
+#     Grants_Allocated = db.Column(db.Integer, default = 0)
+#     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
+#     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
+#     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
+#     Program = db.relationship(Programs, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
+
+    # Program Year (link to programs)
+    # Program Type (relationship)
+    # PRogram Name (link to programs)
+    # Grants Allocated number 
+    # $ per grant (link to programs)
+    # total funding
+    # funding aquittal date (link to programs)
+
 
 
 #Functions to import csv files from github
