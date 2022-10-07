@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f19c3b9fc35a
+Revision ID: ce5ac0029535
 Revises: 
-Create Date: 2022-10-07 13:34:03.124646
+Create Date: 2022-10-07 15:22:53.463890
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f19c3b9fc35a'
+revision = 'ce5ac0029535'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,6 @@ def upgrade():
     sa.Column('UWA_Mobility_Grant_Project_Grant_Number', sa.String(length=50), nullable=True),
     sa.Column('UWA_Admin_Funding_Project_Grant_Number', sa.String(length=50), nullable=True),
     sa.Column('Program_Type', sa.String(length=50), nullable=False),
-    sa.Column('Project_Status', sa.String(length=50), nullable=True),
     sa.Column('CITIZENS_PR', sa.Boolean(), nullable=True),
     sa.Column('SHORT_TERM_GRANT', sa.Boolean(), nullable=True),
     sa.Column('SEMESTER_GRANT', sa.Boolean(), nullable=True),
@@ -51,7 +50,6 @@ def upgrade():
     sa.Column('Language_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Language_Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Administration_Grant_Funding_Received', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Notes', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('Class_Code'),
@@ -155,7 +153,7 @@ def upgrade():
     sa.Column('Payment_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
     sa.Column('Campus_Id', sa.Integer(), nullable=False),
-    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Administration', 'Internship', name='granttype'), nullable=False),
+    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Internship', name='granttype'), nullable=False),
     sa.Column('Awarded', sa.Boolean(), nullable=True),
     sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.id'], ),
