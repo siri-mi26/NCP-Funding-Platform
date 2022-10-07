@@ -13,7 +13,7 @@ import io
 import requests
 import tablib
 from sqlalchemy.orm import column_property
-from sqlalchemy import VARCHAR, create_engine, select, func, or_ #, CheckConstraint
+from sqlalchemy import VARCHAR, create_engine, select, func, or_, case #, CheckConstraint
 from config import  Config    
 from sqlalchemy.ext.hybrid import hybrid_property
 import enum
@@ -182,7 +182,7 @@ class ProgramsModelView(ModelView):
 
 
     form_columns = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
-        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'Project_Status', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
+        'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type',  'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three',
         'Mobility_Grant_Funding_Received', 'Mobility_Grant_Dollar_Size', 
@@ -608,7 +608,8 @@ class Programs(db.Model):
     UWA_Mobility_Grant_Project_Grant_Number = db.Column(db.String(50))
     UWA_Admin_Funding_Project_Grant_Number = db.Column(db.String(50))
     Program_Type = db.Column(db.String(50), nullable = False)
-    Project_Status = db.Column(db.String(50)) ### should be hybrid property that changes if total funding remaining = 0
+    #Project_Status = db.Column(db.String(50)) ### should be hybrid property that changes if total funding remaining = 0
+
     CITIZENS_PR = db.Column(db.Boolean)
     SHORT_TERM_GRANT = db.Column(db.Boolean)
     SEMESTER_GRANT = db.Column(db.Boolean)
@@ -761,8 +762,18 @@ class Programs(db.Model):
         return self.Mobility_Grants_Remaining+ self.Internship_Grants_Remaining+ self.Language_Grants_Remaining + self.Administration_Grants_Remaining
 
     Notes = db.Column(db.String)
-
-
+ 
+    @hybrid_property
+    def Project_Status(self):
+        if self.Total_Grant_Funding_Remaining > 0:
+            result = "ONGOING"
+        else:
+            result = "COMPLETED"
+        return result
+    @Project_Status.expression
+    def Project_Status(cls):
+     return case([(cls.Total_Grant_Funding_Remaining > 0, 'ONGOING')],
+                else_='COMPLETED')
     def __repr__(self):
         return '<Program {}>'.format(self.id, self.Program_Name, self.Class_Code)
 
@@ -899,7 +910,7 @@ def load_pd_df_Programs(df):
     names = list(df.keys())
     for index, row in df.iterrows():
         data = Programs(Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
-        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
+        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
