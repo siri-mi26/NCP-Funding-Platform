@@ -898,7 +898,11 @@ def load_pd_df_Students(df):
         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), Notes=row["NOTES"])
         db.session.add(data)
         db.session.commit()
-
+def load_pd_df_Programs_By_Universities(df):
+    for index, row in df.iterrows():
+        data = Students(Grants_Allocated = row["GRANTS_ALLOCATED"], Allocation_Year = row["ALLOCATION_YEAR"], Program_Id = row["PROGRAM_ID"], University_Id = row["UNIVERSITY_ID"], Grant_Type = row["GRANT_TYPE"])
+        db.session.add(data)
+        db.session.commit()
 ################
 ### Dummy data uploaded. Uncoment if you need tp populate the database again. 
 ################
