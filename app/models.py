@@ -477,6 +477,61 @@ class GrantsModelView(ModelView):
         return redirect(url_for('login', next=request.url))
 
 
+
+class ProgramsByUniversityModelView(ModelView):
+    """Custom view for Programs by University. Login secured."""
+    list_template = 'list_templates/grant_info.html'
+    edit_template = 'edit_templates/grant_edit.html'
+    create_template = 'create_templates/grant_create.html'
+    details_template = 'details_templates/grant_details.html'
+    can_export = True 
+    export_types = ['csv', 'xls']
+    can_edit = True
+    can_delete = True
+    can_create = True
+    can_view_details = True
+    can_set_page_size = True
+    column_default_sort = 'id' 
+
+#'Programs.Mobility_Grant_Dollar_Size (if statement for )
+
+    column_searchable_list = ('id', 'University.University_Name', 'Program.Program_Name', 'Program.Year', 'Program_Id', 'University_Id')
+    
+    column_list = ('id', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
+        'Grant_Type', 'Grants_Allocated', 'Program.Mobility_Grant_Dollar_Size', 'Total_Funding_Allocated', 'Program.Funding_Acquittal_Date',
+        'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+    
+    column_details_list = ('id', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
+        'Grant_Type', 'Grants_Allocated', 'Program.Mobility_Grant_Dollar_Size', 'Total_Funding_Allocated', 'Program.Funding_Acquittal_Date',
+        'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+    
+    form_columns = ('Program_Id', 'University_Id', 'Allocation_Year', 'Grant_Type', 'Grants_Allocated')
+    
+    column_filters = ('id', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
+        'Grant_Type', 'Grants_Allocated', 'Program.Mobility_Grant_Dollar_Size', 'Total_Funding_Allocated', 'Program.Funding_Acquittal_Date',
+        'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+    
+    column_sortable_list = ('id', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
+        'Grant_Type', 'Grants_Allocated', 'Program.Mobility_Grant_Dollar_Size', 'Total_Funding_Allocated', 'Program.Funding_Acquittal_Date',
+        'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+    
+    column_labels = {'id': 'Program by University ID', 'Allocation_Year': 'Allocation Year', 'University.University_Name': 'University Name', 
+        'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Grant_Type': 'Grant Type', 'Grants_Allocated': 'Grants Allocated', 
+        'Program.Mobility_Grant_Dollar_Size': 'Grant Dollar Size', 'Total_Funding_Allocated': 'Total Funding Allocated', 'Program.Funding_Acquittal_Date': 'Funding Acquittal Date',
+        'Program.Project_Completion_Submission_Date': 'Project Completion Date', 'Program_Id': 'Program ID', 'University_Id': 'University ID'}
+
+    column_descriptions = {'id': 'Unique Program by University ID', 'Allocation_Year': 'Year of Allocation of Program Funding', 'University.University_Name': 'Name of University', 
+        'Program.Program_Name': 'Name of Program', 'Program.Year': 'Year of Program Funding Received from Government', 'Grant_Type': 'Grant Type (Mobility, Internship or Langauge)', 'Grants_Allocated': 'Number of Grants Allocated to the University in this Year for this Program and of this Type', 
+        'Program.Mobility_Grant_Dollar_Size': 'Dollar Size of Grant', 'Total_Funding_Allocated': 'Total Funding Allocated to the University in this Year for this Program and of this Type', 'Programs.Funding_Acquittal_Date': 'Due Date For The Acquittal',
+        'Program.Project_Completion_Submission_Date': 'Date of Project Completion', 'Program_Id': 'Related Unique Program ID', 'University_Id': 'Related Unique University ID'}
+
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login', next=request.url))
+
+
 class MyAdminIndexView(AdminIndexView):
     """Custom view for index. Login secured."""
     def is_visible(self):
@@ -809,23 +864,20 @@ class Grants(db.Model):
         return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
 
 
-# class ProgramsByUniversity(db.Model):
-#     __tablename__ = 'PROGRAMSBYUNIVERSITY' 
-#     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
-#     Grants_Allocated = db.Column(db.Integer, default = 0)
-#     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
-#     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
-#     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
-#     Program = db.relationship(Programs, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
+class ProgramsByUniversity(db.Model):
+    __tablename__ = 'PROGRAMSBYUNIVERSITY' 
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    Allocation_Year = db.Column(db.Date)
+    Grants_Allocated = db.Column(db.Integer, default = 0)
+    Grant_Type = db.Column(db.String(50))
+    Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
+    University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
+    University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
+    Program = db.relationship(Programs, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
 
-    # Program.Program_Year (link to programs)
-    # Program.Program_Type (relationship)
-    # Program.Program_Name (link to programs)
-    # Grants_Allocated 
-    # Program. (link to programs)
-    # total funding
-    # funding aquittal date (link to programs)
-    # allocation year
+    @hybrid_property
+    def Total_Funding_Allocated(self):
+        return self.Grants_Allocated * 10
 
 
 
