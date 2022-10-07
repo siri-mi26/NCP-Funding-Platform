@@ -16,6 +16,7 @@ from sqlalchemy.orm import column_property
 from sqlalchemy import VARCHAR, create_engine, select, func, or_ #, CheckConstraint
 from config import  Config    
 from sqlalchemy.ext.hybrid import hybrid_property
+import enum
 
 from sqlalchemy.orm import relationship, object_session
 
@@ -494,6 +495,12 @@ class MyAdminIndexView(AdminIndexView):
 
 
 #create tables for db
+class GrantType(enum.Enum):
+    Mobility = "Mobility"
+    Language = "Language"
+    Administration = "Administrator"
+    Internship = "Internship"
+
 
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
@@ -792,7 +799,7 @@ class Grants(db.Model):
     Payment_Id = db.Column(db.Integer, db.ForeignKey("PAYMENTS.id"), nullable = False)
     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
     Campus_Id = db.Column(db.Integer, db.ForeignKey("CAMPUSES.id"), nullable = False)
-    Grant_Type = db.Column(db.String(50), nullable = False)
+    Grant_Type =  db.Column(db.Enum(GrantType), nullable=False)
     Awarded = db.Column(db.Boolean)
     Forms_Received = db.Column(db.Boolean)    
     University = db.relationship(Universities, backref=db.backref('GRANTS', uselist=True, lazy='select'))
