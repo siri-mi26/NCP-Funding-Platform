@@ -442,31 +442,31 @@ class GrantsModelView(ModelView):
     column_default_sort = 'id' 
 
     column_searchable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Period', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Grant_Type')
+        'Campus.Campus_Name', 'Period', 'Program.Program_Type', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Grant_Type')
     
     column_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     column_details_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     form_columns = ('Start_Date', 'End_Date', 'Period', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     column_filters = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     column_sortable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
     
     column_labels = {'id': 'Grant ID', 'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 'Program.Program_Name': 'Program Name', 
         'Program.Year': 'Program Year', 'Payment.Payment_Amount': 'Payment Amount', 'University.University_Name': 'University Name', 
-        'Campus.Campus_Name': 'Campus Name', 'Start_Date': 'Start Date', 'End_Date': 'End Date', 'Period': 'Period', 'Awarded': 'Awarded',
+        'Campus.Campus_Name': 'Campus Name', 'Start_Date': 'Start Date', 'End_Date': 'End Date', 'Period': 'Period', 'Program.Program_Type': 'Program Type', 'Awarded': 'Awarded',
         'Forms_Received': 'Forms Received', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'Payment_Id': 'Payment ID', 
         'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'Grant_Type':'Grant Type'}
 
     column_descriptions = {'id': 'Unique Grant ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 'Program.Program_Name': 'Related Program\'s Name', 
         'Program.Year': 'Related Program\'s Year', 'Payment.Payment_Amount': 'Related Payment Amount', 'University.University_Name': 'Related University\'s Name', 
-        'Campus.Campus_Name': 'Related Campus\' Name', 'Start_Date': 'Study Start Date', 'End_Date': 'Study End Date', 'Period': 'Study Period', 'Awarded': 'Program Awarded to Student',
+        'Campus.Campus_Name': 'Related Campus\' Name', 'Start_Date': 'Study Start Date', 'End_Date': 'Study End Date', 'Period': 'Study Period', 'Program.Program_Type': 'Program Type (Short-Term or Semester)', 'Awarded': 'Program Awarded to Student',
         'Forms_Received': 'Forms Received for Grant to be Processed', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID', 'Payment_Id': 'Related Payment ID', 
         'University_Id': 'Related University ID', 'Campus_Id': 'Related Campus ID','Grant_Type': "Type of Grant"}
 
@@ -575,18 +575,17 @@ class Students(db.Model):
 
     @hybrid_property
     def SHORT_TERM_GRANT(self):
-        return object_session(self).query(Grants).filter((Grants.id == self.id) & (or_(Grants.Period.like('%Summer%'),Grants.Period.like('%Winter%')))).count()
+        return object_session(self).query(Grants, Programs).filter((Grants.Student_Id == self.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Short Term%'))).count()
     @SHORT_TERM_GRANT.expression
     def SHORT_TERM_GRANT(cls):
-        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (or_(Grants.Period.like('%Summer%'),Grants.Period.like('%Winter%')))).scalar_subquery()
+        return select([func.count(Grants.id)]).where((Grants.Student_Id == cls.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Short Term%'))).scalar_subquery()
 
     @hybrid_property
     def SEMESTER_GRANT(self):
-        return object_session(self).query(Grants).filter((Grants.Student_Id == self.id) & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).count()
+        return object_session(self).query(Grants, Programs).filter((Grants.Student_Id == self.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Semester%'))).count()
     @SEMESTER_GRANT.expression
     def SEMESTER_GRANT(cls):
-        return select([func.count(Grants.id)]).where(Grants.Student_Id == cls.id & (or_(Grants.Period.like('%Semester 1%'),Grants.Period.like('%Semester 2%')))).scalar_subquery()
-
+        return select([func.count(Grants.id)]).where((Grants.Student_Id == cls.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Semester%'))).scalar_subquery()
     Notes = db.Column(db.String(100))
 
     University = db.relationship(Universities, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
@@ -826,6 +825,7 @@ class Grants(db.Model):
     # Program. (link to programs)
     # total funding
     # funding aquittal date (link to programs)
+    # allocation year
 
 
 
