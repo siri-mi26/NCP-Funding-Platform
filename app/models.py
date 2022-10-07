@@ -470,10 +470,10 @@ class GrantsModelView(ModelView):
 
 class ProgramsByUniversityModelView(ModelView):
     """Custom view for Programs by University. Login secured."""
-    list_template = 'list_templates/grant_info.html'
-    edit_template = 'edit_templates/grant_edit.html'
-    create_template = 'create_templates/grant_create.html'
-    details_template = 'details_templates/grant_details.html'
+    list_template = 'list_templates/pbu_info.html'
+    edit_template = 'edit_templates/pbu_edit.html'
+    create_template = 'create_templates/pbu_create.html'
+    details_template = 'details_templates/pbu_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
