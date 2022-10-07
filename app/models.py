@@ -627,10 +627,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Mobility_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Grant_Type == "Mobility")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type == "Mobility")).count()
     @Mobility_Grants_Utilised.expression
     def Mobility_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Grant_Type == "Mobility")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Mobility")).scalar_subquery()
 
     @hybrid_property
     def Mobility_Grant_Funding_Utilised(self):
@@ -655,10 +655,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Internship_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Grant_Type == "Internship")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type == "Internship")).count()
     @Internship_Grants_Utilised.expression
     def Internship_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Grant_Type == "Internship")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Internship")).scalar_subquery()
 
     @hybrid_property
     def Internship_Grant_Funding_Utilised(self):
@@ -685,10 +685,10 @@ class Programs(db.Model):
    
     @hybrid_property
     def Language_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Grant_Type == "Language")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type == "Language")).count()
     @Language_Grants_Utilised.expression
     def Language_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Grant_Type == "Language")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Language")).scalar_subquery()
    
     @hybrid_property
     def Language_Grant_Funding_Utilised(self):
@@ -713,10 +713,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Administration_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.id == self.id) & (Grants.Grant_Type == "Administration")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type == "Administration")).count()
     @Administration_Grants_Utilised.expression
     def Administration_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.id == cls.id & (Grants.Grant_Type == "Administration")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id== cls.id & (Grants.Grant_Type == "Administration")).scalar_subquery()
 
     @hybrid_property
     def Administration_Grant_Funding_Utilised(self):
@@ -805,94 +805,94 @@ class Grants(db.Model):
         return '<Grant {} {} {}>'.format(self.Grant_Id, self.Program_Id, self.Student_Id)  
 
 
-# #Functions to import csv files from github
-# def pd_access():
-#     # Username of your GitHub account
-#     username = '' 
+#Functions to import csv files from github
+def pd_access():
+    # Username of your GitHub account
+    username = '' 
 
-#     # Personal Access Token (PAO) from your GitHub account
-#     token = ''
+    # Personal Access Token (PAO) from your GitHub account
+    token = ''
 
-#     # Creates a re-usable session object with your creds in-built
-#     github_session = requests.Session()
-#     github_session.auth = (username, token)
-#     return github_session
+    # Creates a re-usable session object with your creds in-built
+    github_session = requests.Session()
+    github_session.auth = (username, token)
+    return github_session
 
-################
-### function to download files two ways
-################
+###############
+## function to download files two ways
+###############
 
-# def pd_download(file_name,token=None, github_session=None,converters_columns=None):
-#     if token is not None:
-#         github_session = pd_access()
-#         url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
-#         download = github_session.get(url).content
-#         # Reading the downloaded content and making it a pandas dataframe
-#         df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
-#     else:
-#         file="../database/dummy_data/{}.csv".format(file_name)
-#         df = pd.read_csv(file)
-#     return df
+def pd_download(file_name,token=None, github_session=None,converters_columns=None):
+    if token is not None:
+        github_session = pd_access()
+        url = "https://raw.githubusercontent.com/WeidongChen1026/NCP_group_37/database/{}.csv?token={}".format(file_name, token)# Make sure the url is the raw version of the file on GitHub
+        download = github_session.get(url).content
+        # Reading the downloaded content and making it a pandas dataframe
+        df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",",converters=converters_columns)
+    else:
+        file="../database/dummy_data/{}.csv".format(file_name)
+        df = pd.read_csv(file)
+    return df
 
-# def str2bool(v):
-#   return str(v).lower() in ("yes", "true", "t", "1")
+def str2bool(v):
+  return str(v).lower() in ("yes", "true", "t", "1")
 
-# def create_user():
-#     u = Users(Username = "testUser")
-#     u.set_password('testPassword')
-#     db.session.add(u)
-#     db.session.commit()
+def create_user():
+    u = Users(Username = "testUser")
+    u.set_password('testPassword')
+    db.session.add(u)
+    db.session.commit()
 
-# def load_pd_df_Campuses(df):
-#     for index, row in df.iterrows():
-#         data = Campuses(University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Campuses(df):
+    for index, row in df.iterrows():
+        data = Campuses(University_Id = row['UNIVERSITY_ID (FK)'] ,Campus_Name = row['CAMPUS_NAME'] ,Campus_State = row['CAMPUS_STATE'])
+        db.session.add(data)
+        db.session.commit()
 
-# def load_pd_df_Grants(df):
-#     for index, row in df.iterrows():
-#         data= Grants(Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
-#         db.session.add(data)
-#         db.session.commit()  
+def load_pd_df_Grants(df):
+    for index, row in df.iterrows():
+        data= Grants(Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]))
+        db.session.add(data)
+        db.session.commit()  
 
-# def load_pd_df_Universities(df):
-#     for index, row in df.iterrows():
-#         data = Universities(University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
-#         Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
-#         Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
-#         Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
-#         db.session.add(data)
-#         db.session.commit()    
+def load_pd_df_Universities(df):
+    for index, row in df.iterrows():
+        data = Universities(University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN=  row['ABN'], Member_Status_2014= str2bool(row["MEMBER_STATUS_2014"]), Member_Status_2015= str2bool(row["MEMBER_STATUS_2015"]), Member_Status_2016= str2bool(row["MEMBER_STATUS_2016"]), Member_Status_2017=str2bool(row["MEMBER_STATUS_2017"]),
+        Member_Status_2018=str2bool(row["MEMBER_STATUS_2018"]), Member_Status_2019=str2bool(row["MEMBER_STATUS_2019"]), Member_Status_2020=str2bool(row["MEMBER_STATUS_2020"]), Member_Status_2021=str2bool(row["MEMBER_STATUS_2021"]), Member_Status_2022=str2bool(row["MEMBER_STATUS_2022"]),
+        Member_Status_2023=str2bool(row["MEMBER_STATUS_2023"]), Member_Status_2024=str2bool(row["MEMBER_STATUS_2024"]), Member_Status_2025=str2bool(row["MEMBER_STATUS_2025"]), Member_Status_2026=str2bool(row["MEMBER_STATUS_2026"]), Member_Status_2027=str2bool(row["MEMBER_STATUS_2027"]),
+        Member_Status_2028=str2bool(row["MEMBER_STATUS_2028"]), Member_Status_2029=str2bool(row["MEMBER_STATUS_2029"]), Member_Status_2030=str2bool(row["MEMBER_STATUS_2030"]))
+        db.session.add(data)
+        db.session.commit()    
 
-# def load_pd_df_Payments(df):
-#     for index, row in df.iterrows():
-#         data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
-#         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
-#         db.session.add(data)
-#         db.session.commit()  
+def load_pd_df_Payments(df):
+    for index, row in df.iterrows():
+        data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+        db.session.add(data)
+        db.session.commit()  
 
-# def load_pd_df_Programs(df):
-#     names = list(df.keys())
-#     for index, row in df.iterrows():
-#         data = Programs(Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
-#         UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
-#         Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
-#         Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
-#         Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
-#         Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],
-#         Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
-#         Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"],
-#         Notes = row["NOTES"])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Programs(df):
+    names = list(df.keys())
+    for index, row in df.iterrows():
+        data = Programs(Program_Name=row["PROGRAM_NAME"], Program_Acronym=row["PROGRAM_ACRONYM"], Year=row["YEAR"], Class_Code=row["CLASS_CODE"], Project_Code=row["PROJECT_CODE"], ISEO_Code=row["ISEO_CODE"], UWA_Mobility_Grant_Project_Grant_Number=row["UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER"],
+        UWA_Admin_Funding_Project_Grant_Number=row["UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER"], Program_Type=row["PROGRAM_TYPE"], Project_Status=row["PROJECT_STATUS"], CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]),Funding_Acquittal_Date=datetime.strptime(row["FUNDING_ACQUITTAL _DATE"],'%d/%m/%Y').date(), Project_Completion_Submission_Date=datetime.strptime(row["PROJECT_COMPLETION_SUBMISSION_DATE"],'%d/%m/%Y').date(),
+        Project_Completion_Report_Link=row["PROJECT_COMPLETION_REPORT_LINK"], Refund_Utilisation_Commonwealth_Date=datetime.strptime(row["REFUND_UTILISATION_COMMONWEALTH_DATE"],'%d/%m/%Y').date(), Commonwealth_Refund_Invoice_Link=row["COMMONWEALTH_REFUND_INVOICE_LINK"], Statutory_Decleration_Date=datetime.strptime(row["STATUTORY_DECLORATION_DATE"],'%d/%m/%Y').date(),
+        Statutory_Decleration_Link=row["STATUTORY_DECLARATION_LINK"], Original_Project_Schedule=row["ORIGINAL_PROJECT_SCHEDULE_LINK"], Deed_Of_Variation_One=row["DEED_OF_VARIATION_1_LINK"], Deed_Of_Variation_Two=row["DEED_OF_VARIATION_2_LINK"], Deed_Of_Variation_Three=row["DEED_OF_VARIATION_3_LINK"],
+        Mobility_Grant_Funding_Received=row["MOBILITY_GRANT_FUNDING_RECIEVED"], Mobility_Grant_Dollar_Size=row["MOBILITY_GRANT_DOLLAR_SIZE"],
+        Internship_Grant_Funding_Received=row["INTERNSHIP_GRANT_FUNDING_RECIEVED"], Internship_Grant_Dollar_Size=row["INTERNSHIP_GRANT_DOLLAR_SIZE"],
+        Language_Grant_Funding_Received=row["LANGUAGE_GRANT_FUNDING_RECIEVED"], Language_Grant_Dollar_Size=row["LANGUAGE_GRANT_DOLLAR_SIZE"],
+        Administration_Grant_Funding_Received=row["ADMINISTRATION_GRANT_FUNDING_RECIEVED"], Administration_Grant_Dollar_Size=row["ADMINISTRATION_GRANT_DOLLAR_SIZE"],
+        Notes = row["NOTES"])
+        db.session.add(data)
+        db.session.commit()
 
-# def load_pd_df_Students(df):
-#     for index, row in df.iterrows():
-#         data = Students(University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
-#         Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
-#         Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]), Notes=row["NOTES"])
-#         db.session.add(data)
-#         db.session.commit()
+def load_pd_df_Students(df):
+    for index, row in df.iterrows():
+        data = Students(University_Id = row["UNIVERSITY_ID (FK)"], Campus_Id = row["CAMPUS_ID (FK)"],Student_Number = row["STUDENT_NUMBER"],Title=row["TITLE"], First_Name=row["FIRST_NAME"], 
+        Preferred_Name=row["PREFERRED_NAME"], Last_Name=row["LAST_NAME"], Address_Line_One=row["ADDRESS_LINE_1"], Address_Line_Two=row["ADDRESS_LINE_2"], City=row["CITY"], Postcode=row["POSTCODE"], State=row["STATE"], Country=row["COUNTRY"], Date_Of_Birth=datetime.strptime(row["DATE_OF_BIRTH"],'%d/%m/%Y').date(), Phone_Number=row["PHONE_NUMBER"], 
+        Student_Email=row["STUDENT_EMAIL"], Gender=row["GENDER"], BSB=row["BSB"], Account_Number=row["ACCOUNT_NUMBER"], Field_Of_Study=row["FIELD_OF_STUDY_CODE"], Country_Of_Birth=row["COUNTRY_OF_BIRTH"],Indigenous_Australian= str2bool(row["INDIGENOUS_AUSTRALIAN"]), Disability= str2bool(row["DISABILITY"]), Aus_Citizen= str2bool(row["AUS_CITIZEN"]), CITIZENS_PR=str2bool(row["CITIZENS_PR"]), SHORT_TERM_GRANT=str2bool(row["SHORT_TERM_GRANT"]), SEMESTER_GRANT=str2bool(row["SEMESTER_GRANT"]), Notes=row["NOTES"])
+        db.session.add(data)
+        db.session.commit()
 
 ################
 ### Dummy data uploaded. Uncoment if you need tp populate the database again. 
