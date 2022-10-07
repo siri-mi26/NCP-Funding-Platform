@@ -627,10 +627,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Mobility_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type == "Mobility")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type.like('%Mobility%'))).count()
     @Mobility_Grants_Utilised.expression
     def Mobility_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Mobility")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type.like('%Mobility%'))).scalar_subquery()
 
     @hybrid_property
     def Mobility_Grant_Funding_Utilised(self):
@@ -655,10 +655,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Internship_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type == "Internship")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type.like('%Internship%'))).count()
     @Internship_Grants_Utilised.expression
     def Internship_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Internship")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type.like('%Internship%'))).scalar_subquery()
 
     @hybrid_property
     def Internship_Grant_Funding_Utilised(self):
@@ -685,10 +685,10 @@ class Programs(db.Model):
    
     @hybrid_property
     def Language_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type == "Language")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id== self.id) & (Grants.Grant_Type.like('%Language%'))).count()
     @Language_Grants_Utilised.expression
     def Language_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type == "Language")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id & (Grants.Grant_Type.like('%Language%'))).scalar_subquery()
    
     @hybrid_property
     def Language_Grant_Funding_Utilised(self):
@@ -713,10 +713,10 @@ class Programs(db.Model):
 
     @hybrid_property
     def Administration_Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type == "Administration")).count()
+        return object_session(self).query(Grants).filter((Grants.Program_Id == self.id) & (Grants.Grant_Type.like('%Administration%'))).count()
     @Administration_Grants_Utilised.expression
     def Administration_Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.Program_Id== cls.id & (Grants.Grant_Type == "Administration")).scalar_subquery()
+        return select([func.count(Grants.id)]).where(Grants.Program_Id== cls.id & (Grants.Grant_Type.like('%Administration%'))).scalar_subquery()
 
     @hybrid_property
     def Administration_Grant_Funding_Utilised(self):
