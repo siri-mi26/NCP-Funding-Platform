@@ -545,6 +545,14 @@ class GrantType(enum.Enum):
     Language = "Language"
     Internship = "Internship"
 
+class State(enum.Enum):
+    WA = "WA"
+    QLD = "QLD"
+    NT = "NT"
+    NSW = "NSW"
+    SA = "SA"
+    TAS = "TAS"
+
 
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
@@ -579,7 +587,7 @@ class Campuses(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
     University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Campus_Name = db.Column(db.String(50), nullable = False)
-    Campus_State = db.Column(db.String(50))
+    Campus_State = db.Column(db.Enum(State))
 
     University = db.relationship(Universities, backref=db.backref('CAMPUSES', uselist=True, lazy='select'))
 
