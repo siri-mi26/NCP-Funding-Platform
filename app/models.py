@@ -858,7 +858,7 @@ class ProgramsByUniversity(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     Allocation_Year = db.Column(db.Integer)
     Grants_Allocated = db.Column(db.Integer, default = 0)
-    Grant_Type = db.Column(db.String(50))
+    Grant_Type = db.Column(db.Enum(GrantType))
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
