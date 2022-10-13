@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ea5f8af987d4
+Revision ID: 42ce40d513f0
 Revises: 
-Create Date: 2022-10-07 15:55:31.241628
+Create Date: 2022-10-13 12:08:15.930426
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ea5f8af987d4'
+revision = '42ce40d513f0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,13 +43,6 @@ def upgrade():
     sa.Column('Deed_Of_Variation_One', sa.String(), nullable=True),
     sa.Column('Deed_Of_Variation_Two', sa.String(), nullable=True),
     sa.Column('Deed_Of_Variation_Three', sa.String(), nullable=True),
-    sa.Column('Mobility_Grant_Funding_Received', sa.Integer(), nullable=True),
-    sa.Column('Mobility_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grant_Funding_Received', sa.Integer(), nullable=True),
-    sa.Column('Internship_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Language_Grant_Funding_Received', sa.Integer(), nullable=True),
-    sa.Column('Language_Grant_Dollar_Size', sa.Integer(), nullable=True),
-    sa.Column('Administration_Grant_Funding_Received', sa.Integer(), nullable=True),
     sa.Column('Notes', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('Class_Code'),
@@ -61,23 +54,6 @@ def upgrade():
     sa.Column('University_Acronym', sa.String(length=120), nullable=False),
     sa.Column('University_Name', sa.String(length=100), nullable=False),
     sa.Column('ABN', sa.Integer(), nullable=True),
-    sa.Column('Member_Status_2014', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2015', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2016', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2017', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2018', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2019', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2020', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2021', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2022', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2023', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2024', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2025', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2026', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2027', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2028', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2029', sa.Boolean(), nullable=True),
-    sa.Column('Member_Status_2030', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('USER',
@@ -93,18 +69,27 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('University_Id', sa.String(length=50), nullable=False),
     sa.Column('Campus_Name', sa.String(length=50), nullable=False),
-    sa.Column('Campus_State', sa.String(length=50), nullable=True),
+    sa.Column('Campus_State', sa.Enum('WA', 'QLD', 'NT', 'NSW', 'SA', 'TAS', name='state'), nullable=True),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('PROGRAMSBYUNIVERSITY',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('Allocation_Year', sa.Integer(), nullable=True),
+    sa.Column('Grant_Dollar_Size', sa.Integer(), nullable=True),
     sa.Column('Grants_Allocated', sa.Integer(), nullable=True),
-    sa.Column('Grant_Type', sa.String(length=50), nullable=True),
+    sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Internship', name='granttype'), nullable=False),
     sa.Column('Program_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['Program_Id'], ['PROGRAMS.id'], ),
+    sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('UNIVERSITIESFUNDING',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('University_Id', sa.String(length=50), nullable=False),
+    sa.Column('Allocation_Year', sa.Integer(), nullable=True),
+    sa.Column('Member_Status', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -159,6 +144,7 @@ def upgrade():
     sa.Column('Start_Date', sa.Date(), nullable=True),
     sa.Column('End_Date', sa.Date(), nullable=True),
     sa.Column('Period', sa.String(length=50), nullable=False),
+    sa.Column('Year_Undertaken', sa.Integer(), nullable=True),
     sa.Column('Program_Id', sa.Integer(), nullable=False),
     sa.Column('Student_Id', sa.Integer(), nullable=False),
     sa.Column('Payment_Id', sa.Integer(), nullable=False),
@@ -182,6 +168,7 @@ def downgrade():
     op.drop_table('GRANTS')
     op.drop_table('PAYMENTS')
     op.drop_table('STUDENTS')
+    op.drop_table('UNIVERSITIESFUNDING')
     op.drop_table('PROGRAMSBYUNIVERSITY')
     op.drop_table('CAMPUSES')
     with op.batch_alter_table('USER', schema=None) as batch_op:

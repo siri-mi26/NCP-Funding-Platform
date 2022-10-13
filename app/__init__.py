@@ -18,7 +18,7 @@ login.login_view = 'login'
 
 
 from app import db, routes, models
-from app.models import Users, Students, Programs, Payments, Universities, Campuses, Grants, ProgramsByUniversity, MyAdminIndexView, StudentsModelView, ProgramsModelView, PaymentsModelView, UniversitiesModelView, CampusesModelView, GrantsModelView, ProgramsByUniversityModelView, LogoutMenuLink, InfoView
+from app.models import Users, Students, Programs, Payments, Universities, Campuses, Grants, ProgramsByUniversity, UniversitiesFunding, MyAdminIndexView, StudentsModelView, ProgramsModelView, PaymentsModelView, UniversitiesModelView, CampusesModelView, GrantsModelView, ProgramsByUniversityModelView, UniversitiesFundingModelView, LogoutMenuLink, InfoView
 # set optional bootswatch theme
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 #add admin views for tables/models
@@ -32,6 +32,7 @@ admin.add_view(UniversitiesModelView(Universities, db.session))
 admin.add_view(CampusesModelView(Campuses, db.session))
 admin.add_view(PaymentsModelView(Payments, db.session))
 admin.add_view(GrantsModelView(Grants, db.session))
+admin.add_view(UniversitiesFundingModelView(UniversitiesFunding, db.session))
 admin.add_view(ProgramsByUniversityModelView(ProgramsByUniversity, db.session))
 
 
