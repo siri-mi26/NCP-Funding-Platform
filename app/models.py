@@ -88,7 +88,7 @@ class StudentsModelView(ModelView):
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
         'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT', 'Notes', 'University_Id', 'Campus_Id')
 
-    form_columns = ('id', 'Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
+    form_columns = ('Title', 'First_Name', 'Preferred_Name', 'Last_Name', 'Student_Number',  
          'Address_Line_One', 'Address_Line_Two', 'City', 'Postcode', 'State', 'Country', 'Date_Of_Birth', 'Phone_Number', 
         'Student_Email', 'Gender', 'BSB', 'Account_Number', 'Field_Of_Study', 'Country_Of_Birth','Indigenous_Australian', 'Disability', 'Aus_Citizen',
         'CITIZENS_PR', 'Notes', 'University_Id', 'Campus_Id')
@@ -545,6 +545,14 @@ class GrantType(enum.Enum):
     Language = "Language"
     Internship = "Internship"
 
+class State(enum.Enum):
+    WA = "WA"
+    QLD = "QLD"
+    NT = "NT"
+    NSW = "NSW"
+    SA = "SA"
+    TAS = "TAS"
+
 
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
@@ -579,7 +587,7 @@ class Campuses(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
     University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Campus_Name = db.Column(db.String(50), nullable = False)
-    Campus_State = db.Column(db.String(50))
+    Campus_State = db.Column(db.Enum(State))
 
     University = db.relationship(Universities, backref=db.backref('CAMPUSES', uselist=True, lazy='select'))
 
@@ -850,7 +858,7 @@ class ProgramsByUniversity(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     Allocation_Year = db.Column(db.Integer)
     Grants_Allocated = db.Column(db.Integer, default = 0)
-    Grant_Type = db.Column(db.String(50))
+    Grant_Type = db.Column(db.Enum(GrantType))
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
