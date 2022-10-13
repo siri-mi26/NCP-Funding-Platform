@@ -11,7 +11,7 @@ import pandas as pd
 from datetime import datetime
 import io
 import requests
-import tablib
+# import tablib
 from sqlalchemy.orm import column_property
 from sqlalchemy import VARCHAR, create_engine, select, func, or_, case #, CheckConstraint
 from config import  Config    
