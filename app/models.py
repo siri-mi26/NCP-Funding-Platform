@@ -291,53 +291,53 @@ class CampusesModelView(ModelView):
         return redirect(url_for('login', next=request.url))
 
 
-class PaymentsModelView(ModelView):
-    """Custom view for Payments. Login secured."""
-    list_template = 'list_templates/payment_info.html'
-    edit_template = 'edit_templates/payment_edit.html'
-    create_template = 'create_templates/payment_create.html'
-    details_template = 'details_templates/payment_details.html'
-    can_export = True 
-    export_types = ['csv', 'xls']
-    can_edit = True
-    can_delete = True
-    can_create = True
-    can_view_details = True
-    can_set_page_size = True
-    column_default_sort = 'id'
+# class PaymentsModelView(ModelView):
+#     """Custom view for Payments. Login secured."""
+#     list_template = 'list_templates/payment_info.html'
+#     edit_template = 'edit_templates/payment_edit.html'
+#     create_template = 'create_templates/payment_create.html'
+#     details_template = 'details_templates/payment_details.html'
+#     can_export = True 
+#     export_types = ['csv', 'xls']
+#     can_edit = True
+#     can_delete = True
+#     can_create = True
+#     can_view_details = True
+#     can_set_page_size = True
+#     column_default_sort = 'id'
 
-    column_searchable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 
-        'Payment_Amount', 'Funding_Round', 'Student_Id', 'Program_Id')
+#     column_searchable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 
+#         'Payment_Amount', 'Funding_Round', 'Student_Id', 'Program_Id')
 
-    column_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
-        'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+#     column_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
+#         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    column_details_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
-        'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+#     column_details_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
+#         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    form_columns = ('UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+#     form_columns = ('UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    column_filters = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
-        'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+#     column_filters = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
+#         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    column_sortable_list  = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
-        'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
+#     column_sortable_list  = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'UWA_Business_Unit', 
+#         'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description', 'Student_Id', 'Program_Id')
 
-    column_labels = {'UWA_Business_Unit': 'UWA Business Unit', 'UWA_Account_Number': 'UWA Account Number', 'id': 'Payment ID', 
-        'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 
-        'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Payment_Amount': 'Payment Amount',
-        'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'id': 'Payment ID'}
+#     column_labels = {'UWA_Business_Unit': 'UWA Business Unit', 'UWA_Account_Number': 'UWA Account Number', 'id': 'Payment ID', 
+#         'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 
+#         'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Payment_Amount': 'Payment Amount',
+#         'Funding_Round': 'Funding Round', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'id': 'Payment ID'}
 
-    column_descriptions = {'id': 'Unique Payment ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 
-        'Program.Program_Name': 'Related Program\'s Name', 'Program.Year': 'Related Program\'s Year', 'UWA_Business_Unit': 'UWA Global Learning Business Unit', 
-        'Payment_Date': 'Date of Payment to Student', 'Payment_Amount': 'Amount Paid to Student', 'UWA_Account_Number': 'ACICIS Account Number', 
-        'Funding_Round': 'Funding Round Payment Is From', 'Description': 'Summary Description of Payment Details', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID'} 
+#     column_descriptions = {'id': 'Unique Payment ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 
+#         'Program.Program_Name': 'Related Program\'s Name', 'Program.Year': 'Related Program\'s Year', 'UWA_Business_Unit': 'UWA Global Learning Business Unit', 
+#         'Payment_Date': 'Date of Payment to Student', 'Payment_Amount': 'Amount Paid to Student', 'UWA_Account_Number': 'ACICIS Account Number', 
+#         'Funding_Round': 'Funding Round Payment Is From', 'Description': 'Summary Description of Payment Details', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID'} 
 
-    def is_accessible(self):
-        return current_user.is_authenticated
+#     def is_accessible(self):
+#         return current_user.is_authenticated
 
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('login', next=request.url))
+#     def inaccessible_callback(self, name, **kwargs):
+#         return redirect(url_for('login', next=request.url))
 
 
 class GrantsModelView(ModelView):
@@ -355,34 +355,51 @@ class GrantsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'id' 
 
-    column_searchable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id', 'Grant_Type')
+    column_searchable_list = ('id', 'Student.First_Name', 'Student.Last_Name','Program.Program_Name', 'Program.Year', 'University.University_Name', 
+        'Campus.Campus_Name', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Student_Id', 'Program_Id',  'University_Id', 'Campus_Id', 'Grant_Type','UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description')
     
-    column_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    column_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'University.University_Name', 
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 
+        
+        'UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 'Description',
+        
+        'Student_Id', 'Program_Id',  'University_Id', 'Campus_Id')
     
-    column_details_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    column_details_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'University.University_Name', 
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 
+        'Student_Id', 'Program_Id', 'University_Id', 'Campus_Id','UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 
+        'Funding_Round', 'Description')
     
-    form_columns = ('Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    form_columns = ('Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id',
+     'University_Id', 'Campus_Id',
     
-    column_filters = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    'UWA_Business_Unit','UWA_Account_Number', 'Payment_Amount', 'Funding_Round')
     
-    column_sortable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'Payment.Payment_Amount', 'University.University_Name', 
-        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 'Student_Id', 'Program_Id', 'Payment_Id', 'University_Id', 'Campus_Id')
+    column_filters = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year', 'University.University_Name', 
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 
+        'Forms_Received', 'Student_Id', 'Program_Id',  'University_Id', 'Campus_Id','UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 
+        'UWA_Account_Number', 'Funding_Round', 'Description')
+    
+    column_sortable_list = ('id', 'Student.First_Name', 'Student.Last_Name', 'Program.Program_Name', 'Program.Year',  'University.University_Name', 
+        'Campus.Campus_Name', 'Start_Date', 'End_Date', 'Period', 'Year_Undertaken', 'Program.Program_Type', 'Grant_Type', 'Awarded', 'Forms_Received', 
+        'Student_Id', 'Program_Id', 'University_Id', 'Campus_Id','UWA_Business_Unit', 'Payment_Date', 'Payment_Amount', 'UWA_Account_Number', 'Funding_Round', 
+        'Description')
     
     column_labels = {'id': 'Grant ID', 'Student.First_Name': 'Student First Name', 'Student.Last_Name': 'Student Last Name', 'Program.Program_Name': 'Program Name', 
-        'Program.Year': 'Program Year', 'Payment.Payment_Amount': 'Payment Amount', 'University.University_Name': 'University Name', 
+        'Program.Year': 'Program Year',  'University.University_Name': 'University Name', 
         'Campus.Campus_Name': 'Campus Name', 'Start_Date': 'Start Date', 'End_Date': 'End Date', 'Period': 'Period', 'Program.Program_Type': 'Program Type', 'Awarded': 'Awarded',
-        'Forms_Received': 'Forms Received', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'Payment_Id': 'Payment ID', 
-        'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'Grant_Type':'Grant Type', 'Year_Undertaken':'Year Undertaken'}
+        'Forms_Received': 'Forms Received', 'Student_Id': 'Student ID', 'Program_Id': 'Program ID', 'University_Id': 'University ID', 'Campus_Id': 'Campus ID', 'Grant_Type':'Grant Type', 'Year_Undertaken':'Year Undertaken',
+        
+        'UWA_Business_Unit': 'UWA Business Unit', 'UWA_Account_Number': 'UWA Account Number', 'Payment_Amount': 'Payment Amount', 'Funding_Round': 'Funding Round'}
 
     column_descriptions = {'id': 'Unique Grant ID', 'Student.First_Name': 'Related Student\'s First Name', 'Student.Last_Name': 'Related Student\'s Last Name', 'Program.Program_Name': 'Related Program\'s Name', 
-        'Program.Year': 'Related Program\'s Year', 'Payment.Payment_Amount': 'Related Payment Amount', 'University.University_Name': 'Related University\'s Name', 
+        'Program.Year': 'Related Program\'s Year',  'University.University_Name': 'Related University\'s Name', 
         'Campus.Campus_Name': 'Related Campus\' Name', 'Start_Date': 'Study Start Date', 'End_Date': 'Study End Date', 'Period': 'Study Period', 'Program.Program_Type': 'Program Type (Short-Term or Semester)', 'Awarded': 'Program Awarded to Student',
-        'Forms_Received': 'Forms Received for Grant to be Processed', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID', 'Payment_Id': 'Related Payment ID', 
-        'University_Id': 'Related University ID', 'Campus_Id': 'Related Campus ID','Grant_Type': "Type of Grant", 'Year_Undertaken': 'Year Student Undertook Program'}
+        'Forms_Received': 'Forms Received for Grant to be Processed', 'Student_Id': 'Related Student ID', 'Program_Id': 'Related Program ID', 'University_Id': 'Related University ID', 'Campus_Id': 'Related Campus ID','Grant_Type': "Type of Grant", 'Year_Undertaken': 'Year Student Undertook Program',
+        
+        'UWA_Business_Unit': 'UWA Global Learning Business Unit', 
+        'Payment_Date': 'Date of Payment to Student', 'Payment_Amount': 'Amount Paid to Student', 'UWA_Account_Number': 'ACICIS Account Number', 
+        'Funding_Round': 'Funding Round Payment Is From', 'Description': 'Summary Description of Payment Details'}
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -393,10 +410,10 @@ class GrantsModelView(ModelView):
 
 class GrantsByUniversityModelView(ModelView):
     """Custom view for University Funding Info. Login secured."""
-    # list_template = 'list_templates/universityinfo_info.html'
-    # edit_template = 'edit_templates/universityinfo_edit.html'
-    # create_template = 'create_templates/universityinfo_create.html'
-    # details_template = 'details_templates/universityinfo_details.html'
+    list_template = 'list_templates/universitiesfunding_info.html'
+    edit_template = 'edit_templates/universitiesfunding_edit.html'
+    create_template = 'create_templates/universitiesfunding_create.html'
+    details_template = 'details_templates/universitiesfunding_details.html'
     can_export = True 
     export_types = ['csv', 'xls']
     can_edit = True
@@ -658,23 +675,23 @@ class Programs(db.Model):
                 else_='Completed')
 
 
-class Payments(db.Model):  
-    __tablename__ = 'PAYMENTS' 
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
-    Student_Id = db.Column(db.Integer, db.ForeignKey('STUDENTS.id'), nullable = False)
-    Program_Id = db.Column(db.Integer, db.ForeignKey('PROGRAMS.id'), nullable = False)
-    UWA_Business_Unit = db.Column(db.Integer)
-    Payment_Date = db.Column(db.Date)
-    Payment_Amount = db.Column(db.Integer, nullable = False)
-    UWA_Account_Number = db.Column(db.Integer)
-    Funding_Round = db.Column(db.String(50), nullable = False)
-    Description = db.Column(db.String)
+# class Payments(db.Model):  
+#     __tablename__ = 'PAYMENTS' 
+#     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
+#     Student_Id = db.Column(db.Integer, db.ForeignKey('STUDENTS.id'), nullable = False)
+#     Program_Id = db.Column(db.Integer, db.ForeignKey('PROGRAMS.id'), nullable = False)
+#     UWA_Business_Unit = db.Column(db.Integer)
+#     Payment_Date = db.Column(db.Date)
+#     Payment_Amount = db.Column(db.Integer, nullable = False)
+#     UWA_Account_Number = db.Column(db.Integer)
+#     Funding_Round = db.Column(db.String(50), nullable = False)
+#     Description = db.Column(db.String)
 
-    Program = db.relationship(Programs, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
-    Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
+#     Program = db.relationship(Programs, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
+#     Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
 
-    def __repr__(self):
-        return '<Payments: {}>'.format(self.id, self.Student_Id, self.Payment_Amount)
+#     def __repr__(self):
+#         return '<Payments: {}>'.format(self.id, self.Student_Id, self.Payment_Amount)
 
 
 class Grants(db.Model):  
@@ -683,21 +700,36 @@ class Grants(db.Model):
     Start_Date = db.Column(db.Date)
     End_Date = db.Column(db.Date)
     Period = db.Column(db.String(50), nullable = False)
+
+
     Year_Undertaken = db.Column(db.Integer)
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
     Student_Id = db.Column(db.Integer, db.ForeignKey("STUDENTS.id"), nullable = False)
-    Payment_Id = db.Column(db.Integer, db.ForeignKey("PAYMENTS.id"), nullable = False)
+    # Payment_Id = db.Column(db.Integer, db.ForeignKey("PAYMENTS.id"), nullable = False)
     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
     Campus_Id = db.Column(db.Integer, db.ForeignKey("CAMPUSES.id"), nullable = False)
     Grant_Type =  db.Column(db.Enum(GrantType), nullable=False)
     Awarded = db.Column(db.Boolean)
+    Forms_Received = db.Column(db.Boolean) 
+    ##TARRANT
+    UWA_Business_Unit = db.Column(db.Integer)
+    Payment_Date = db.Column(db.Date)
+    Payment_Amount = db.Column(db.Integer, nullable = False)
+    UWA_Account_Number = db.Column(db.Integer)
+    Funding_Round = db.Column(db.String(50), nullable = False)
+    Description = db.Column(db.String)
+
     Forms_Received = db.Column(db.Boolean)
     # add payments stuff here    
     University = db.relationship(Universities, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     Program = db.relationship(Programs, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     Student = db.relationship(Students, backref=db.backref('GRANTS', uselist=True, lazy='select'))
     Campus = db.relationship(Campuses, backref=db.backref('GRANTS', uselist=True, lazy='select'))
-    Payment = db.relationship(Payments, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    # Payment = db.relationship(Payments, backref=db.backref('GRANTS', uselist=True, lazy='select'))
+    
+
+    # Program = db.relationship(Programs, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
+    # Student = db.relationship(Students, backref=db.backref('PAYMENTS', uselist=True, lazy='select'))
     
     def __repr__(self):
         return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
@@ -857,10 +889,19 @@ def load_pd_df_Campuses(df):
 def load_pd_df_Grants(df):
     for index, row in df.iterrows():
         data= Grants(Start_Date=datetime.strptime(row["START_DATE"],'%d/%m/%Y').date(),End_Date=datetime.strptime(row["END_DATE"],'%d/%m/%Y').date(), 
-            Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], 
-            University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], Awarded=str2bool(row["AWARDED"]), 
-            Forms_Received=str2bool(row["FORMS_RECEIVED"]), Year_Undertaken=row["YEAR_UNDERTAKEN"])
+        Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], 
+        University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], 
+        Awarded=str2bool(row["AWARDED"]), Forms_Received=str2bool(row["FORMS_RECEIVED"]), Year_Undertaken=row["YEAR_UNDERTAKEN"],
+        UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], 
+        Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+        UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+        
+            # Period = row['PERIOD'], Program_Id=row["PROGRAM_ID (FK)"], Student_Id=row["STUDENT_ID (FK)"], Payment_Id=row["PAYMENT_ID (FK)"], 
+            # University_Id=row["UNIVERSITY_ID (FK)"], Campus_Id=row["CAMPUS_ID (FK)"], Grant_Type =row["GRANT_TYPE"], Awarded=str2bool(row["AWARDED"]), 
+            # Forms_Received=str2bool(row["FORMS_RECEIVED"]), Year_Undertaken=row["YEAR_UNDERTAKEN"])
         db.session.add(data)
+        
+        
         db.session.commit()  
 
 def load_pd_df_Universities(df):
@@ -869,13 +910,22 @@ def load_pd_df_Universities(df):
         db.session.add(data)
         db.session.commit()    
 
-def load_pd_df_Payments(df):
-    for index, row in df.iterrows():
-        data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], 
-        Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
-        UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
-        db.session.add(data)
-        db.session.commit()  
+# def load_pd_df_Payments(df):
+#     for index, row in df.iterrows():
+#         data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+#         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+#         db.session.add(data)
+#         db.session.commit()  
+
+
+## TARRANT
+# def load_pd_df_Payments(df):
+#     for index, row in df.iterrows():
+#         data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], 
+#         Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
+#         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
+#         db.session.add(data)
+#         db.session.commit()  
 
 def load_pd_df_Programs(df):
     names = list(df.keys())
@@ -916,7 +966,7 @@ def load_pd_df_GrantsByUniversity(df):
         db.session.commit()
 
 ################
-### Dummy data uploaded. Uncoment if you need tp populate the database again. 
+### Dummy data uploaded. Uncomment if you need to populate the database again. 
 ################
 
 # github_session = pd_access()
@@ -927,8 +977,8 @@ def load_pd_df_GrantsByUniversity(df):
 # df = pd_download('GRANTS')
 # load_pd_df_Grants(df)
 
-# df = pd_download('PAYMENTS')
-# load_pd_df_Payments(df)
+# #df = pd_download('PAYMENTS')
+# #load_pd_df_Payments(df)
 
 # df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
 # load_pd_df_Programs(df)
