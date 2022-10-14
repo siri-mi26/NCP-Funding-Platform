@@ -391,7 +391,7 @@ class GrantsModelView(ModelView):
         return redirect(url_for('login', next=request.url))
 
 
-class UniversitiesFundingModelView(ModelView):
+class GrantsByUniversityModelView(ModelView):
     """Custom view for University Funding Info. Login secured."""
     # list_template = 'list_templates/universityinfo_info.html'
     # edit_template = 'edit_templates/universityinfo_edit.html'
@@ -418,7 +418,7 @@ class UniversitiesFundingModelView(ModelView):
 
     column_sortable_list = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'University_Id')
 
-    column_labels = {'University.University_Name': 'University Name', 'id': 'University Funding ID', 'Allocation_Year': 'Allocation Year',
+    column_labels = {'University.University_Name': 'University Name', 'id': 'GBU ID', 'Allocation_Year': 'Allocation Year',
         'Grants_Remaining': 'Grants Remaining', 'Grants_Utilised': 'Grants Utilised', 'Grants_Allocated': 'Grants Allocated', 'University_Id': 'University ID', 'Member_Status': 'Member Status', 'Program_Status': 'Program Status'}
 
     column_descriptions = {'University.University_Name': 'Name of University', 'id': 'Unique University Funding ID', 'Allocation_Year': 'Allocation Year of Funding', 
@@ -632,8 +632,9 @@ class Programs(db.Model):
     @Grants_Allocated.expression
     def Grants_Allocated(cls):
         return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where(ProgramsByUniversity.Program_Id == cls.id).scalar_subquery()
+ # NEEDS TO SUM COUNT OF GRANTS ALLOCATED ROWS (CURRENTLY JUST COUNTS ROWS)
 
-    @hybrid_property #needs to be query on grants for utilised
+    @hybrid_property
     def Grants_Utilised(self):
         return object_session(self).query(Grants).filter(Grants.Program_Id == self.id).count()
     @Grants_Utilised.expression
@@ -702,13 +703,13 @@ class Grants(db.Model):
         return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
 
 
-class UniversitiesFunding(db.Model):
-    __tablename__ = 'UNIVERSITIESFUNDING' 
+class GrantsByUniversity(db.Model):
+    __tablename__ = 'GRANTSBYUNIVERSITY' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
     University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Allocation_Year = db.Column(db.Integer)
     Member_Status = db.Column(db.Boolean)
-    University = db.relationship(Universities, backref=db.backref('UNIVERSITIESFUNDING', uselist=True, lazy='select'))
+    University = db.relationship(Universities, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
 
     @hybrid_property
     def Grants_Allocated(self):
@@ -901,16 +902,16 @@ def load_pd_df_Students(df):
         db.session.add(data)
         db.session.commit()
 
-def load_pd_df_Allocations(df):
+def load_pd_df_ProgramsByUniversity(df):
     for index, row in df.iterrows():
         data = ProgramsByUniversity(Grants_Allocated = row["GRANTS_ALLOCATED"], Allocation_Year = row["ALLOCATION_YEAR"], Program_Id = row["PROGRAM_ID"], University_Id = row["UNIVERSITY_ID"], 
             Grant_Type = row["GRANT_TYPE"], Grant_Dollar_Size = row["GRANT_DOLLAR_SIZE"])
         db.session.add(data)
         db.session.commit()
 
-def load_pd_df_UniversitiesFunding(df):
+def load_pd_df_GrantsByUniversity(df):
     for index, row in df.iterrows():
-        data = UniversitiesFunding(Allocation_Year = row["ALLOCATION_YEAR"], University_Id = row["UNIVERSITY_ID"], Member_Status = str2bool(row["MEMBER_STATUS"]))
+        data = GrantsByUniversity(Allocation_Year = row["ALLOCATION_YEAR"], University_Id = row["UNIVERSITY_ID"], Member_Status = str2bool(row["MEMBER_STATUS"]))
         db.session.add(data)
         db.session.commit()
 
@@ -938,11 +939,11 @@ def load_pd_df_UniversitiesFunding(df):
 # df = pd_download('UNIVERSITIES')
 # load_pd_df_Universities(df)
 
-# df = pd_download('ALLOCATIONS')
-# load_pd_df_Allocations(df)
+# df = pd_download('PBU')
+# load_pd_df_ProgramsByUniversity(df)
 
-# df = pd_download('UNIVERSITIESFUNDING')
-# load_pd_df_UniversitiesFunding(df)
+# df = pd_download('GBU')
+# load_pd_df_GrantsByUniversity(df)
 
 
 # fix up PBU and UF hybrid properties for grants not funding DONE
@@ -951,5 +952,6 @@ def load_pd_df_UniversitiesFunding(df):
 # titles for all pages (html templates) SIRI
 # merge grants and payments SIRI
 # project/program status DONE
+# github issues !!!
 
 # 

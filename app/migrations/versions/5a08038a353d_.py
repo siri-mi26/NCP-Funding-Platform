@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4bd1b0025286
+Revision ID: 5a08038a353d
 Revises: 
-Create Date: 2022-10-13 23:18:47.527359
+Create Date: 2022-10-14 08:30:15.545157
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4bd1b0025286'
+revision = '5a08038a353d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -73,6 +73,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('GRANTSBYUNIVERSITY',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('University_Id', sa.String(length=50), nullable=False),
+    sa.Column('Allocation_Year', sa.Integer(), nullable=True),
+    sa.Column('Member_Status', sa.Boolean(), nullable=True),
+    sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('PROGRAMSBYUNIVERSITY',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('Allocation_Year', sa.Integer(), nullable=True),
@@ -82,14 +90,6 @@ def upgrade():
     sa.Column('Program_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['Program_Id'], ['PROGRAMS.id'], ),
-    sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('UNIVERSITIESFUNDING',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('University_Id', sa.String(length=50), nullable=False),
-    sa.Column('Allocation_Year', sa.Integer(), nullable=True),
-    sa.Column('Member_Status', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -168,8 +168,8 @@ def downgrade():
     op.drop_table('GRANTS')
     op.drop_table('PAYMENTS')
     op.drop_table('STUDENTS')
-    op.drop_table('UNIVERSITIESFUNDING')
     op.drop_table('PROGRAMSBYUNIVERSITY')
+    op.drop_table('GRANTSBYUNIVERSITY')
     op.drop_table('CAMPUSES')
     with op.batch_alter_table('USER', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_USER_Username'))
