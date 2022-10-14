@@ -18,7 +18,7 @@ login.login_view = 'login'
 
 
 from app import db, routes, models
-from app.models import Users, Students, Programs, Universities, Campuses, Grants, ProgramsByUniversity, GrantsByUniversity, MyAdminIndexView, StudentsModelView, ProgramsModelView, UniversitiesModelView, CampusesModelView, GrantsModelView, ProgramsByUniversityModelView, ProgramsByUniversityModelView, LogoutMenuLink, InfoView
+from app.models import Users, Students, Programs, Universities, Campuses, Grants, ProgramsByUniversity, GrantsByUniversity, MyAdminIndexView, StudentsModelView, ProgramsModelView, UniversitiesModelView, CampusesModelView, GrantsModelView, ProgramsByUniversityModelView, GrantsByUniversityModelView, LogoutMenuLink, InfoView
 # set optional bootswatch theme
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 #add admin views for tables/models
