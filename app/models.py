@@ -201,7 +201,6 @@ class ProgramsModelView(ModelView):
         'Grants_Allocated': 'Total Grants Allocated to Universities for this Program', 'Grants_Utilised': 'Total Grants Utilised by Students for this Program', 'Grants_Remaining': 'Total Grants Remaining for this Program',
         'Program_Status': 'Completed if all funding is distributed to students'}
     
-    # actor_table  = db.select(db.Programs.c.Mobility_Grants_Utilised)
     session = db.Session()
     
 
@@ -376,22 +375,27 @@ class GrantsByUniversityModelView(ModelView):
 
     column_searchable_list = ('id', 'University.University_Name', 'University_Id', 'Program_Status')
 
-    column_list =  ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'University_Id')
+    column_list =  ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
+        'Funding_Remaining', 'University_Id')
 
-    column_details_list = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'University_Id')
+    column_details_list = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
+        'Funding_Remaining', 'University_Id')
 
     form_columns =  ('Allocation_Year', 'University_Id', 'Member_Status')
 
-    column_filters = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'University_Id')
+    column_filters = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
+        'Funding_Remaining', 'University_Id')
 
-    column_sortable_list = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'University_Id')
+    column_sortable_list = ('id', 'Program_Status', 'University.University_Name', 'Allocation_Year', 'Member_Status', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
+        'Funding_Remaining', 'University_Id')
 
-    column_labels = {'University.University_Name': 'University Name', 'id': 'GBU ID', 'Allocation_Year': 'Allocation Year',
+    column_labels = {'University.University_Name': 'University Name', 'id': 'GBU ID', 'Allocation_Year': 'Allocation Year', 'Funding_Remaining': 'Funding Remaining', 'Funding_Utilised': 'Funding Utilised', 'Funding_Allocated': 'Funding Allocated',
         'Grants_Remaining': 'Grants Remaining', 'Grants_Utilised': 'Grants Utilised', 'Grants_Allocated': 'Grants Allocated', 'University_Id': 'University ID', 'Member_Status': 'Member Status', 'Program_Status': 'Program Status'}
 
     column_descriptions = {'University.University_Name': 'Name of University', 'id': 'Unique University Funding ID', 'Allocation_Year': 'Allocation Year of Funding', 
-        'Grants_Remaining': 'Grants Remaining for University for Year', 'Grants Utilised': 'Grants Remaining by University for Year', 'Grants_Allocated': 'Grants Allocated for University for Year', 
-        'University_Id': 'Related Unique University ID', 'Member_Status': 'Member Status of University for Year', 'Program_Status': 'Completed if all funding is distributed to students'}
+        'Grants_Remaining': 'Grants Remaining for University for Year', 'Grants Utilised': 'Grants Utilised by University for Year', 'Grants_Allocated': 'Grants Allocated for University for Year', 
+        'University_Id': 'Related Unique University ID', 'Member_Status': 'Member Status of University for Year', 'Program_Status': 'Completed if all funding is distributed to students',
+        'Funding_Remaining': 'Funding Remaining for University for Year', 'Funding_Utilised': 'Funding Utilised by University for Year', 'Funding_Allocated': 'Funding Allocated for University for Year'}
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -415,39 +419,40 @@ class ProgramsByUniversityModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'id' 
 
-    column_searchable_list = ('id', 'University.University_Name', 'Program.Program_Name', 'Program.Year', 'Program_Id', 'University_Id', 'Program_Status')
+    column_searchable_list = ('id', 'University.University_Name', 'Program.Program_Name', 'Program.Year', 'Program_Id', 'University_Id', 'GBU_Id', 'Program_Status')
     
     column_list = ('id', 'Program_Status', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
-        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id', 'GBU_Id')
         
     
     column_details_list = ('id', 'Program_Status', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
-        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id', 'GBU_Id')
     
     form_columns = ('Grants_Allocated', 'Grant_Dollar_Size', 'Program_Id', 'University_Id', 'Allocation_Year', 'Grant_Type')
     
     column_filters = ('id', 'Program_Status', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
-        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id', 'GBU_Id')
     
     column_sortable_list = ('id', 'Program_Status', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
-        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id')
+        'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id', 'GBU_Id')
     
     column_labels = {'id': 'PBU ID', 'Allocation_Year': 'Allocation Year', 'University.University_Name': 'University Name', 
         'Program.Program_Name': 'Program Name', 'Program.Year': 'Program Year', 'Grant_Type': 'Grant Type', 'Grants_Allocated': 'Grants Allocated', 
         'Funding_Allocated': 'Funding Allocated', 'Program.Funding_Acquittal_Date': 'Funding Acquittal Date',
         'Program.Project_Completion_Submission_Date': 'Project Completion Date', 'Program_Id': 'Program ID', 'University_Id': 'University ID', 'Grant_Dollar_Size': 'Grant Dollar Size',
-        'Grants_Utilised': 'Grants Utilised', 'Funding_Utilised': 'Funding Utilised', 'Grants_Remaining': 'Grants Remaining', 'Funding_Remaining': 'Funding Remaining', 'Program_Status': 'Program Status'}
+        'Grants_Utilised': 'Grants Utilised', 'Funding_Utilised': 'Funding Utilised', 'Grants_Remaining': 'Grants Remaining', 'Funding_Remaining': 'Funding Remaining', 'Program_Status': 'Program Status', 'GBU_Id': 'GBU ID'}
         
     column_descriptions = {'id': 'Unique Program by University ID', 'Allocation_Year': 'Year of Allocation of Program Funding', 'University.University_Name': 'Name of University', 
         'Program.Program_Name': 'Name of Program', 'Program.Year': 'Year of Program Funding Received from Government', 'Grant_Type': 'Grant Type (Mobility, Internship or Langauge)', 'Grants_Allocated': 'Number of Grants Allocated to the University in this Year for this Program and of this Type', 
         'Funding_Allocated': 'Total Funding Allocated to the University in this Year for this Program and of this Type', 'Programs.Funding_Acquittal_Date': 'Due Date For The Acquittal',
         'Program.Project_Completion_Submission_Date': 'Date of Project Completion', 'Program_Id': 'Related Unique Program ID', 'University_Id': 'Related Unique University ID', 'Grant_Dollar_Size': 'Dollar Size of Grant',
         'Grants_Utilised': 'Number of Grants Utilised to the University in this Year for this Program and of this Type', 'Funding_Utilised': 'Funding Utilised by this University in this Year for this Program and of this Type', 
-        'Grants_Remaining': 'Number of Grants Remaining to the University in this Year for this Program and of this Type', 'Funding_Remaining': 'Funding Remaining to the University in this Year for this Program and of this Type', 'Program_Status': 'Completed if all funding is distributed to students'}
+        'Grants_Remaining': 'Number of Grants Remaining to the University in this Year for this Program and of this Type', 'Funding_Remaining': 'Funding Remaining to the University in this Year for this Program and of this Type', 
+        'Program_Status': 'Completed if all funding is distributed to students', 'GBU_Id': 'Grants By University ID'}
 
     def is_accessible(self):
         return current_user.is_authenticated
@@ -517,7 +522,7 @@ class Students(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
     University_Id =  db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Campus_Id =  db.Column(db.String(50), db.ForeignKey('CAMPUSES.id'), nullable = False)
-    Student_Number = db.Column(db.Integer, nullable = False) #db.CheckConstraint('Student_Number > 10'), (before nullable)
+    Student_Number = db.Column(db.Integer, nullable = False)
     Title = db.Column(db.String(50))
     First_Name = db.Column(db.String(50), nullable = False)
     Preferred_Name = db.Column(db.String(50))
@@ -667,63 +672,7 @@ class Grants(db.Model):
         return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
 
 
-class GrantsByUniversity(db.Model):
-    __tablename__ = 'GRANTSBYUNIVERSITY' 
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
-    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
-    Allocation_Year = db.Column(db.Integer)
-    Member_Status = db.Column(db.Boolean)
-    University = db.relationship(Universities, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
 
-    @hybrid_property
-    def Grants_Allocated(self):
-        return object_session(self).query(ProgramsByUniversity).filter((ProgramsByUniversity.University_Id == self.University_Id) & (ProgramsByUniversity.Allocation_Year == self.Allocation_Year)).count()
-    @Grants_Allocated.expression
-    def Grants_Allocated(cls):
-        return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where((ProgramsByUniversity.University_Id == cls.University_Id) & (ProgramsByUniversity.Allocation_Year == cls.Allocation_Year)).scalar_subquery()
-
-    @hybrid_property #needs to be query on grants for utilised
-    def Grants_Utilised(self):
-        return object_session(self).query(Grants).filter((Grants.University_Id == self.University_Id) & (Grants.Year_Undertaken == self.Allocation_Year)).count()
-    @Grants_Utilised.expression
-    def Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where((Grants.University_Id == cls.University_Id) & (Grants.Year_Undertaken == cls.Allocation_Year)).scalar_subquery()
-
-    @hybrid_property #just allocated - utilised
-    def Grants_Remaining(self):
-        return self.Grants_Allocated - self.Grants_Utilised
-
-    @hybrid_property
-    def Program_Status(self):
-        if self.Grants_Remaining > 0:
-            result = "Ongoing"
-        else:
-            result = "Completed"
-        return result
-    @Program_Status.expression
-    def Program_Status(cls):
-     return case([(cls.Grants_Remaining > 0, 'Ongoing')],
-                else_='Completed')
-    
-    # possibly add in hybrid property for funding allocated, utilised and remaining (func.sum()) etc
-    # @hybrid_property
-    # def Funding_Remaining(self):
-    #     return object_session(self).query(ProgramsByUniversity).filter((ProgramsByUniversity.University_Id == self.University_Id) & (ProgramsByUniversity.Allocation_Year == self.Allocation_Year)).count()
-    # @Funding_Remaining.expression
-    # def Funding_Remaining(cls):
-    #     return select([func.count(ProgramsByUniversity.Funding_Allocated)]).where((ProgramsByUniversity.University_Id == cls.University_Id) & (ProgramsByUniversity.Allocation_Year == cls.Allocation_Year)).scalar_subquery()
-
-    #looks for funding allocated for university - sum across PBU for university and year
-    # @hybrid_property
-    # def Funding_Allocated(self):
-    #     return sum(fund.Funding_Allocated for fund in self.PBU)
-    # @Funding_Allocated.expression
-    # def Funding_Allocated(cls):
-    #     return select([func.sum(ProgramsByUniversity.Funding_Allocated)]).where((ProgramsByUniversity.University_Id == cls.University_Id) & (ProgramsByUniversity.Allocation_Year == cls.Allocation_Year)).scalar_subquery()
-    
-
-    def __repr__(self):
-        return '<University {}>'.format(self.id)  
 
 class ProgramsByUniversity(db.Model):
     __tablename__ = 'PROGRAMSBYUNIVERSITY' 
@@ -734,6 +683,7 @@ class ProgramsByUniversity(db.Model):
     Grant_Type = db.Column(db.Enum(GrantType), nullable = False)
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
     University_Id = db.Column(db.Integer, db.ForeignKey("UNIVERSITIES.id"), nullable = False)
+    GBU_Id = db.Column(db.Integer, db.ForeignKey("GRANTSBYUNIVERSITY.id"), nullable = False)
     
     University = db.relationship(Universities, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
     Program = db.relationship(Programs, backref=db.backref('PROGRAMSBYUNIVERSITY', uselist=True, lazy='select'))
@@ -772,6 +722,73 @@ class ProgramsByUniversity(db.Model):
     def Program_Status(cls):
      return case([(cls.Grants_Remaining > 0, 'Ongoing')],
                 else_='Completed')
+
+
+
+
+class GrantsByUniversity(db.Model):
+    __tablename__ = 'GRANTSBYUNIVERSITY' 
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
+    University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
+    Allocation_Year = db.Column(db.Integer)
+    Member_Status = db.Column(db.Boolean)
+    University = db.relationship(Universities, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
+    PBU = db.relationship(ProgramsByUniversity, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
+
+    @hybrid_property
+    def Grants_Allocated(self):
+        return object_session(self).query(ProgramsByUniversity).filter((ProgramsByUniversity.University_Id == self.University_Id) & (ProgramsByUniversity.Allocation_Year == self.Allocation_Year)).count()
+    @Grants_Allocated.expression
+    def Grants_Allocated(cls):
+        return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where((ProgramsByUniversity.University_Id == cls.University_Id) & (ProgramsByUniversity.Allocation_Year == cls.Allocation_Year)).scalar_subquery()
+
+    @hybrid_property #needs to be query on grants for utilised
+    def Grants_Utilised(self):
+        return object_session(self).query(Grants).filter((Grants.University_Id == self.University_Id) & (Grants.Year_Undertaken == self.Allocation_Year)).count()
+    @Grants_Utilised.expression
+    def Grants_Utilised(cls):
+        return select([func.count(Grants.id)]).where((Grants.University_Id == cls.University_Id) & (Grants.Year_Undertaken == cls.Allocation_Year)).scalar_subquery()
+
+    @hybrid_property #just allocated - utilised
+    def Grants_Remaining(self):
+        return self.Grants_Allocated - self.Grants_Utilised
+
+    @hybrid_property
+    def Program_Status(self):
+        if self.Grants_Remaining > 0:
+            result = "Ongoing"
+        else:
+            result = "Completed"
+        return result
+    @Program_Status.expression
+    def Program_Status(cls):
+     return case([(cls.Grants_Remaining > 0, 'Ongoing')],
+                else_='Completed')
+
+    @hybrid_property
+    def Funding_Allocated(self):
+        return sum(fund.Funding_Allocated for fund in self.PBU)
+    @Funding_Allocated.expression
+    def Funding_Allocated(cls):
+        return select([func.sum(ProgramsByUniversity.Funding_Allocated)]).where(ProgramsByUniversity.GBU_Id == cls.id).scalar_subquery()
+
+    @hybrid_property
+    def Funding_Utilised(self):
+        return sum(fund.Funding_Utilised for fund in self.PBU)
+    @Funding_Utilised.expression
+    def Funding_Utilised(cls):
+        return select([func.sum(ProgramsByUniversity.Funding_Utilised)]).where(ProgramsByUniversity.GBU_Id == cls.id).scalar_subquery()
+
+    @hybrid_property
+    def Funding_Remaining(self):
+        return sum(fund.Funding_Remaining for fund in self.PBU)
+    @Funding_Remaining.expression
+    def Funding_Remaining(cls):
+        return select([func.sum(ProgramsByUniversity.Funding_Remaining)]).where(ProgramsByUniversity.GBU_Id == cls.id).scalar_subquery()
+
+
+    def __repr__(self):
+        return '<University {}>'.format(self.id)  
 
 
 #Functions to import csv files from github
@@ -834,15 +851,7 @@ def load_pd_df_Universities(df):
     for index, row in df.iterrows():
         data = Universities(University_Acronym = row['UNIVERSITY_ACRONYM'],University_Name = row['UNIVERSITY_NAME'], ABN = row['ABN'])
         db.session.add(data)
-        db.session.commit()    
-
-# def load_pd_df_Payments(df):
-#     for index, row in df.iterrows():
-#         data= Payments(Student_Id=row["STUDENT_ID (FK)"], Program_Id=row["PROGRAM_ID (FK)"], UWA_Business_Unit=row["UWA_BUSINESS_UNIT"], 
-#         Payment_Date=datetime.strptime(row["PAYMENT_DATE"],'%d/%m/%Y').date(), Payment_Amount=row["PAYMENT_AMOUNT"],
-#         UWA_Account_Number=row["UWA_ACCOUNT_NUMBER"], Funding_Round=row["FUNDING_ROUND"], Description=row["DESCRIPTION"])
-#         db.session.add(data)
-#         db.session.commit()  
+        db.session.commit()     
 
 def load_pd_df_Programs(df):
     names = list(df.keys())
@@ -872,7 +881,7 @@ def load_pd_df_Students(df):
 def load_pd_df_ProgramsByUniversity(df):
     for index, row in df.iterrows():
         data = ProgramsByUniversity(Grants_Allocated = row["GRANTS_ALLOCATED"], Allocation_Year = row["ALLOCATION_YEAR"], Program_Id = row["PROGRAM_ID"], University_Id = row["UNIVERSITY_ID"], 
-            Grant_Type = row["GRANT_TYPE"], Grant_Dollar_Size = row["GRANT_DOLLAR_SIZE"])
+            Grant_Type = row["GRANT_TYPE"], Grant_Dollar_Size = row["GRANT_DOLLAR_SIZE"], GBU_Id = row["GBU_ID"])
         db.session.add(data)
         db.session.commit()
 
@@ -893,9 +902,6 @@ def load_pd_df_GrantsByUniversity(df):
 
 # df = pd_download('GRANTS')
 # load_pd_df_Grants(df)
-
-# #df = pd_download('PAYMENTS')
-# #load_pd_df_Payments(df)
 
 # df = pd_download('PROGRAMS',None, None,{'CLASS_CODE': str,'ISEO_CODE': str,'UWA_MOBILITY_GRANT_PROJECT_GRANT_NUMBER': str,'UWA_ADMIN_FUNDING_PROJECT_GRANT_NUMBER': str})
 # load_pd_df_Programs(df)

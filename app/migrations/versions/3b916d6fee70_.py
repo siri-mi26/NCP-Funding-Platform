@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3f969f5a0e03
+Revision ID: 3b916d6fee70
 Revises: 
-Create Date: 2022-10-14 08:45:52.194154
+Create Date: 2022-10-14 10:17:49.333505
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3f969f5a0e03'
+revision = '3b916d6fee70'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -89,6 +89,8 @@ def upgrade():
     sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Internship', name='granttype'), nullable=False),
     sa.Column('Program_Id', sa.Integer(), nullable=False),
     sa.Column('University_Id', sa.Integer(), nullable=False),
+    sa.Column('GBU_Id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['GBU_Id'], ['GRANTSBYUNIVERSITY.id'], ),
     sa.ForeignKeyConstraint(['Program_Id'], ['PROGRAMS.id'], ),
     sa.ForeignKeyConstraint(['University_Id'], ['UNIVERSITIES.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -137,13 +139,13 @@ def upgrade():
     sa.Column('Campus_Id', sa.Integer(), nullable=False),
     sa.Column('Grant_Type', sa.Enum('Mobility', 'Language', 'Internship', name='granttype'), nullable=False),
     sa.Column('Awarded', sa.Boolean(), nullable=True),
+    sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.Column('UWA_Business_Unit', sa.Integer(), nullable=True),
     sa.Column('Payment_Date', sa.Date(), nullable=True),
     sa.Column('Payment_Amount', sa.Integer(), nullable=False),
     sa.Column('UWA_Account_Number', sa.Integer(), nullable=True),
     sa.Column('Funding_Round', sa.String(length=50), nullable=False),
     sa.Column('Description', sa.String(), nullable=True),
-    sa.Column('Forms_Received', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['Campus_Id'], ['CAMPUSES.id'], ),
     sa.ForeignKeyConstraint(['Program_Id'], ['PROGRAMS.id'], ),
     sa.ForeignKeyConstraint(['Student_Id'], ['STUDENTS.id'], ),
