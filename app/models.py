@@ -146,19 +146,18 @@ class ProgramsModelView(ModelView):
     can_set_page_size = True
     column_default_sort = 'id' 
 
-    column_searchable_list = ('id', 'Program_Name', 'Program_Acronym', 'Program_Type', 'Program_Status')
+    column_searchable_list = ('id', 'Program_Name', 'Program_Acronym', 'Program_Type')
 
-    column_list = ('id', 'Program_Status', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_list = ('id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type',  'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 
-        'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'Notes')
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 'Notes') 
+        #'Program_Status', 'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining',
 
-    column_details_list = ('id', 'Program_Status', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_details_list = ('id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 
-        'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'Notes')
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 'Notes')
 
 
     form_columns = ('Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
@@ -167,17 +166,15 @@ class ProgramsModelView(ModelView):
         'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 'Notes')
 
     
-    column_filters = ('id', 'Program_Status', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_filters = ('id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 
-        'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'Notes')
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 'Notes')
 
-    column_sortable_list= ('id', 'Program_Status', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
+    column_sortable_list= ('id', 'Program_Name', 'Program_Acronym', 'Year', 'Class_Code', 'Project_Code', 'ISEO_Code', 'UWA_Mobility_Grant_Project_Grant_Number',
         'UWA_Admin_Funding_Project_Grant_Number', 'Program_Type', 'CITIZENS_PR','SHORT_TERM_GRANT','SEMESTER_GRANT','Funding_Acquittal_Date', 'Project_Completion_Submission_Date',
         'Project_Completion_Report_Link', 'Refund_Utilisation_Commonwealth_Date', 'Commonwealth_Refund_Invoice_Link', 'Statutory_Decleration_Date',
-        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 
-        'Grants_Allocated', 'Grants_Utilised', 'Grants_Remaining', 'Notes')
+        'Statutory_Decleration_Link', 'Original_Project_Schedule', 'Deed_Of_Variation_One', 'Deed_Of_Variation_Two', 'Deed_Of_Variation_Three', 'Notes')
 
     column_labels = {'Program_Name': 'Program Name', 'Program_Acronym': 'Program Acronym', 'Year': 'Year', 'Class_Code': 'Class Code', 
         'Project_Code': 'Project Code', 'ISEO_Code': 'ISEO Code', 'UWA_Mobility_Grant_Project_Grant_Number': 'UWA Mobility Grant Project Grant Number',
@@ -187,7 +184,7 @@ class ProgramsModelView(ModelView):
         'Refund_Utilisation_Commonwealth_Date': 'Refund Utilisation Commonwealth Date', 'Commonwealth_Refund_Invoice_Link': 'Commonwealth Refund Invoice Link', 
         'Statutory_Decleration_Date': 'Statutory Decleration Date','Statutory_Decleration_Link': 'Statutory Decleration Link', 'Original_Project_Schedule': 'Original Project Schedule', 
         'Deed_Of_Variation_One': 'Deed Of Variation One', 'Deed_Of_Variation_Two': 'Deed Of Variation Two', 'Deed_Of_Variation_Three': 'Deed Of Variation Three', 'Notes': 'Extra Notes', 
-        'id': 'Program ID', 'Grants_Allocated': 'Total Grants Allocated', 'Grants_Utilised': 'Total Grants Utilised', 'Grants_Remaining': 'Total Grants Remaining', 'Program_Status': 'Program Status'}
+        'id': 'Program ID'}
 
     
     column_descriptions = {'Program_Name': 'Name of Grant Program', 'Program_Acronym': 'Grant Program Acronym', 'Year': 'Year Of Program', 'Class_Code': 'Class Code Of Program',
@@ -197,9 +194,7 @@ class ProgramsModelView(ModelView):
         'Funding_Acquittal_Date' : 'Due Date For The Acquittal', 'Project_Completion_Submission_Date': 'Completion Date Of Project', 'Project_Completion_Report_Link': 'Link To Project Completion Report in Dropbox',
         'Refund_Utilisation_Commonwealth_Date': 'Date Refund Is Processed ', 'Commonwealth_Refund_Invoice_Link': 'Link To Dropbox For Commonwealth Refund Invoice Link', 'Statutory_Decleration_Date': 'The Date Of The Statuatory Declaration Being Signed & Submitted', 
         'Statutory_Decleration_Link': 'Link to Dropbox For Statutory Declaration', 'Original_Project_Schedule': 'Link To Dropbox For Original Project Schedule', 'Deed_Of_Variation_One': 'Link To Dropbox For Deed of Variation One', 
-        'Deed_Of_Variation_Two': 'Link To Dropbox For Deed of Variation Two', 'Deed_Of_Variation_Three': 'Link To Dropbox For Deed of Variation Three', 'Notes': 'Any Extra Notes On The Program', 'id': 'Unique Program ID', 
-        'Grants_Allocated': 'Total Grants Allocated to Universities for this Program', 'Grants_Utilised': 'Total Grants Utilised by Students for this Program', 'Grants_Remaining': 'Total Grants Remaining for this Program',
-        'Program_Status': 'Completed if all funding is distributed to students'}
+        'Deed_Of_Variation_Two': 'Link To Dropbox For Deed of Variation Two', 'Deed_Of_Variation_Three': 'Link To Dropbox For Deed of Variation Three', 'Notes': 'Any Extra Notes On The Program', 'id': 'Unique Program ID'}
     
     session = db.Session()
     
@@ -493,6 +488,7 @@ class State(enum.Enum):
     TAS = "TAS"
 
 
+
 class Universities(db.Model):  
     __tablename__ = 'UNIVERSITIES' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
@@ -502,6 +498,7 @@ class Universities(db.Model):
 
     def __repr__(self):
         return '<University: {}>'.format(self.id, self.University_Name)
+
 
 
 class Campuses(db.Model):  
@@ -515,6 +512,7 @@ class Campuses(db.Model):
 
     def __repr__(self):
         return '<Campus: {}>'.format(self.id, self.Campus_Name)
+
 
 
 class Students(db.Model):  
@@ -546,6 +544,9 @@ class Students(db.Model):
     Aus_Citizen = db.Column(db.Boolean)
     CITIZENS_PR = db.Column(db.Boolean)
 
+    University = db.relationship(Universities, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
+    Campus = db.relationship(Campuses, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
+
     @hybrid_property
     def SHORT_TERM_GRANT(self):
         return object_session(self).query(Grants, Programs).filter((Grants.Student_Id == self.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Short Term%'))).count()
@@ -561,11 +562,9 @@ class Students(db.Model):
         return select([func.count(Grants.id)]).where((Grants.Student_Id == cls.id) & (Grants.Program_Id == Programs.id) & (Programs.Program_Type.like('%Semester%'))).scalar_subquery()
     Notes = db.Column(db.String(100))
 
-    University = db.relationship(Universities, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
-    Campus = db.relationship(Campuses, backref=db.backref('STUDENTS', uselist=True, lazy='select'))
-    
     def __repr__(self):
         return '<Student {}>'.format(self.id, self.First_Name, self.Last_Name)
+
 
 
 class Programs(db.Model):  
@@ -580,11 +579,9 @@ class Programs(db.Model):
     UWA_Mobility_Grant_Project_Grant_Number = db.Column(db.String(50))
     UWA_Admin_Funding_Project_Grant_Number = db.Column(db.String(50))
     Program_Type = db.Column(db.String(50), nullable = False)
-
     CITIZENS_PR = db.Column(db.Boolean)
     SHORT_TERM_GRANT = db.Column(db.Boolean)
     SEMESTER_GRANT = db.Column(db.Boolean)
-
     Funding_Acquittal_Date = db.Column(db.Date)
     Project_Completion_Submission_Date = db.Column(db.Date)
     Project_Completion_Report_Link = db.Column(db.String)
@@ -596,48 +593,46 @@ class Programs(db.Model):
     Deed_Of_Variation_One = db.Column(db.String)
     Deed_Of_Variation_Two = db.Column(db.String)
     Deed_Of_Variation_Three = db.Column(db.String)
-
     Notes = db.Column(db.String)
+    
+#     # PBU = db.relationship(ProgramsByUniversity, backref=db.backref('PROGRAMS', uselist=True, lazy='select'))
 
-    @hybrid_property
-    def Grants_Allocated(self):
-        return object_session(self).query(ProgramsByUniversity).filter(ProgramsByUniversity.Program_Id == self.id).count()
-    @Grants_Allocated.expression
-    def Grants_Allocated(cls):
-        return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where(ProgramsByUniversity.Program_Id == cls.id).scalar_subquery()
- # NEEDS TO SUM COUNT OF GRANTS ALLOCATED ROWS (CURRENTLY JUST COUNTS ROWS)
+#     @hybrid_property
+#     def Grants_Allocated(self):
+#         return object_session(self).query(ProgramsByUniversity).filter(ProgramsByUniversity.Program_Id == self.id).count()
+#     @Grants_Allocated.expression
+#     def Grants_Allocated(cls):
+#         return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where(ProgramsByUniversity.Program_Id == cls.id).scalar_subquery()
+#  # NEEDS TO SUM COUNT OF GRANTS ALLOCATED ROWS (CURRENTLY JUST COUNTS ROWS)
 
-    # PBU = db.relationship(ProgramsByUniversity, backref=db.backref('PROGRAMS', uselist=True, lazy='select'))
 
-    # @hybrid_property
-    # def Grants_Allocated22(self):
-    #     return sum(fund.Grants_Allocated for fund in self.)
-    # @Grants_Allocated22.expression
-    # def Grants_Allocated22(cls):
-    #     return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where(ProgramsByUniversity.Program_Id == cls.id).scalar_subquery()
 
-    @hybrid_property
-    def Grants_Utilised(self):
-        return object_session(self).query(Grants).filter(Grants.Program_Id == self.id).count()
-    @Grants_Utilised.expression
-    def Grants_Utilised(cls):
-        return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id).scalar_subquery()
+#     @hybrid_property #DONE
+#     def Grants_Utilised(self):
+#         return object_session(self).query(Grants).filter(Grants.Program_Id == self.id).count()
+#     @Grants_Utilised.expression
+#     def Grants_Utilised(cls):
+#         return select([func.count(Grants.id)]).where(Grants.Program_Id == cls.id).scalar_subquery()
 
-    @hybrid_property #just allocated - utilised
-    def Grants_Remaining(self):
-        return self.Grants_Allocated - self.Grants_Utilised
+#     @hybrid_property #DONE
+#     def Grants_Remaining(self):
+#         return self.Grants_Allocated - self.Grants_Utilised
 
-    @hybrid_property
-    def Program_Status(self):
-        if self.Grants_Remaining > 0:
-            result = "Ongoing"
-        else:
-            result = "Completed"
-        return result
-    @Program_Status.expression
-    def Program_Status(cls):
-     return case([(cls.Grants_Remaining > 0, 'Ongoing')],
-                else_='Completed')
+#     @hybrid_property
+#     def Program_Status(self):
+#         if self.Grants_Remaining > 0:
+#             result = "Ongoing"
+#         else:
+#             result = "Completed"
+#         return result
+#     @Program_Status.expression
+#     def Program_Status(cls):
+#      return case([(cls.Grants_Remaining > 0, 'Ongoing')],
+#                 else_='Completed')
+
+    def __repr__(self):
+        return '<Program {}>'.format(self.id) 
+
 
 
 class Grants(db.Model):  
@@ -646,8 +641,6 @@ class Grants(db.Model):
     Start_Date = db.Column(db.Date)
     End_Date = db.Column(db.Date)
     Period = db.Column(db.String(50), nullable = False)
-
-
     Year_Undertaken = db.Column(db.Integer)
     Program_Id = db.Column(db.Integer, db.ForeignKey("PROGRAMS.id"), nullable = False)
     Student_Id = db.Column(db.Integer, db.ForeignKey("STUDENTS.id"), nullable = False)
@@ -670,7 +663,6 @@ class Grants(db.Model):
     
     def __repr__(self):
         return '<Grant {} {} {}>'.format(self.id, self.Program_Id, self.Student_Id)  
-
 
 
 
@@ -725,31 +717,31 @@ class ProgramsByUniversity(db.Model):
 
 
 
-
 class GrantsByUniversity(db.Model):
     __tablename__ = 'GRANTSBYUNIVERSITY' 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True) 
     University_Id = db.Column(db.String(50), db.ForeignKey('UNIVERSITIES.id'), nullable = False)
     Allocation_Year = db.Column(db.Integer)
     Member_Status = db.Column(db.Boolean)
+
     University = db.relationship(Universities, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
     PBU = db.relationship(ProgramsByUniversity, backref=db.backref('GRANTSBYUNIVERSITY', uselist=True, lazy='select'))
 
     @hybrid_property
     def Grants_Allocated(self):
-        return object_session(self).query(ProgramsByUniversity).filter((ProgramsByUniversity.University_Id == self.University_Id) & (ProgramsByUniversity.Allocation_Year == self.Allocation_Year)).count()
+        return sum(fund.Grants_Allocated for fund in self.PBU)
     @Grants_Allocated.expression
     def Grants_Allocated(cls):
-        return select([func.count(ProgramsByUniversity.Grants_Allocated)]).where((ProgramsByUniversity.University_Id == cls.University_Id) & (ProgramsByUniversity.Allocation_Year == cls.Allocation_Year)).scalar_subquery()
+        return select([func.sum(ProgramsByUniversity.Grants_Allocated)]).where(ProgramsByUniversity.GBU_Id == cls.id).scalar_subquery()
 
-    @hybrid_property #needs to be query on grants for utilised
+    @hybrid_property
     def Grants_Utilised(self):
         return object_session(self).query(Grants).filter((Grants.University_Id == self.University_Id) & (Grants.Year_Undertaken == self.Allocation_Year)).count()
     @Grants_Utilised.expression
     def Grants_Utilised(cls):
         return select([func.count(Grants.id)]).where((Grants.University_Id == cls.University_Id) & (Grants.Year_Undertaken == cls.Allocation_Year)).scalar_subquery()
 
-    @hybrid_property #just allocated - utilised
+    @hybrid_property
     def Grants_Remaining(self):
         return self.Grants_Allocated - self.Grants_Utilised
 
@@ -781,11 +773,7 @@ class GrantsByUniversity(db.Model):
 
     @hybrid_property
     def Funding_Remaining(self):
-        return sum(fund.Funding_Remaining for fund in self.PBU)
-    @Funding_Remaining.expression
-    def Funding_Remaining(cls):
-        return select([func.sum(ProgramsByUniversity.Funding_Remaining)]).where(ProgramsByUniversity.GBU_Id == cls.id).scalar_subquery()
-
+        return self.Funding_Allocated - self.Funding_Utilised
 
     def __repr__(self):
         return '<University {}>'.format(self.id)  
@@ -917,16 +905,3 @@ def load_pd_df_GrantsByUniversity(df):
 
 # df = pd_download('GBU')
 # load_pd_df_GrantsByUniversity(df)
-
-
-# fix up PBU and UF hybrid properties for grants not funding DONE
-# possibly when add a grant, only add student and not campus/uni -> use relation TOO HARD
-# summary on programs as well as by uni DONE
-# titles for all pages (html templates) SIRI
-# merge grants and payments SIRI
-# project/program status DONE
-# github issues !!!
-
-# in grants - get program name, program year, uni name from elsewhere
-# get uni name from campus
-# get program name and year from PBU?
