@@ -425,7 +425,7 @@ class ProgramsByUniversityModelView(ModelView):
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
         'Funding_Remaining', 'Program.Funding_Acquittal_Date', 'Program.Project_Completion_Submission_Date', 'Program_Id', 'University_Id', 'GBU_Id')
     
-    form_columns = ('Grants_Allocated', 'Grant_Dollar_Size', 'Program_Id', 'University_Id', 'Allocation_Year', 'Grant_Type')
+    form_columns = ('Grants_Allocated', 'Grant_Dollar_Size', 'Program_Id', 'University_Id', 'Allocation_Year', 'Grant_Type', 'GBU_Id')
     
     column_filters = ('id', 'Program_Status', 'Allocation_Year', 'University.University_Name', 'Program.Program_Name', 'Program.Year',
         'Grant_Type', 'Grant_Dollar_Size', 'Grants_Allocated', 'Funding_Allocated', 'Grants_Utilised', 'Funding_Utilised', 'Grants_Remaining', 
